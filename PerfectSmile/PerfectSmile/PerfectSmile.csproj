@@ -86,6 +86,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Config\connectionString.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -101,6 +102,7 @@
     <Folder Include="Constant\" />
     <Folder Include="DB\" />
     <Folder Include="EF\" />
+    <Folder Include="Events\" />
     <Folder Include="Helper\" />
     <Folder Include="Log\" />
     <Folder Include="Model\" />
