@@ -133,6 +133,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\BaseValidation.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\Log4NetLogger.cs" />
