@@ -1,0 +1,17 @@
+﻿<Window x:Class="PerfectSmile.View.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PerfectSmile"
+        xmlns:prism="http://prismlibrary.com/"
+        mc:Ignorable="d"
+        Title="Perfect smile dental clinic" Height="350" Width="525"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        >
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay}" VerticalAlignment="Top" Margin="121,84,0,0" Width="139" Height="52"/>
+        <TextBlock x:Name="textBlcock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="sdsad" VerticalAlignment="Top" Margin="151,136,0,0" Width="139" Height="52"/>
+  
+    </Grid>
+</Window>

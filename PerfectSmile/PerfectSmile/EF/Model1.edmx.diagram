@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e77c627de39346e9a4ac46809275ca4f" Name="Diagram1">
-        <EntityTypeShape EntityType="PerfectSmileModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerfectSmileModel.User" Width="1.5" PointX="2.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerfectSmileModel.Patient" Width="1.5" PointX="9.5" PointY="1.125" />
+        <EntityTypeShape EntityType="PerfectSmileModel.PatientHistory" Width="1.5" PointX="6" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

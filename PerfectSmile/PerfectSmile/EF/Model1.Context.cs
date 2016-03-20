@@ -26,5 +26,7 @@ namespace PerfectSmile.EF
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Patient> Patients { get; set; }
+        public virtual DbSet<PatientHistory> PatientHistories { get; set; }
     }
 }
