@@ -7,6 +7,14 @@
         mc:Ignorable="d"
          Title="Login Screen -Perfect smile dental clinic" Height="350" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="213*"/>
+        </Grid.RowDefinitions>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Margin="167,4,0,0" Width="97" Grid.Row="1">
+            
+        </TextBlock>
+
     </Grid>
 </Window>

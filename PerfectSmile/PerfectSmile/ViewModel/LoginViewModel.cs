@@ -13,7 +13,6 @@ namespace PerfectSmile.ViewModel
         {
            // var users = new PerfectSmileEntities().Users.ToList();
           
-
         }
     }
 }
