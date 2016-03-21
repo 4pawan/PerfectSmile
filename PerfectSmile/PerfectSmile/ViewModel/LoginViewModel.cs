@@ -11,8 +11,8 @@ namespace PerfectSmile.ViewModel
     {
         public LoginViewModel()
         {
-           // var users = new PerfectSmileEntities().Users.ToList();
-          
+            var users = new PerfectSmile.EF.perfectsmileEntities().Users.ToList();
+            var aa = users;
         }
     }
 }

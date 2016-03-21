@@ -1,30 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PerfectSmileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int64" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityContainer Name="PerfectSmileEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Users" EntityType="Self.User" />
-    <EntitySet Name="Patients" EntityType="PerfectSmileModel.Patient" />
-    <EntitySet Name="PatientHistories" EntityType="PerfectSmileModel.PatientHistory" />
-  </EntityContainer>
+<Schema Namespace="perfectsmileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Patient">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int64" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Phone" Type="Int32" />
-    <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="CeatedAt" Type="DateTime" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Remark" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ModifiedAt" Type="DateTime" />
+    <NavigationProperty Name="PatientHistories" Relationship="Self.FK_PatientHistory_0_0" FromRole="Patient" ToRole="PatientHistory" />
   </EntityType>
   <EntityType Name="PatientHistory">
     <Key>
@@ -32,14 +20,42 @@
     </Key>
     <Property Name="Id" Type="Int64" Nullable="false" />
     <Property Name="PatientId" Type="Int64" Nullable="false" />
-    <Property Name="TreatmentDone" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
-    <Property Name="PaymentDone" Type="Decimal" Nullable="false" Precision="53" Scale="0" />
-    <Property Name="Balance" Type="Decimal" Nullable="false" Precision="53" Scale="0" />
+    <Property Name="TreatmentDone" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDone" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+    <Property Name="Balance" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
     <Property Name="NextAppointment" Type="DateTime" />
-    <Property Name="AdditionalComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="CeatedAt" Type="DateTime" />
-    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="ModifiedAt" Type="DateTime" />
+    <Property Name="AdditionalComment" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedAt" Type="DateTime" />
+    <NavigationProperty Name="Patient" Relationship="Self.FK_PatientHistory_0_0" FromRole="PatientHistory" ToRole="Patient" />
   </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PatientHistory_0_0">
+    <End Role="Patient" Type="Self.Patient" Multiplicity="1" />
+    <End Role="PatientHistory" Type="Self.PatientHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patient">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PatientHistory">
+        <PropertyRef Name="PatientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="perfectsmileEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Patients" EntityType="Self.Patient" />
+    <EntitySet Name="PatientHistories" EntityType="Self.PatientHistory" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_PatientHistory_0_0" Association="Self.FK_PatientHistory_0_0">
+      <End Role="Patient" EntitySet="Patients" />
+      <End Role="PatientHistory" EntitySet="PatientHistories" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>
