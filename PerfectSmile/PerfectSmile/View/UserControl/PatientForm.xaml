@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="PerfectSmile.View.UserControl.PatientForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,8,0,0" TextWrapping="Wrap" Text="Patient form" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>

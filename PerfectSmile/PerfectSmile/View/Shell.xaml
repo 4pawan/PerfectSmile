@@ -6,6 +6,6 @@
          Title="Main screen -Perfect smile dental clinic"
         >
     <Grid>
-            
+        <ContentControl prism:RegionManager.RegionName="MainRegion" />
     </Grid>
 </Window>

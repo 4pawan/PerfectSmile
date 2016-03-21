@@ -43,12 +43,13 @@ namespace PerfectSmile.ViewModel
                 var isUserValid = LoginService.IsUserValid(Name, Password);
                 if (!isUserValid)
                 {
-                    Message = "Invalid User name or Password !";
+                    Message = Constant.Constant.LoginView.LoginErrorMesage ;
                 }
                 else
                 {
+                    var shell = new Shell();
                     item.Close();
-                    new Shell().Show();
+                    shell.Show();
                 }
             });
         }

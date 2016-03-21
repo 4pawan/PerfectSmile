@@ -138,6 +138,7 @@
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Constant\Constant.cs" />
     <Compile Include="EF\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -167,8 +168,16 @@
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\PrismWindowViewModel.cs" />
+    <Compile Include="View\Module\PatientFormModule.cs" />
+    <Compile Include="View\Module\PatientListModule.cs" />
     <Compile Include="View\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControl\PatientForm.xaml.cs">
+      <DependentUpon>PatientForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserControl\PatientList.xaml.cs">
+      <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Style.xaml">
       <SubType>Designer</SubType>
@@ -186,6 +195,14 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Shell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControl\PatientForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserControl\PatientList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -229,13 +246,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assest\" />
-    <Folder Include="Constant\" />
     <Folder Include="Events\" />
     <Folder Include="Helper\" />
     <Folder Include="Log\" />
     <Folder Include="Model\" />
     <Folder Include="Repository\" />
-    <Folder Include="View\UserControl\" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="View\SplashScreen.png" />
