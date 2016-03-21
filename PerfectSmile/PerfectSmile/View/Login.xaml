@@ -11,12 +11,39 @@
         <vm:LoginViewModel/>
     </Window.DataContext>
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="137" />
+                <Setter Property="Height" Value="32" />
+                <Setter Property="FontStretch" Value="Expanded" />
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="258" />
+                <Setter Property="Height" Value="32" />
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="370*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="42*"/>
-            <RowDefinition Height="65*"/>
-            <RowDefinition Height="213*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="51*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="109*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="54" Margin="167,4,0,0" Width="97" Grid.Row="1"/>
+        <TextBlock  Text="name" Margin="10,10,0,0" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay}"  Margin="20,10,0,0" Grid.Row="1"/>
+        <TextBlock Grid.Column="0" Text="password"  Grid.Row="2" Margin="10,10,0,0"/>
+        <TextBox  Text="{Binding Password, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" Margin="20,10,0,0"/>
+        <Button  Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="258"  Grid.Column="1" Margin="20,10,0,0" Grid.Row="3" Height="33" Command="{Binding LoginCommand}"/>
 
     </Grid>
 </Window>
