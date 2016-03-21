@@ -3,7 +3,7 @@ using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PerfectSmile.EF;
+//using PerfectSmile.EF;
 
 namespace PerfectSmile.ViewModel
 {
@@ -11,7 +11,7 @@ namespace PerfectSmile.ViewModel
     {
         public LoginViewModel()
         {
-            var users = new PerfectSmileEntities().Users.ToList();
+           // var users = new PerfectSmileEntities().Users.ToList();
           
 
         }
