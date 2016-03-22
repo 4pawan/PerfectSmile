@@ -32,22 +32,32 @@ namespace PerfectSmile.ViewModels
         public ICommand LoginCommand { get; set; }
 
 
+
+        private bool CanExecute(Window item)
+        {
+            return !string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(Password);
+        }
+
+        private void Execute(Window item)
+        {
+            var isUserValid = LoginService.IsUserValid(Name, Password);
+            if (!isUserValid)
+            {
+                Message = Constant.Constant.LoginView.LoginErrorMesage;
+            }
+            else
+            {
+                var shell = new Shell();
+                item.Close();
+                shell.Show();
+            }
+        }
+
+
+
         public LoginViewModel()
         {
-            LoginCommand = new DelegateCommand<Window>((item) =>
-            {
-                var isUserValid = LoginService.IsUserValid(Name, Password);
-                if (!isUserValid)
-                {
-                    Message = Constant.Constant.LoginView.LoginErrorMesage ;
-                }
-                else
-                {
-                    var shell = new Shell();
-                    item.Close();
-                    shell.Show();
-                }
-            });
+            LoginCommand = new DelegateCommand<Window>(Execute, CanExecute).ObservesProperty(() => Name).ObservesProperty(() => Password);
         }
     }
 }

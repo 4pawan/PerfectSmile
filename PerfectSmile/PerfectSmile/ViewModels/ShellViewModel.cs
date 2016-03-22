@@ -1,4 +1,7 @@
-﻿namespace PerfectSmile.ViewModels
+﻿using Prism.Commands;
+using Prism.Regions;
+
+namespace PerfectSmile.ViewModels
 {
     public class ShellViewModel : BaseViewModel
     {
@@ -10,10 +13,22 @@
             set { SetProperty(ref _name, value); }
         }
 
+        private readonly IRegionManager _regionManager;
 
-        public ShellViewModel()
+        public DelegateCommand<string> NavigateCommand { get; set; }
+
+        public ShellViewModel(IRegionManager regionManager)
         {
+            _regionManager = regionManager;
 
+            NavigateCommand = new DelegateCommand<string>(Navigate);
         }
+
+        private void Navigate(string uri)
+        {
+            _regionManager.RequestNavigate("ContentRegion", uri);
+        }
+
+
     }
 }
