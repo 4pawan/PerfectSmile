@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace PerfectSmile.View.UserControl
+﻿namespace PerfectSmile.Views.UserControl
 {
     /// <summary>
     /// Interaction logic for PatientList

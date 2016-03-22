@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace PerfectSmile.View
+namespace PerfectSmile.Views
 {
     /// <summary>
     /// Interaction logic for Shell.xaml

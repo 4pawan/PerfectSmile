@@ -1,14 +1,10 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Service;
-using PerfectSmile.View;
+using PerfectSmile.Views;
+using Prism.Commands;
 
-namespace PerfectSmile.ViewModel
+namespace PerfectSmile.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
