@@ -14,15 +14,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <my:Ribbon Grid.Row="0" >
-            <!--<my:Ribbon.ApplicationMenu>
-                <my:RibbonApplicationMenu SmallImageSource="{imageFromFont:ImageFromFont Brush=Gold, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF016;}">
-                    <my:RibbonApplicationMenuItem Header="Restart" ImageSource="{imageFromFont:ImageFromFont Brush=Red, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01E;}" />
-                    <my:RibbonApplicationMenuItem Header="Save" ImageSource="{imageFromFont:ImageFromFont Brush=Blue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF0C7;}" />
-                </my:RibbonApplicationMenu>
-            </my:Ribbon.ApplicationMenu>-->
-
+            <my:Ribbon.ApplicationMenu>
+                <my:RibbonApplicationMenu Visibility="Collapsed"/> 
+            </my:Ribbon.ApplicationMenu>
+            
             <my:RibbonTab IsSelected="True" Header="Patient Details">
-
                 <my:RibbonButton Label="Patient List"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f1;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
                 <my:RibbonButton Label="Sheduled Appointment"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf098;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
             </my:RibbonTab>
