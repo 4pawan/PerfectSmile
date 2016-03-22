@@ -6,6 +6,7 @@
             xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
             WindowState="Maximized"  WindowStartupLocation="CenterScreen"
             prism:ViewModelLocator.AutoWireViewModel="True"
+                 Icon="/PerfectSmile;component/Resources/mickey-mouse-icon.png"
          Title="{x:Static constant:Constant+Shell.Title}"
         >
     <Grid>
@@ -15,9 +16,9 @@
         </Grid.RowDefinitions>
         <my:Ribbon Grid.Row="0" >
             <my:Ribbon.ApplicationMenu>
-                <my:RibbonApplicationMenu Visibility="Collapsed"/> 
+                <my:RibbonApplicationMenu Visibility="Collapsed"/>
             </my:Ribbon.ApplicationMenu>
-            
+
             <my:RibbonTab IsSelected="True" Header="Patient Details">
                 <my:RibbonButton Label="Patient List"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f1;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
                 <my:RibbonButton Label="Sheduled Appointment"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf098;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
