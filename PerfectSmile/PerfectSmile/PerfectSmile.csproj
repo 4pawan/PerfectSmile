@@ -171,6 +171,10 @@
     <Compile Include="EF\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Repository\Abstract\ILoginRepository.cs" />
+    <Compile Include="Repository\Abstract\IRepository.cs" />
+    <Compile Include="Repository\Implementation\LoginRepository.cs" />
+    <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -259,7 +263,6 @@
     <Folder Include="Helper\" />
     <Folder Include="Log\" />
     <Folder Include="Model\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <SplashScreen Include="Views\SplashScreen.png" />

@@ -18,7 +18,7 @@ namespace PerfectSmile.Common
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.Resolve<Login>();
+            return Container.Resolve<Shell>();
         }
 
         protected override void InitializeShell()
