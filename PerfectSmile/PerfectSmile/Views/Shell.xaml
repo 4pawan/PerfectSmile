@@ -4,6 +4,7 @@
             xmlns:prism="http://prismlibrary.com/"
             xmlns:constant="clr-namespace:PerfectSmile.Constant"
             xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
+            WindowState="Maximized"  WindowStartupLocation="CenterScreen"
             prism:ViewModelLocator.AutoWireViewModel="True"
          Title="{x:Static constant:Constant+Shell.Title}"
         >
@@ -21,13 +22,13 @@
             </my:Ribbon.ApplicationMenu>-->
 
             <my:RibbonTab IsSelected="True" Header="Patient Details">
-                
-                    <my:RibbonButton Label="Patient list" Background="Yellow"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="75" Margin="2,-70,0,0" />
-                 <my:RibbonButton Label="Patient list" Background="Yellow"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="75" Margin="2,-70,0,0" />
+
+                <my:RibbonButton Label="Patient List"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f1;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
+                <my:RibbonButton Label="Sheduled Appointment"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf098;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
             </my:RibbonTab>
-            <my:RibbonTab Header="Patient form ">
-                <my:RibbonButton Width="75" Margin="2,-70,0,0" Label="Add Patient" LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientForm}" />
-                <my:RibbonButton Width="75" Margin="2,-70,0,0" Label="Add Patient" LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientForm}" />
+            <my:RibbonTab  IsSelected="false" Header="Patient form ">
+                <my:RibbonButton Width="100" Margin="2,-70,0,0" Label="Add basic information" LargeImageSource="{imageFromFont:ImageFromFont Brush=blue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f8;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientForm}" />
+                <my:RibbonButton Width="100" Margin="2,-70,0,0" Label="Add patient history" LargeImageSource="{imageFromFont:ImageFromFont Brush=red, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f9;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientForm}" />
             </my:RibbonTab>
 
         </my:Ribbon>
