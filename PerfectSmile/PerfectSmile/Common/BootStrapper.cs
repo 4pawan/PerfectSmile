@@ -30,8 +30,8 @@ namespace PerfectSmile.Common
         {
             base.ConfigureContainer();
 
-            Container.RegisterTypeForNavigation<PatientList>("PatientList");
-            Container.RegisterTypeForNavigation<PatientForm>("PatientForm");
+            Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
+            Container.RegisterTypeForNavigation<PatientForm>(Constant.Constant.View.PatientForm);
         }
 
         protected override void ConfigureModuleCatalog()

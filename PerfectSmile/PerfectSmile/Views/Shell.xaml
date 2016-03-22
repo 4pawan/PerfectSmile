@@ -5,7 +5,7 @@
             xmlns:constant="clr-namespace:PerfectSmile.Constant"
             xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
             prism:ViewModelLocator.AutoWireViewModel="True"
-         Title="Main screen -Perfect smile dental clinic"
+         Title="{x:Static constant:Constant+Shell.Title}"
         >
     <Grid>
         <Grid.RowDefinitions>
@@ -34,9 +34,9 @@
             <my:RibbonTab Header="Patient form ">
                 <my:RibbonButton Label="Add Patient" LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientForm}" />
             </my:RibbonTab>
-             
+
         </my:Ribbon>
-            
+
         <ContentControl prism:RegionManager.RegionName="{x:Static constant:Constant+Region.MainRegion}" Grid.Row="1"/>
 
     </Grid>

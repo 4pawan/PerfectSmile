@@ -43,7 +43,7 @@ namespace PerfectSmile.ViewModels
             var isUserValid = LoginService.IsUserValid(Name, Password);
             if (!isUserValid)
             {
-                Message = Constant.Constant.LoginView.LoginErrorMesage;
+                Message = Constant.Constant.Login.LoginErrorMesage;
             }
             else
             {
