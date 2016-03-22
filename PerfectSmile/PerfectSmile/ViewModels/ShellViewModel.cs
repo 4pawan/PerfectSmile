@@ -26,7 +26,7 @@ namespace PerfectSmile.ViewModels
 
         private void Navigate(string uri)
         {
-            _regionManager.RequestNavigate("ContentRegion", uri);
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, uri);
         }
 
 

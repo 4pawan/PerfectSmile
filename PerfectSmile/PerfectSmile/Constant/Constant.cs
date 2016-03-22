@@ -8,6 +8,15 @@ namespace PerfectSmile.Constant
 {
     public static class Constant
     {
+        public static class View
+        {
+            public const string Login = "LoginView";
+            public const string Shell = "Shell";
+            public const string PatientList = "PatientList";
+            public const string PatientForm = "PatientForm";
+        }
+
+
         public static class LoginView
         {
             public const string LoginErrorMesage = "Invalid User name or Password !";
