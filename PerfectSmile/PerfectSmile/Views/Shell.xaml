@@ -1,4 +1,4 @@
-﻿<Window xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"  x:Class="PerfectSmile.Views.Shell"
+﻿<my:RibbonWindow xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"  x:Class="PerfectSmile.Views.Shell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:prism="http://prismlibrary.com/"
@@ -40,4 +40,4 @@
         <ContentControl prism:RegionManager.RegionName="{x:Static constant:Constant+Region.MainRegion}" Grid.Row="1"/>
 
     </Grid>
-</Window>
+</my:RibbonWindow>
