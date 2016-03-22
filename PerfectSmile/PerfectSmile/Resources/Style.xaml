@@ -28,4 +28,9 @@
 
         </DockPanel>
     </ControlTemplate>
+    <LinearGradientBrush x:Key="LinearGradientBrushTest" StartPoint="0,0" EndPoint="1,1" >
+        <GradientStop Color="Yellow" Offset="0.2"/>
+        <GradientStop Color="Orange" Offset="0.5"/>
+        <GradientStop Color="Red" Offset="0.8"/>
+    </LinearGradientBrush>
 </ResourceDictionary>

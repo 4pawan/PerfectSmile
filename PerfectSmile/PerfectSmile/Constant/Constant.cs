@@ -11,6 +11,12 @@ namespace PerfectSmile.Constant
         public static class LoginView
         {
             public const string LoginErrorMesage = "Invalid User name or Password !";
+            public const string Tilte = "Invalid User name or Password !";
+        }
+
+        public static class Shell
+        {
+            public const string Tilte = "Main screen -Perfect smile dental clinic";
         }
 
 

@@ -1,14 +1,39 @@
-﻿<Window x:Class="PerfectSmile.Views.Shell"
+﻿<Window xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"  x:Class="PerfectSmile.Views.Shell"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:prism="http://prismlibrary.com/"
             xmlns:constant="clr-namespace:PerfectSmile.Constant"
+            xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
             prism:ViewModelLocator.AutoWireViewModel="True"
          Title="Main screen -Perfect smile dental clinic"
         >
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="90*"/>
+        </Grid.RowDefinitions>
+        <my:Ribbon Grid.Row="0" >
+            <my:Ribbon.ApplicationMenu>
+                <my:RibbonApplicationMenu SmallImageSource="{imageFromFont:ImageFromFont Brush=Gold, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF016;}">
+                    <my:RibbonApplicationMenuItem Header="Restart" ImageSource="{imageFromFont:ImageFromFont Brush=Red, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01E;}" />
+                    <my:RibbonApplicationMenuItem Header="Save" ImageSource="{imageFromFont:ImageFromFont Brush=Blue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF0C7;}" />
+                </my:RibbonApplicationMenu>
+            </my:Ribbon.ApplicationMenu>
 
-        <ContentControl prism:RegionManager.RegionName="{x:Static constant:Constant+Region.MainRegion}"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Height="94" Width="166" Margin="228,121,0,0"/>
+            <my:RibbonTab IsSelected="True" Header="Main">
+
+                <my:RibbonGroup Header="Actions">
+                    <my:RibbonButton Label="Import data" LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF01A;}" />
+                </my:RibbonGroup>
+                <my:RibbonGroup Header="Tools">
+                    <my:RibbonButton Label="Search" LargeImageSource="{imageFromFont:ImageFromFont Brush={StaticResource LinearGradientBrushTest}, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF002;}"  />
+                    <my:RibbonButton Label="Puzzle"  LargeImageSource="{imageFromFont:ImageFromFont Brush=CornflowerBlue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Style=Italic, Stretch=Condensed, Text=&#xF12E;, Weight=Bold}" />
+                    <my:RibbonCheckBox SmallImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF05B;}" Label="A checkbox"/>
+                </my:RibbonGroup>
+            </my:RibbonTab>
+        </my:Ribbon>
+            
+        <ContentControl prism:RegionManager.RegionName="{x:Static constant:Constant+Region.MainRegion}" Grid.Row="1"/>
+
     </Grid>
 </Window>
