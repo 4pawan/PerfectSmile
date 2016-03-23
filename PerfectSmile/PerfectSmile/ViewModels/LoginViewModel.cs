@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using PerfectSmile.Common;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
@@ -57,6 +58,8 @@ namespace PerfectSmile.ViewModels
 
         public LoginViewModel(ILoginRepository loginRepository)
         {
+            var aa = new Log4NetLogger();
+            aa.Log("Test", Prism.Logging.Category.Debug, Prism.Logging.Priority.High);
             _loginRepository = loginRepository;
             LoginCommand = new DelegateCommand<Window>(Execute, CanExecute).ObservesProperty(() => Name).ObservesProperty(() => Password);
         }

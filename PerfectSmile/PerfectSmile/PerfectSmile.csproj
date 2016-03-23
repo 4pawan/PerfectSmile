@@ -239,6 +239,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Config\log4net.config" />
     <None Include="Config\connectionString.config" />
     <None Include="DB\perfectsmile.db" />
     <EntityDeploy Include="EF\Model1.edmx">
@@ -263,7 +264,7 @@
     <Folder Include="Assest\" />
     <Folder Include="Events\" />
     <Folder Include="Helper\" />
-    <Folder Include="Log\" />
+    <Folder Include="Logs\" />
     <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>

@@ -20,7 +20,7 @@ namespace PerfectSmile.Common
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.Resolve<Login>();
+            return Container.Resolve<Shell>();
         }
 
         protected override void InitializeShell()
@@ -52,7 +52,8 @@ namespace PerfectSmile.Common
 
         protected override ILoggerFacade CreateLogger()
         {
-            return base.CreateLogger();
+            log4net.Config.XmlConfigurator.Configure();
+            return new Log4NetLogger();
         }
 
     }

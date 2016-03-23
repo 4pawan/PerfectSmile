@@ -13,10 +13,10 @@ namespace PerfectSmile.Test.Repository
         [TestMethod]
         public void IsUserValidTest(string name, string password)
         {
-            var asd = _loginRepository.IsUserValid("", "sdds");
-            Assert.IsFalse(asd);
-            Assert.IsFalse(_loginRepository.IsUserValid(null, null));
-            Assert.IsTrue(_loginRepository.IsUserValid("pk", "pk"));
+            //var asd = _loginRepository.IsUserValid("", "sdds");
+            Assert.IsFalse(true);
+            //Assert.IsFalse(_loginRepository.IsUserValid(null, null));
+            //Assert.IsTrue(_loginRepository.IsUserValid("pk", "pk"));
         }
     }
 }
