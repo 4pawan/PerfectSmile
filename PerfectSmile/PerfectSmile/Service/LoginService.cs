@@ -4,18 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PerfectSmile.EF;
+using PerfectSmile.Repository.Abstract;
 
 namespace PerfectSmile.Service
 {
     public class LoginService
     {
-        public static bool IsUserValid(string name, string password)
+        private  ILoginRepository loginRepository;
+
+        public LoginService(ILoginRepository _loginRepository)
         {
-            perfectsmileEntities context = new perfectsmileEntities();
-            var user = context.Users.Where(u => u.Name == name && u.Password == password).ToList();
+            loginRepository = _loginRepository;
+        }
 
-            return user.Count == 1;
-
+        public  bool IsUserValid(string name, string password)
+        {
+            return loginRepository.IsUserValid(name, password);
         }
     }
 }

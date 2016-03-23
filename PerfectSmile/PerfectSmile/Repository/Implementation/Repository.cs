@@ -5,19 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
+using PerfectSmile.Repository.Factory;
 
 namespace PerfectSmile.Repository.Implementation
 {
     public class Repository : IRepository
-    {
-        private static perfectsmileEntities _context = new perfectsmileEntities();
-
-        static perfectsmileEntities Context
-        {
-            get { return _context ?? (_context = new perfectsmileEntities()); }
-        }
-
-
-        perfectsmileEntities IRepository.Context { get; set; }
+    { 
+        public perfectsmileEntities Context { get { return ContextFactory.Context; } }
     }
 }

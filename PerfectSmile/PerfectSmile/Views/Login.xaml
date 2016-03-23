@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModels="clr-namespace:PerfectSmile.ViewModels"
         xmlns:constant="clr-namespace:PerfectSmile.Constant"
+        xmlns:mvvm="http://prismlibrary.com/"
         x:Name="window" x:Class="PerfectSmile.Views.Login"
         mc:Ignorable="d"
+      mvvm:ViewModelLocator.AutoWireViewModel="True"
          Title="{x:Static constant:Constant+Login.Title}" Height="350" Width="525">
-    <Window.DataContext>
-        <viewModels:LoginViewModel/>
-    </Window.DataContext>
+
     <Grid>
         <Grid.Resources>
             <Style TargetType="TextBlock">

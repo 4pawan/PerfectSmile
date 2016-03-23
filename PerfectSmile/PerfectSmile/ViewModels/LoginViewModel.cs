@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
@@ -8,6 +9,7 @@ namespace PerfectSmile.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly ILoginRepository _loginRepository;
         private string _name;
         public string Name
         {
@@ -40,7 +42,7 @@ namespace PerfectSmile.ViewModels
 
         private void Execute(Window item)
         {
-            var isUserValid = LoginService.IsUserValid(Name, Password);
+            var isUserValid = _loginRepository.IsUserValid(Name, Password);
             if (!isUserValid)
             {
                 Message = Constant.Constant.Login.LoginErrorMesage;
@@ -53,10 +55,9 @@ namespace PerfectSmile.ViewModels
             }
         }
 
-
-
-        public LoginViewModel()
+        public LoginViewModel(ILoginRepository loginRepository)
         {
+            _loginRepository = loginRepository;
             LoginCommand = new DelegateCommand<Window>(Execute, CanExecute).ObservesProperty(() => Name).ObservesProperty(() => Password);
         }
     }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Practices.Unity;
+using PerfectSmile.Repository.Abstract;
+using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Views;
 using PerfectSmile.Views.Module;
 using PerfectSmile.Views.UserControl;
@@ -18,7 +20,7 @@ namespace PerfectSmile.Common
     {
         protected override DependencyObject CreateShell()
         {
-            return Container.Resolve<Shell>();
+            return Container.Resolve<Login>();
         }
 
         protected override void InitializeShell()
@@ -30,8 +32,13 @@ namespace PerfectSmile.Common
         {
             base.ConfigureContainer();
 
+            Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
+
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
             Container.RegisterTypeForNavigation<PatientForm>(Constant.Constant.View.PatientForm);
+
+            //Container.<PatientForm>(Constant.Constant.View.PatientForm);
+
         }
 
         protected override void ConfigureModuleCatalog()
@@ -41,7 +48,7 @@ namespace PerfectSmile.Common
             //catalog.AddModule(typeof(PatientFormModule));
         }
 
-     
+
 
         protected override ILoggerFacade CreateLogger()
         {

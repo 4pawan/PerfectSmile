@@ -8,8 +8,8 @@ using PerfectSmile.EF;
 
 namespace PerfectSmile.Repository.Abstract
 {
-    interface IRepository
+    public interface IRepository
     {
-       perfectsmileEntities Context { get; set; }
+        perfectsmileEntities Context { get; }
     }
 }

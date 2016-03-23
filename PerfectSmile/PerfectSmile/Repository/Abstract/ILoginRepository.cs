@@ -8,9 +8,8 @@ using PerfectSmile.EF;
 
 namespace PerfectSmile.Repository.Abstract
 {
-    interface ILoginRepository
+    public interface ILoginRepository : IRepository
     {
-
-        
+        bool IsUserValid(string name, string password) ;
     }
 }

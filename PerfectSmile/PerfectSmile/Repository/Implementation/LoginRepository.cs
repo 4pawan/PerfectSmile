@@ -8,16 +8,12 @@ using PerfectSmile.Repository.Abstract;
 
 namespace PerfectSmile.Repository.Implementation
 {
-    public class LoginRepository : IRepository
+    public class LoginRepository : Repository, ILoginRepository
     {
-        private static perfectsmileEntities _context = new perfectsmileEntities();
-
-        static perfectsmileEntities Context
+        public bool IsUserValid(string name, string password)
         {
-            get { return _context ?? (_context = new perfectsmileEntities()); }
+            var user = Context.Users.Where(u => u.Name == name && u.Password == password).ToList();
+            return user.Count == 1;
         }
-
-
-        perfectsmileEntities IRepository.Context { get; set; }
     }
 }

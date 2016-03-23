@@ -173,6 +173,7 @@
     </Compile>
     <Compile Include="Repository\Abstract\ILoginRepository.cs" />
     <Compile Include="Repository\Abstract\IRepository.cs" />
+    <Compile Include="Repository\Factory\ContextFactory.cs" />
     <Compile Include="Repository\Implementation\LoginRepository.cs" />
     <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Service\LoginService.cs" />
