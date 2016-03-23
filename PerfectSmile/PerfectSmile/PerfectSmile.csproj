@@ -144,7 +144,8 @@
     <Compile Include="Common\BaseValidation.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
-    <Compile Include="Common\Log4NetLogger.cs" />
+    <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
+    <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Constant\Constant.cs" />
     <Compile Include="EF\Model1.Context.cs">
