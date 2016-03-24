@@ -180,16 +180,25 @@
     <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\PatientListViewModel.cs" />
+    <Compile Include="ViewModels\NextAppointmentViewModel.cs" />
+    <Compile Include="ViewModels\PatientHistoryFormViewModel.cs" />
+    <Compile Include="ViewModels\PatientBasicFormViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
-    <Compile Include="ViewModels\PrismWindowViewModel.cs" />
     <Compile Include="Views\Module\PatientFormModule.cs" />
     <Compile Include="Views\Module\PatientListModule.cs" />
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\PatientForm.xaml.cs">
-      <DependentUpon>PatientForm.xaml</DependentUpon>
+    <Compile Include="Views\UserControl\NextAppointment.xaml.cs">
+      <DependentUpon>NextAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControl\PatientBasicForm.xaml.cs">
+      <DependentUpon>PatientBasicForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControl\PatientHistoryForm.xaml.cs">
+      <DependentUpon>PatientHistoryForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
@@ -213,7 +222,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControl\PatientForm.xaml">
+    <Page Include="Views\UserControl\NextAppointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControl\PatientBasicForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControl\PatientHistoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,9 +284,6 @@
     <Folder Include="Helper\" />
     <Folder Include="Logs\" />
     <Folder Include="Model\" />
-  </ItemGroup>
-  <ItemGroup>
-    <SplashScreen Include="Views\SplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

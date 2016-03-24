@@ -36,9 +36,9 @@ namespace PerfectSmile.Common
             Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
 
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
-            Container.RegisterTypeForNavigation<PatientForm>(Constant.Constant.View.PatientForm);
-
-            //Container.<PatientForm>(Constant.Constant.View.PatientForm);
+            Container.RegisterTypeForNavigation<NextAppointment>(Constant.Constant.View.NextAppointment);
+            Container.RegisterTypeForNavigation<PatientHistoryForm>(Constant.Constant.View.PatientHistoryForm);
+            Container.RegisterTypeForNavigation<PatientBasicForm>(Constant.Constant.View.PatientBasicForm);
 
         }
 

@@ -4,18 +4,18 @@ using Prism.Regions;
 
 namespace PerfectSmile.Views.Module
 {
-    public class PatientFormModule : IModule
+    public class PatientBasicFormModule : IModule
     {
        private readonly IRegionManager _regionManager;
 
-        public PatientFormModule(IRegionManager regionManager)
+        public PatientBasicFormModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
 
         public void Initialize()
         {
-            _regionManager.RegisterViewWithRegion("MainRegion", typeof(PatientForm));
+            _regionManager.RegisterViewWithRegion(Constant.Constant.View.PatientBasicForm, typeof(PatientBasicForm));
         }
     }
 }
