@@ -1,14 +1,18 @@
-﻿<my:RibbonWindow xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"  x:Class="PerfectSmile.Views.Shell"
+﻿<my:RibbonWindow xmlns:my="http://schemas.microsoft.com/winfx/2006/xaml/presentation/ribbon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:prism="http://prismlibrary.com/"
             xmlns:constant="clr-namespace:PerfectSmile.Constant"
             xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
+            xmlns:Common="clr-namespace:PerfectSmile.Common"  x:Class="PerfectSmile.Views.Shell"
             WindowState="Maximized"  WindowStartupLocation="CenterScreen"
             prism:ViewModelLocator.AutoWireViewModel="True"
                  Icon="/PerfectSmile;component/Resources/mickey-mouse-icon.png"
          Title="{x:Static constant:Constant+Shell.Title}"
         >
+    <my:RibbonWindow.Resources>
+        <Common:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
+    </my:RibbonWindow.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -20,12 +24,12 @@
             </my:Ribbon.ApplicationMenu>
 
             <my:RibbonTab IsSelected="True" Header="Patient Details">
-                <my:RibbonButton Label="Patient List"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f1;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientList}" Width="100" Margin="2,-70,0,0" />
-                <my:RibbonButton Label="Sheduled Appointment"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf098;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.NextAppointment}" Width="100" Margin="2,-70,0,0" />
+                <my:RibbonButton Background="{Binding IsPatientListSelected, Converter={StaticResource BooleanToColorConverter}, Mode=TwoWay}" Label="Patient List"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Green, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF0F1;}" Command="{Binding NavigateToPatientListCommand}" Width="100" Margin="2,-70,0,0" />
+                <my:RibbonButton Background="{Binding IsNextAppintmentSelected, Converter={StaticResource BooleanToColorConverter}, Mode=TwoWay}" Label="Sheduled Appointment"  LargeImageSource="{imageFromFont:ImageFromFont Brush=Brown, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF098;}" Command="{Binding NavigateToNextAppointmentCommand}" Width="100" Margin="2,-70,0,0" />
             </my:RibbonTab>
             <my:RibbonTab  IsSelected="false" Header="Patient form ">
-                <my:RibbonButton Width="100" Margin="2,-70,0,0" Label="Add basic information" LargeImageSource="{imageFromFont:ImageFromFont Brush=blue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f8;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientBasicForm}" />
-                <my:RibbonButton Width="100" Margin="2,-70,0,0" Label="Add patient history" LargeImageSource="{imageFromFont:ImageFromFont Brush=red, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xf0f9;}" Command="{Binding NavigateCommand}" CommandParameter="{x:Static constant:Constant+View.PatientHistoryForm}" />
+                <my:RibbonButton Background="{Binding IsPatientBasicFormSelected, Converter={StaticResource BooleanToColorConverter}, Mode=TwoWay}" Width="100" Margin="2,-70,0,0" Label="Add basic information" LargeImageSource="{imageFromFont:ImageFromFont Brush=blue, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF0F8;}" Command="{Binding NavigateToPatientBasicFormCommand}" />
+                <my:RibbonButton Background="{Binding IsPatientHistoryFormSelected, Converter={StaticResource BooleanToColorConverter}, Mode=TwoWay}" Width="100" Margin="2,-70,0,0" Label="Add patient history" LargeImageSource="{imageFromFont:ImageFromFont Brush=red, FontFamily=/PerfectSmile;component/Resources/#FontAwesome, Text=&#xF0F9;}" Command="{Binding NavigateToPatientHistoryCommand}" />
             </my:RibbonTab>
 
         </my:Ribbon>

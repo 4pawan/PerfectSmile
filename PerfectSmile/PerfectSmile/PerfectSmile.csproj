@@ -142,8 +142,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\BaseValidation.cs" />
+    <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
+    <Compile Include="Common\DebugConverter.cs" />
+    <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />

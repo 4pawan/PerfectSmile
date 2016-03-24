@@ -5,6 +5,7 @@ namespace PerfectSmile.ViewModels
 {
     public class ShellViewModel : BaseViewModel
     {
+        private readonly IRegionManager _regionManager;
 
         private string _name = "Test";
         public string Name
@@ -13,22 +14,88 @@ namespace PerfectSmile.ViewModels
             set { SetProperty(ref _name, value); }
         }
 
-        private readonly IRegionManager _regionManager;
+        private bool _isPatientListSelected;
+        public bool IsPatientListSelected
+        {
+            get { return _isPatientListSelected; }
+            set { SetProperty(ref _isPatientListSelected, value); }
+        }
 
-        public DelegateCommand<string> NavigateCommand { get; set; }
+        private bool _isNextAppintmentSelected;
+        public bool IsNextAppintmentSelected
+        {
+            get { return _isNextAppintmentSelected; }
+            set { SetProperty(ref _isNextAppintmentSelected, value); }
+        }
+
+        private bool _isPatientBasicFormSelected;
+        public bool IsPatientBasicFormSelected
+        {
+            get { return _isPatientBasicFormSelected; }
+            set { SetProperty(ref _isPatientBasicFormSelected, value); }
+        }
+
+        private bool _isPatientHistoryFormSelected;
+        public bool IsPatientHistoryFormSelected
+        {
+            get { return _isPatientHistoryFormSelected; }
+            set { SetProperty(ref _isPatientHistoryFormSelected, value); }
+        }
+
+        public DelegateCommand NavigateToPatientListCommand { get; set; }
+        public DelegateCommand NavigateToNextAppointmentCommand { get; set; }
+        public DelegateCommand NavigateToPatientBasicFormCommand { get; set; }
+        public DelegateCommand NavigateToPatientHistoryCommand { get; set; }
 
         public ShellViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
 
-            NavigateCommand = new DelegateCommand<string>(Navigate);
+            NavigateToPatientListCommand = new DelegateCommand(NavigateToPatientList);
+            NavigateToNextAppointmentCommand = new DelegateCommand(NavigateToNextAppointment);
+            NavigateToPatientBasicFormCommand = new DelegateCommand(NavigateToPatientBasicForm);
+            NavigateToPatientHistoryCommand = new DelegateCommand(NavigateToPatientHistory);
+
+            IsPatientListSelected = true;
         }
 
-        private void Navigate(string uri)
+        private void NavigateToPatientList()
         {
-            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, uri);
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientList);
+
+            IsPatientListSelected = true;
+            IsNextAppintmentSelected = false;
+            IsPatientBasicFormSelected = false;
+            IsPatientHistoryFormSelected = false;
         }
 
+        private void NavigateToNextAppointment()
+        {
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.NextAppointment);
+
+            IsPatientListSelected = false;
+            IsNextAppintmentSelected = true;
+            IsPatientBasicFormSelected = false;
+            IsPatientHistoryFormSelected = false;
+        }
+        private void NavigateToPatientBasicForm()
+        {
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientBasicForm);
+
+            IsPatientListSelected = false;
+            IsNextAppintmentSelected = false;
+            IsPatientBasicFormSelected = true;
+            IsPatientHistoryFormSelected = false;
+        }
+        private void NavigateToPatientHistory()
+        {
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientHistoryForm);
+
+            IsPatientListSelected = false;
+            IsNextAppintmentSelected = false;
+            IsPatientBasicFormSelected = false;
+            IsPatientHistoryFormSelected = true;
+        }
 
     }
 }
