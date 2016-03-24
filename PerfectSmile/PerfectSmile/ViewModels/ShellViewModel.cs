@@ -7,12 +7,12 @@ namespace PerfectSmile.ViewModels
     {
         private readonly IRegionManager _regionManager;
 
-        private string _name = "Test";
-        public string Name
-        {
-            get { return _name; }
-            set { SetProperty(ref _name, value); }
-        }
+        //private string _name = "Test";
+        //public string Name
+        //{
+        //    get { return _name; }
+        //    set { SetProperty(ref _name, value); }
+        //}
 
         private bool _isPatientListSelected;
         public bool IsPatientListSelected

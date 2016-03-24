@@ -198,7 +198,7 @@
     <Compile Include="Views\UserControl\NextAppointment.xaml.cs">
       <DependentUpon>NextAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\PatientBasicForm.xaml.cs">
+    <Compile Include="Views\PatientBasicForm.xaml.cs">
       <DependentUpon>PatientBasicForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\PatientHistoryForm.xaml.cs">
@@ -230,7 +230,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControl\PatientBasicForm.xaml">
+    <Page Include="Views\PatientBasicForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

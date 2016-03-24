@@ -13,6 +13,7 @@ using PerfectSmile.Views.UserControl;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
+using PatientBasicForm = PerfectSmile.Views.PatientBasicForm;
 
 namespace PerfectSmile.Common
 {
