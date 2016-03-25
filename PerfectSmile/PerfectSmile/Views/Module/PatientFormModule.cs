@@ -1,5 +1,4 @@
-﻿using PerfectSmile.Views.UserControl;
-using Prism.Modularity;
+﻿using Prism.Modularity;
 using Prism.Regions;
 
 namespace PerfectSmile.Views.Module

@@ -7,8 +7,25 @@
              xmlns:common="clr-namespace:PerfectSmile.Common"
              prism:ViewModelLocator.AutoWireViewModel="True"
               mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+            
              >
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment"  Value="Top" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
@@ -18,54 +35,41 @@
             <RowDefinition Height="60"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="72"/>
+            <RowDefinition Height="22.4"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
-            <Style  TargetType="TextBlock">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="HorizontalAlignment" Value="Right" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Margin" Value="5" />
-            </Style>
-            <Style  TargetType="TextBox">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Width" Value="200" />
-                <Setter Property="Margin" Value="5" />
-            </Style>
-            <Style TargetType="Button">
+            <Style TargetType="TextBox">
                 <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="300" />
                 <Setter Property="Height" Value="30" />
-                <Setter Property="Width" Value="200" />
-                <Setter Property="MinWidth" Value="100" />
+                <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
         </Grid.Resources>
+        <TextBlock Grid.Row="0" Grid.Column="1" Height="19" Margin="0,21,31,0" Width="210" HorizontalAlignment="Left" >
+            <Run FontWeight="Bold" FontStyle="Italic" TextDecorations="Underline">Patient basic form</Run>
+        </TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" Height="19" Margin="0,5.2,5,0" Width="37" />
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True,  UpdateSourceTrigger=PropertyChanged}" Margin="0,0.2,0,0"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Phone" Height="19" Margin="0,5.4,5,0" Width="40" />
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Margin="0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Name}"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Name" />
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Name" Text="{Binding Name, Mode=TwoWay, ValidatesOnDataErrors=True,  UpdateSourceTrigger=PropertyChanged}"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Age" />
-
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Age">
-            <Binding Path="Age" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
-                <Binding.ValidationRules>
-                    <common:StringToIntValidationRule ValidationStep="RawProposedValue"/>
-                </Binding.ValidationRules>
-
-            </Binding>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Phone" Margin="0,0.4,0,0" >
+            <Binding Path="Phone" UpdateSourceTrigger="PropertyChanged" ValidatesOnDataErrors="True" Mode="TwoWay"/>
         </TextBox>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Salary" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Remark" Height="20" />
         <TextBox Grid.Row="3" Grid.Column="1"
-        		x:Name="Salary" 
-        		HorizontalAlignment="Left"
-        		Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
-        		VerticalAlignment="Top" 
+        		x:Name="Remark" 
+        		Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Mode=TwoWay}" Grid.RowSpan="2" Height="63" 
+        		
         		
       />
-        <Button  Grid.Row="4" Grid.Column="1" Content="Save" Command="{Binding SaveCommand}" >
+        <Button  Grid.Row="3" Grid.Column="1" Content="Save" Command="{Binding SaveCommand}" Width="200" HorizontalAlignment="Left" Margin="0,72.6,-40,-42.6" Grid.RowSpan="2">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="IsEnabled" Value="False"/>
@@ -73,8 +77,8 @@
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
                                 <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Name}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Age}" Value="False"/>
-                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Salary}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Phone}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=Remark}" Value="False"/>
                             </MultiDataTrigger.Conditions>
                             <Setter Property="IsEnabled" Value="True"/>
                         </MultiDataTrigger>
@@ -82,5 +86,6 @@
                 </Style>
             </Button.Style>
         </Button>
+
     </Grid>
 </UserControl>

@@ -9,11 +9,9 @@ using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Views;
 using PerfectSmile.Views.Module;
-using PerfectSmile.Views.UserControl;
 using Prism.Logging;
 using Prism.Modularity;
 using Prism.Unity;
-using PatientBasicForm = PerfectSmile.Views.PatientBasicForm;
 
 namespace PerfectSmile.Common
 {
@@ -35,7 +33,8 @@ namespace PerfectSmile.Common
 
             Container.RegisterType<ILog4NetLogger, Log4NetLogger>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
-
+            Container.RegisterType<IPatientRepository, PatientRepository>(new ContainerControlledLifetimeManager());
+            
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
             Container.RegisterTypeForNavigation<NextAppointment>(Constant.Constant.View.NextAppointment);
             Container.RegisterTypeForNavigation<PatientHistoryForm>(Constant.Constant.View.PatientHistoryForm);

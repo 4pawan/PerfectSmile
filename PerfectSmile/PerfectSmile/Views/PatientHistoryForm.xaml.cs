@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace PerfectSmile.Views.UserControl
+﻿namespace PerfectSmile.Views
 {
     /// <summary>
     /// Interaction logic for PatientHistoryForm

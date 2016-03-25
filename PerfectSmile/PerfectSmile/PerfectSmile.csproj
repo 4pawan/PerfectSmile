@@ -149,6 +149,7 @@
     <Compile Include="Common\DebugConverter.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
+    <Compile Include="Repository\Abstract\IPatientRepository.cs" />
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Constant\Constant.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Factory\ContextFactory.cs" />
     <Compile Include="Repository\Fakes\LoginRepositoryFake.cs" />
+    <Compile Include="Repository\Implementation\PatientRepository.cs" />
     <Compile Include="Repository\Implementation\LoginRepository.cs" />
     <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Service\LoginService.cs" />
@@ -195,16 +197,16 @@
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\NextAppointment.xaml.cs">
+    <Compile Include="Views\NextAppointment.xaml.cs">
       <DependentUpon>NextAppointment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientBasicForm.xaml.cs">
       <DependentUpon>PatientBasicForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\PatientHistoryForm.xaml.cs">
+    <Compile Include="Views\PatientHistoryForm.xaml.cs">
       <DependentUpon>PatientHistoryForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControl\PatientList.xaml.cs">
+    <Compile Include="Views\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Style.xaml">
@@ -226,7 +228,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControl\NextAppointment.xaml">
+    <Page Include="Views\NextAppointment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -234,11 +236,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControl\PatientHistoryForm.xaml">
+    <Page Include="Views\PatientHistoryForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControl\PatientList.xaml">
+    <Page Include="Views\PatientList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
