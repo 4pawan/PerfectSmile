@@ -12,6 +12,9 @@ namespace PerfectSmile.ViewModels
 {
     public class PatientBasicFormViewModel : BaseViewModel
     {
+
+        private IPatientRepository _patientRepository;
+
         private string _name;
 
         [StringLength(250, ErrorMessage = "Name cant be more than 250 char")]
@@ -54,14 +57,15 @@ namespace PerfectSmile.ViewModels
 
         public ICommand SaveCommand { get; set; }
 
-        public PatientBasicFormViewModel()
+        public PatientBasicFormViewModel(IPatientRepository patientRepository)
         {
+            _patientRepository = patientRepository;
             SaveCommand = new DelegateCommand(() =>
             {
+                var asd = _patientRepository.AddPatientBasicInfo(this);
+
                 MessageBox.Show("Hello :)");
             });
         }
-
-
     }
 }

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using AutoMapper;
 using Microsoft.Practices.Unity;
+using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
+using PerfectSmile.ViewModels;
 using PerfectSmile.Views;
 using PerfectSmile.Views.Module;
 using Prism.Logging;
@@ -31,14 +34,28 @@ namespace PerfectSmile.Common
         {
             base.ConfigureContainer();
 
+            Container.RegisterType<IMappingEngine>(new InjectionFactory(_ => Mapper.Engine));
+
+
             Container.RegisterType<ILog4NetLogger, Log4NetLogger>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
             Container.RegisterType<IPatientRepository, PatientRepository>(new ContainerControlledLifetimeManager());
-            
+
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
             Container.RegisterTypeForNavigation<NextAppointment>(Constant.Constant.View.NextAppointment);
             Container.RegisterTypeForNavigation<PatientHistoryForm>(Constant.Constant.View.PatientHistoryForm);
             Container.RegisterTypeForNavigation<PatientBasicForm>(Constant.Constant.View.PatientBasicForm);
+
+
+            Mapper.CreateMap<PatientBasicFormViewModel, Patient>().ForMember("CreatedAt", o => o.Ignore())
+                .ForMember("CreatedBy", o => o.Ignore())
+                .ForMember("Id", o => o.Ignore())
+                .ForMember("ModifiedBy", o => o.Ignore())
+                .ForMember("ModifiedAt", o => o.Ignore())
+                .ForMember("Phone",dest=>dest.MapFrom(src=> int.Parse(src.Phone) ))
+                .ForMember("PatientHistories", o => o.Ignore());
+
+            Mapper.AssertConfigurationIsValid();
 
         }
 
