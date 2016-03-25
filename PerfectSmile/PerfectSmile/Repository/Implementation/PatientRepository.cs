@@ -14,10 +14,10 @@ namespace PerfectSmile.Repository.Implementation
     {
         public int AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
-            var model = Mapper.Map<PatientBasicFormViewModel, Patient>(vm);
+            var model = Helper.Helper.ConvertToPatientModel(vm);
             Context.Patients.Add(model);
             var ad = Context.SaveChanges();
-            return 1;
+            return ad;
         }
     }
 }

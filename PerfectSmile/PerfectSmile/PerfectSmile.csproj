@@ -152,6 +152,7 @@
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\DebugConverter.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
+    <Compile Include="Helper\Helper.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
     <Compile Include="Repository\Abstract\IPatientRepository.cs" />
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
@@ -291,7 +292,6 @@
   <ItemGroup>
     <Folder Include="Assest\" />
     <Folder Include="Events\" />
-    <Folder Include="Helper\" />
     <Folder Include="Logs\" />
     <Folder Include="Model\" />
   </ItemGroup>
