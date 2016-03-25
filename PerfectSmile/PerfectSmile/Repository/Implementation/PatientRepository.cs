@@ -12,13 +12,11 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class PatientRepository : Repository, IPatientRepository
     {
-        public int AddPatientBasicInfo(PatientBasicFormViewModel model)
+        public int AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
-
-
-            var modezl  = Mapper.Map<PatientBasicFormViewModel, Patient>(model);
-
-
+            var model = Mapper.Map<PatientBasicFormViewModel, Patient>(vm);
+            Context.Patients.Add(model);
+            var ad = Context.SaveChanges();
             return 1;
         }
     }

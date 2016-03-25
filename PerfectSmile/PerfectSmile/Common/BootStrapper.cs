@@ -34,7 +34,7 @@ namespace PerfectSmile.Common
         {
             base.ConfigureContainer();
 
-            Container.RegisterType<IMappingEngine>(new InjectionFactory(_ => Mapper.Engine));
+            //Container.RegisterType<IMappingEngine>(new InjectionFactory(_ => Mapper.Engine));
 
 
             Container.RegisterType<ILog4NetLogger, Log4NetLogger>(new ContainerControlledLifetimeManager());
