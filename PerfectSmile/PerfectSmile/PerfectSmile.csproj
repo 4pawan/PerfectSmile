@@ -155,6 +155,8 @@
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
     <Compile Include="Repository\Abstract\IPatientRepository.cs" />
+    <Compile Include="Repository\Fakes\PatientRepositoryFake.cs" />
+    <Compile Include="Repository\Fakes\TestPatientList.cs" />
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Constant\Constant.cs" />
