@@ -1,9 +1,77 @@
-﻿<UserControl x:Class="PerfectSmile.Views.PatientHistoryForm"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"             
+             xmlns:AutoCompleteTextBox="clr-namespace:PerfectSmile.Views.UserControl.AutoCompleteTextBox" x:Class="PerfectSmile.Views.PatientHistoryForm"             
              prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="22" VerticalAlignment="Top"/>
+
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment"  Value="Top" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+    </UserControl.Resources>
+
+
+
+    <Grid Background="Yellow">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="13*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBox">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="300" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+
+        <TextBlock  Grid.Row="0" Grid.Column="0" Text="Select Patient"/>
+        <AutoCompleteTextBox:AutoCompleteTextBox Grid.Row="0" Grid.Column="1" Source="{Binding AutoCompleteSource, Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="240" />
+
+        <TextBlock  Grid.Row="1" Grid.Column="0" Text="Treatment Done" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+
+        <TextBlock  Grid.Row="2" Grid.Column="0" Text="Treatment Done" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+
+        <TextBlock  Grid.Row="3" Grid.Column="0" Text="Treatment Done" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+
+        <TextBlock  Grid.Row="4" Grid.Column="0" Text="Treatment Done" />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+
+        <TextBlock  Grid.Row="5" Grid.Column="0" Text="Treatment Done" />
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+
+
+
     </Grid>
 </UserControl>

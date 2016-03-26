@@ -26,7 +26,7 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="Azure">
         <i:Interaction.Triggers>
             <prism:InteractionRequestTrigger SourceObject="{Binding NotificationRequest, Mode=OneWay}">
                 <!-- This PopupWindowAction does not have a custom view defined, therefore it will try to use a DefaultNotificationWindow -->

@@ -55,10 +55,10 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
         public string Text
         {
             get { return textBox.Text; }
-            set 
+            set
             {
                 insertText = true;
-                textBox.Text = value; 
+                textBox.Text = value;
             }
         }
 
@@ -130,7 +130,7 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
         {
             // text was not typed, do nothing and consume the flag
             if (insertText == true) insertText = false;
-            
+
             // if the delay time is set, delay handling of text changed
             else
             {
@@ -160,5 +160,30 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
             get { return controls.Count; }
         }
         #endregion
+
+
+
+
+        public ObservableCollection<AutoCompleteEntry> Source
+        {
+            get { return (ObservableCollection<AutoCompleteEntry>)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Source.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SourceProperty =
+            DependencyProperty.Register("Source", typeof(ObservableCollection<AutoCompleteEntry>), typeof(AutoCompleteTextBox), new PropertyMetadata(default(ObservableCollection<AutoCompleteEntry>), Callback));
+
+        private static void Callback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            AutoCompleteTextBox uc = d as AutoCompleteTextBox;
+            if (e.NewValue != null)
+            {
+                if (uc != null)
+                {
+                    uc.autoCompletionList = (ObservableCollection<AutoCompleteEntry>)e.NewValue;
+                }
+            }
+        }
     }
 }
