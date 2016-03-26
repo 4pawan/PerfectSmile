@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:prism="http://prismlibrary.com/"
              xmlns:common="clr-namespace:PerfectSmile.Common"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              prism:ViewModelLocator.AutoWireViewModel="True"
               mc:Ignorable="d" 
-            
              >
 
     <UserControl.Resources>
@@ -27,6 +27,14 @@
     </UserControl.Resources>
 
     <Grid>
+        <i:Interaction.Triggers>
+            <prism:InteractionRequestTrigger SourceObject="{Binding NotificationRequest, Mode=OneWay}">
+                <!-- This PopupWindowAction does not have a custom view defined, therefore it will try to use a DefaultNotificationWindow -->
+                <!-- which is a window used by default by Prism to shown INotification implementations -->
+                <!-- That window will be show as a modal dialog and centered over this window -->
+                <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
+            </prism:InteractionRequestTrigger>
+        </i:Interaction.Triggers>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition Width="*"/>
@@ -86,6 +94,6 @@
                 </Style>
             </Button.Style>
         </Button>
-
+        
     </Grid>
 </UserControl>

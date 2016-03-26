@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.Practices.Unity;
 using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
+using PerfectSmile.Repository.Fakes;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.ViewModels;
 using PerfectSmile.Views;
@@ -39,7 +40,7 @@ namespace PerfectSmile.Common
 
             Container.RegisterType<ILog4NetLogger, Log4NetLogger>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IPatientRepository, PatientRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IPatientRepository, PatientRepositoryFake>(new ContainerControlledLifetimeManager());
 
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
             Container.RegisterTypeForNavigation<NextAppointment>(Constant.Constant.View.NextAppointment);

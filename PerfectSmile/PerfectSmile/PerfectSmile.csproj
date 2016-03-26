@@ -216,6 +216,10 @@
     <Compile Include="Views\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControl\AutoCompleteTextBox\AutoCompleteEntry.cs" />
+    <Compile Include="Views\UserControl\AutoCompleteTextBox\AutoCompleteTextBox.xaml.cs">
+      <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
+    </Compile>
     <Page Include="Resources\Style.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,6 +254,10 @@
     <Page Include="Views\PatientList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControl\AutoCompleteTextBox\AutoCompleteTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

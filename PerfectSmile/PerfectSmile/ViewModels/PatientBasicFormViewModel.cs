@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
@@ -7,6 +8,7 @@ using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
 {
@@ -14,6 +16,8 @@ namespace PerfectSmile.ViewModels
     {
 
         private IPatientRepository _patientRepository;
+        private ILog4NetLogger _log4NetLogger;
+        public InteractionRequest<INotification> NotificationRequest { get; private set; }
 
         private string _name;
 
@@ -30,8 +34,8 @@ namespace PerfectSmile.ViewModels
         }
 
         private string _phone;
-       
-        [RegularExpression("((\\(\\d{3}\\)?)|(\\d{3}))([\\s-./]?)(\\d{3})([\\s-./]?)(\\d{4})",ErrorMessage ="Phone no is not valid")]
+
+        //[RegularExpression("((\\(\\d{3}\\)?)|(\\d{3}))([\\s-./]?)(\\d{3})([\\s-./]?)(\\d{4})",ErrorMessage ="Phone no is not valid")]
         public string Phone
         {
             get { return _phone; }
@@ -57,15 +61,28 @@ namespace PerfectSmile.ViewModels
 
         public ICommand SaveCommand { get; set; }
 
-        public PatientBasicFormViewModel(IPatientRepository patientRepository)
+        public PatientBasicFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
         {
             _patientRepository = patientRepository;
+            _log4NetLogger = log4NetLogger;
+            NotificationRequest = new InteractionRequest<INotification>();
             SaveCommand = new DelegateCommand(() =>
             {
-                var asd = _patientRepository.AddPatientBasicInfo(this);
 
-                MessageBox.Show("Hello :)");
+                var id = _patientRepository.AddPatientBasicInfo(this);
+                _log4NetLogger.Info("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
+                //Debug.WriteLine("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
+                RaiseNotification();
             });
         }
+        private void RaiseNotification()
+        {
+            this.NotificationRequest.Raise(
+               new Notification { Content = "Patient with name " + Name + " saved successfully.", Title = "Notification" },
+               n => { });
+        }
+
+
+
     }
 }

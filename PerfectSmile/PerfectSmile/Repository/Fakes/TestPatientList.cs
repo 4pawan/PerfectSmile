@@ -9,7 +9,7 @@ namespace PerfectSmile.Repository.Fakes
 {
     public static class TestPatientList
     {
-        private static List<Patient> _patientList;
+        private static List<Patient> _patientList =new List<Patient>();
 
         public static List<Patient> PatientList
         {
