@@ -40,7 +40,7 @@ namespace PerfectSmile.Common
 
             Container.RegisterType<ILog4NetLogger, Log4NetLogger>(new ContainerControlledLifetimeManager());
             Container.RegisterType<ILoginRepository, LoginRepository>(new ContainerControlledLifetimeManager());
-            Container.RegisterType<IPatientRepository, PatientRepository>(new ContainerControlledLifetimeManager());
+            Container.RegisterType<IPatientRepository, PatientRepositoryFake>(new ContainerControlledLifetimeManager());
 
             Container.RegisterTypeForNavigation<PatientList>(Constant.Constant.View.PatientList);
             Container.RegisterTypeForNavigation<NextAppointment>(Constant.Constant.View.NextAppointment);

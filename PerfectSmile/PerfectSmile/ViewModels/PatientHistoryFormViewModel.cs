@@ -55,8 +55,8 @@ namespace PerfectSmile.ViewModels
             set { SetProperty(ref _balance, value); }
         }
 
-        private DateTime _nextAppointment;
-        public DateTime NextAppointment
+        private string _nextAppointment;
+        public string NextAppointment
         {
             get { return _nextAppointment; }
             set { SetProperty(ref _nextAppointment, value); }
