@@ -15,7 +15,8 @@ namespace PerfectSmile.ViewModels
 {
     public class PatientHistoryFormViewModel : BaseViewModel
     {
-
+        private IPatientRepository _patientRepository;
+        private ILog4NetLogger _log4NetLogger;
         public ICommand SaveCommand { get; set; }
 
         private ObservableCollection<AutoCompleteEntry> _autoCompleteSource;
@@ -71,20 +72,13 @@ namespace PerfectSmile.ViewModels
 
 
 
-        public PatientHistoryFormViewModel()
+        public PatientHistoryFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
         {
+            _patientRepository = patientRepository;
+            _log4NetLogger = log4NetLogger;
             SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);
 
-
-            AutoCompleteSource = new ObservableCollection<AutoCompleteEntry>
-            {
-            new AutoCompleteEntry("Toyota Camry1", "Toyota Camry2", "camry3", "car4", "sedan5"),
-            new AutoCompleteEntry("Toyota Corolla", "Toyota Corolla", "corolla", "car", "compact"),
-            new AutoCompleteEntry("Toyota Tundra", "Toyota Tundra", "tundra", "truck"),
-            new AutoCompleteEntry("Chevy Impala", null),  // null matching string will default with just the name
-            new AutoCompleteEntry("Chevy Tahoe", "Chevy Tahoe", "tahoe", "truck", "SUV"),
-            new AutoCompleteEntry("Chevrolet Malibu", "Chevrolet Malibu", "malibu", "car", "sedan")
-            };
+            AutoCompleteSource = _patientRepository.GetAllPatient();
         }
 
         private bool SaveCanExec()
