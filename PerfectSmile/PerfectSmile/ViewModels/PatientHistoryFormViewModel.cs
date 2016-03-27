@@ -16,6 +16,8 @@ namespace PerfectSmile.ViewModels
     public class PatientHistoryFormViewModel : BaseViewModel
     {
 
+        public ICommand SaveCommand { get; set; }
+
         private ObservableCollection<AutoCompleteEntry> _autoCompleteSource;
         public ObservableCollection<AutoCompleteEntry> AutoCompleteSource
         {
@@ -24,8 +26,8 @@ namespace PerfectSmile.ViewModels
         }
 
 
-        private Patient _patient;
-        public Patient Patient
+        private string _patient;
+        public string Patient
         {
             get { return _patient; }
             set { SetProperty(ref _patient, value); }
@@ -71,6 +73,9 @@ namespace PerfectSmile.ViewModels
 
         public PatientHistoryFormViewModel()
         {
+            SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);
+
+
             AutoCompleteSource = new ObservableCollection<AutoCompleteEntry>
             {
             new AutoCompleteEntry("Toyota Camry1", "Toyota Camry2", "camry3", "car4", "sedan5"),
@@ -80,6 +85,16 @@ namespace PerfectSmile.ViewModels
             new AutoCompleteEntry("Chevy Tahoe", "Chevy Tahoe", "tahoe", "truck", "SUV"),
             new AutoCompleteEntry("Chevrolet Malibu", "Chevrolet Malibu", "malibu", "car", "sedan")
             };
+        }
+
+        private bool SaveCanExec()
+        {
+            return true;
+        }
+
+        private void SaveExec()
+        {
+            var aa = this;
         }
     }
 }

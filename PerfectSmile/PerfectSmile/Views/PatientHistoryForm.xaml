@@ -58,7 +58,7 @@
         <TextBlock  Grid.Row="0" Grid.Column="1" Text="Patient's history form" FontFamily="Segoe Script" FontSize="16" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Bottom"/>
 
         <TextBlock  Grid.Row="1" Grid.Column="0" Text="Select Patient*"/>
-        <AutoCompleteTextBox:AutoCompleteTextBox Grid.Row="1" Grid.Column="1" Source="{Binding AutoCompleteSource, Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="300" />
+        <AutoCompleteTextBox:AutoCompleteTextBox Grid.Row="1" Grid.Column="1" Source="{Binding AutoCompleteSource, Mode=TwoWay}" TextVal="{Binding Patient ,Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="300" />
 
         <TextBlock  Grid.Row="2" Grid.Column="0" Text="Treatment Done" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>

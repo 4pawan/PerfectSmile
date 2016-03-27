@@ -19,5 +19,12 @@ namespace PerfectSmile.Repository.Implementation
             var ad = Context.SaveChanges();
             return ad;
         }
+
+        public Patient GetPatientInfoAutoCompleteTextBox(string searchText)
+        {
+            return null;
+        }
+
+
     }
 }

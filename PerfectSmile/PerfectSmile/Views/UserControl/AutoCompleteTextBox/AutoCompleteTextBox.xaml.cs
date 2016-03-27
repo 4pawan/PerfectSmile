@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -86,6 +87,8 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
                 insertText = true;
                 ComboBoxItem cbItem = (ComboBoxItem)comboBox.SelectedItem;
                 textBox.Text = cbItem.Content.ToString();
+                TextVal = textBox.Text;
+                Debug.WriteLine("----> :" + textBox.Text);
             }
         }
 
@@ -105,6 +108,7 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
                                 ComboBoxItem cbItem = new ComboBoxItem();
                                 cbItem.Content = entry.ToString();
                                 comboBox.Items.Add(cbItem);
+                                //Debug.WriteLine("----> cbItem.Content :" + cbItem.Content);
                                 break;
                             }
                         }
@@ -162,6 +166,22 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
         #endregion
 
 
+
+
+        public string TextVal
+        {
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("TextVal", typeof(string), typeof(AutoCompleteTextBox), new PropertyMetadata(default(string), TextValChangedCallback));
+
+        private static void TextValChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
 
 
         public ObservableCollection<AutoCompleteEntry> Source
