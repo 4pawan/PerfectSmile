@@ -23,10 +23,13 @@
             set { displayString = value; }
         }
 
-        public AutoCompleteEntry(string name, params string[] keywords)
+        public string DisplayVal { get; set; }
+
+        public AutoCompleteEntry(string name, string displayVal = null, params string[] keywords)
         {
             displayString = name;
             keywordStrings = keywords;
+            DisplayVal = displayVal;
         }
 
         public override string ToString()

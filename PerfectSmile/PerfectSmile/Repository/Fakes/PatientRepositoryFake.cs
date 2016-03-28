@@ -8,7 +8,7 @@ namespace PerfectSmile.Repository.Fakes
 {
     public class PatientRepositoryFake : Implementation.Repository, IPatientRepository
     {
-        public int AddPatientBasicInfo(PatientBasicFormViewModel vm)
+        public long AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
             var model = Helper.Helper.ConvertToPatientModel(vm);
             TestPatientList.PatientList.Add(model);
@@ -25,6 +25,11 @@ namespace PerfectSmile.Repository.Fakes
             new AutoCompleteEntry("Chevy Tahoe", "Chevy Tahoe", "tahoe", "truck", "SUV"),
             new AutoCompleteEntry("Chevrolet Malibu", "Chevrolet Malibu", "malibu", "car", "sedan")
             };
+        }
+
+        public long AddPatientHistoryDetails(PatientHistoryFormViewModel patientHistoryFormViewModel)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

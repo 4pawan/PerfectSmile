@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -86,7 +87,7 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
             {
                 insertText = true;
                 ComboBoxItem cbItem = (ComboBoxItem)comboBox.SelectedItem;
-                textBox.Text = cbItem.Content.ToString();
+                textBox.Text = cbItem.ToolTip.ToString();
                 TextVal = textBox.Text;
                 Debug.WriteLine("----> :" + textBox.Text);
             }
@@ -96,21 +97,18 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
         {
             try
             {
+                TextVal = textBox.Text;
                 comboBox.Items.Clear();
                 if (textBox.Text.Length >= searchThreshold)
                 {
                     foreach (AutoCompleteEntry entry in autoCompletionList)
                     {
-                        foreach (string word in entry.KeywordStrings)
+                        if (entry.KeywordStrings.Any(word => word.ToLower().Contains(textBox.Text.ToLower())))
                         {
-                            if (word.StartsWith(textBox.Text, StringComparison.CurrentCultureIgnoreCase))
-                            {
-                                ComboBoxItem cbItem = new ComboBoxItem();
-                                cbItem.Content = entry.ToString();
-                                comboBox.Items.Add(cbItem);
-                                //Debug.WriteLine("----> cbItem.Content :" + cbItem.Content);
-                                break;
-                            }
+                            ComboBoxItem cbItem = new ComboBoxItem();
+                            cbItem.Content = entry.ToString();
+                            cbItem.ToolTip = entry.DisplayVal;
+                            comboBox.Items.Add(cbItem);
                         }
                     }
                     comboBox.IsDropDownOpen = comboBox.HasItems;

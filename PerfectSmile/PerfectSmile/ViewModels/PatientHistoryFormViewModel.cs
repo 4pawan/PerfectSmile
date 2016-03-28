@@ -88,7 +88,7 @@ namespace PerfectSmile.ViewModels
 
         private void SaveExec()
         {
-            var aa = this;
+            var aa = _patientRepository.AddPatientHistoryDetails(this);
         }
     }
 }

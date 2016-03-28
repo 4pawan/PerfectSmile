@@ -13,7 +13,8 @@ namespace PerfectSmile.Repository.Abstract
 {
     public interface IPatientRepository : IRepository
     {
-        int AddPatientBasicInfo(PatientBasicFormViewModel model);
+        long AddPatientBasicInfo(PatientBasicFormViewModel model);
         ObservableCollection<AutoCompleteEntry> GetAllPatient();
+        long AddPatientHistoryDetails(PatientHistoryFormViewModel patientHistoryFormViewModel);
     }
 }

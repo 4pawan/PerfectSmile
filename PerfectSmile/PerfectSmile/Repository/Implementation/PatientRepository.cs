@@ -14,12 +14,12 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class PatientRepository : Repository, IPatientRepository
     {
-        public int AddPatientBasicInfo(PatientBasicFormViewModel vm)
+        public long AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
             var model = Helper.Helper.ConvertToPatientModel(vm);
             Context.Patients.Add(model);
-            var ad = Context.SaveChanges();
-            return ad;
+            Context.SaveChanges();
+            return model.Id;
         }
 
         public Patient GetPatientInfoAutoCompleteTextBox(string searchText)
@@ -29,9 +29,23 @@ namespace PerfectSmile.Repository.Implementation
 
         public ObservableCollection<AutoCompleteEntry> GetAllPatient()
         {
-            return new ObservableCollection<AutoCompleteEntry>(Context.Patients.Select(p => new AutoCompleteEntry(p.Name, p.Id.ToString())).ToList());
+            ObservableCollection<AutoCompleteEntry> lst = new ObservableCollection<AutoCompleteEntry>();
+
+            var patient = Context.Patients.ToList();
+
+            foreach (var p in patient)
+            {
+                lst.Add(new AutoCompleteEntry($"{p.Name}, {p.Phone}, {p.Id}", p.Id.ToString(), p.Name, p.Phone, p.Id.ToString()));
+            }
+            return lst;
         }
 
-
+        public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
+        {
+            var model = Helper.Helper.ConvertToPatientHistoryModel(vm);
+            Context.PatientHistories.Add(model);
+            Context.SaveChanges();
+            return model.Id;
+        }
     }
 }
