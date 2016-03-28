@@ -18,6 +18,8 @@ namespace PerfectSmile.ViewModels
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
         public ICommand SaveCommand { get; set; }
+        public ICommand ClearCommand { get; set; }
+
 
         private ObservableCollection<AutoCompleteEntry> _autoCompleteSource;
         public ObservableCollection<AutoCompleteEntry> AutoCompleteSource
@@ -77,8 +79,18 @@ namespace PerfectSmile.ViewModels
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
             SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);
-
+            ClearCommand = new DelegateCommand(ClearExec);
             AutoCompleteSource = _patientRepository.GetAllPatient();
+        }
+
+        private void ClearExec()
+        {
+            AdditionalComment = "";
+            Balance = 0;
+            PaymentDone = 0;
+            Patient = "";
+            TreatmentDone = "";
+            NextAppointment = "";
         }
 
         private bool SaveCanExec()

@@ -60,6 +60,8 @@ namespace PerfectSmile.ViewModels
         }
 
         public ICommand SaveCommand { get; set; }
+        public ICommand ClearCommand { get; set; }
+
 
         public PatientBasicFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
         {
@@ -74,7 +76,17 @@ namespace PerfectSmile.ViewModels
                 //Debug.WriteLine("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
                 RaiseNotification();
             });
+
+            ClearCommand = new DelegateCommand(ClearExec);
+
         }
+
+        private void ClearExec()
+        {
+            Remark = Phone = Name = "";
+
+        }
+
         private void RaiseNotification()
         {
             this.NotificationRequest.Raise(
