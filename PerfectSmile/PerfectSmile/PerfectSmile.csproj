@@ -42,12 +42,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="ImageFromFont, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -91,6 +91,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="SQLite.CodeFirst">
+      <HintPath>..\packages\SQLite.CodeFirst.1.1.11.0\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
     <Reference Include="SQLite.Net, Version=3.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.Net-PCL.3.0.5\lib\net40\SQLite.Net.dll</HintPath>
       <Private>True</Private>
@@ -152,6 +155,11 @@
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\DebugConverter.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
+    <Compile Include="EF\Patient.cs" />
+    <Compile Include="EF\PatientDbContext.cs" />
+    <Compile Include="EF\PatientDbInitializer.cs" />
+    <Compile Include="EF\PatientHistory.cs" />
+    <Compile Include="EF\User.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
     <Compile Include="Repository\Abstract\IPatientRepository.cs" />
@@ -160,30 +168,6 @@
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Constant\Constant.cs" />
-    <Compile Include="EF\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EF\Patient.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\PatientHistory.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Repository\Abstract\ILoginRepository.cs" />
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Factory\ContextFactory.cs" />
@@ -281,13 +265,6 @@
     <None Include="Config\log4net.config" />
     <None Include="Config\connectionString.config" />
     <None Include="DB\perfectsmile.db" />
-    <EntityDeploy Include="EF\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="EF\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -309,16 +286,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EF\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EF\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Content Include="Library\ImageFromFont.dll" />
     <Content Include="Library\ImageFromFont.pdb" />
     <Resource Include="Resources\mickey-mouse-icon.png" />

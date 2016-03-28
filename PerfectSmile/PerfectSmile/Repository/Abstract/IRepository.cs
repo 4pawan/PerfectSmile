@@ -10,6 +10,6 @@ namespace PerfectSmile.Repository.Abstract
 {
     public interface IRepository
     {
-        perfectsmileEntities Context { get; }
+        PatientDbContext Context { get; }
     }
 }

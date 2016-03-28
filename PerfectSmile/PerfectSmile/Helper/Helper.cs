@@ -15,7 +15,7 @@ namespace PerfectSmile.Helper
             return new Patient
             {
                 Name = vm.Name,
-                Phone = Convert.ToInt32(vm.Phone),
+                Phone = vm.Phone,
                 Remark = vm.Remark
               
             };

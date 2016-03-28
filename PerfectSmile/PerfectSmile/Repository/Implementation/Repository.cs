@@ -11,6 +11,6 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class Repository : IRepository
     { 
-        public perfectsmileEntities Context { get { return ContextFactory.Context; } }
+        public PatientDbContext Context { get { return ContextFactory.Context; } }
     }
 }

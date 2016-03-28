@@ -1,4 +1,6 @@
-﻿using Prism.Commands;
+﻿using PerfectSmile.EF;
+using PerfectSmile.Repository.Abstract;
+using Prism.Commands;
 using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
@@ -6,13 +8,8 @@ namespace PerfectSmile.ViewModels
     public class ShellViewModel : BaseViewModel
     {
         private readonly IRegionManager _regionManager;
+        private readonly ILoginRepository _loginRepository;
 
-        //private string _name = "Test";
-        //public string Name
-        //{
-        //    get { return _name; }
-        //    set { SetProperty(ref _name, value); }
-        //}
 
         private bool _isPatientListSelected;
         public bool IsPatientListSelected
@@ -47,9 +44,12 @@ namespace PerfectSmile.ViewModels
         public DelegateCommand NavigateToPatientBasicFormCommand { get; set; }
         public DelegateCommand NavigateToPatientHistoryCommand { get; set; }
 
-        public ShellViewModel(IRegionManager regionManager)
+        public ShellViewModel(IRegionManager regionManager, ILoginRepository loginRepository)
         {
             _regionManager = regionManager;
+            _loginRepository = loginRepository;
+
+            var aa = loginRepository.IsUserValid("pk", "pk");
 
             NavigateToPatientListCommand = new DelegateCommand(NavigateToPatientList);
             NavigateToNextAppointmentCommand = new DelegateCommand(NavigateToNextAppointment);

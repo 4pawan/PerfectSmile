@@ -9,10 +9,10 @@ namespace PerfectSmile.Repository.Factory
 {
     public class ContextFactory
     {
-        private static perfectsmileEntities _context;
-        public static perfectsmileEntities Context
+        private static PatientDbContext _context;
+        public static PatientDbContext Context
         {
-            get { return _context ?? (_context = new perfectsmileEntities()); }
+            get { return _context ?? (_context = new PatientDbContext()); }
         }
 
     }
