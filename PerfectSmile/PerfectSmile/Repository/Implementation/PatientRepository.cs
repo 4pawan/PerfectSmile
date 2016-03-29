@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class PatientRepository : Repository, IPatientRepository
     {
+        private ILog4NetLogger asdd;
+
         public long AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
             var model = Helper.Helper.ConvertToPatientModel(vm);
@@ -42,10 +45,18 @@ namespace PerfectSmile.Repository.Implementation
 
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
         {
-            var model = Helper.Helper.ConvertToPatientHistoryModel(vm);
-            Context.PatientHistories.Add(model);
-            Context.SaveChanges();
-            return model.Id;
+            try
+            {
+                var model = Helper.Helper.ConvertToPatientHistoryModel(vm);
+                Context.PatientHistories.Add(model);
+                Context.SaveChanges();
+                return model.Id;
+            }
+            catch (Exception ex)
+            {
+                Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
+                return 0;
+            }
         }
     }
 }

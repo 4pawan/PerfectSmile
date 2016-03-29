@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,6 +60,18 @@ namespace PerfectSmile.Helper
                 AdditionalComment = vm.AdditionalComment,
                 PatientId = resultPatientId
             };
+        }
+
+
+
+
+        public static void WriteLogToEventViewer(string message)
+        {
+            using (EventLog eventLog = new EventLog("Application"))
+            {
+                eventLog.Source = "Application";
+                eventLog.WriteEntry(message, EventLogEntryType.Warning, 101, 1);
+            }
         }
     }
 }
