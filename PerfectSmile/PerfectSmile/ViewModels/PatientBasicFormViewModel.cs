@@ -30,6 +30,7 @@ namespace PerfectSmile.ViewModels
             {
                 ValidateProperty(value);
                 SetProperty(ref _name, value);
+                Message = "";
             }
         }
 
@@ -43,6 +44,7 @@ namespace PerfectSmile.ViewModels
             {
                 ValidateProperty(value);
                 SetProperty(ref _phone, value);
+                Message = "";
             }
         }
 
@@ -56,6 +58,7 @@ namespace PerfectSmile.ViewModels
             {
                 ValidateProperty(value);
                 SetProperty(ref _remark, value);
+                Message = "";
             }
         }
 
@@ -83,7 +86,7 @@ namespace PerfectSmile.ViewModels
                     long id = _patientRepository.AddPatientBasicInfo(this);
                     _log4NetLogger.Info("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
                     Message = id > 0
-                        ? "Patient record saved successfully"
+                        ? "Patient record with name : " + Name + " saved successfully with new Id : " + id + " !"
                         : "There could be issue while saving...Please check logs";
                 }
                 else

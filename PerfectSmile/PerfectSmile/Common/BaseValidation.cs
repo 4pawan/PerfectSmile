@@ -87,7 +87,6 @@ namespace PerfectSmile.Common
         }
 
 
-
         public void Validate()
         {
             lock (threadLock)
