@@ -113,8 +113,19 @@ namespace PerfectSmile.ViewModels
         }
 
 
+        private DateTime _displayDateStart;
+        public DateTime DisplayDateStart
+        {
+            get { return _displayDateStart; }
+            set { SetProperty(ref _displayDateStart, value); }
+        }
+
+
+
+
         public PatientHistoryFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
         {
+            DisplayDateStart = DateTime.Now;
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
             SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);

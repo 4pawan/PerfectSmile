@@ -82,7 +82,8 @@
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Balance, Mode=TwoWay}"/>
 
         <TextBlock  Grid.Row="5" Grid.Column="0" Text="Next Appointment" />
-        <DatePicker Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay}" Width="300" Height="30" HorizontalAlignment="Left"/>
+        <DatePicker DisplayDateStart="{Binding DisplayDateStart}" Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay}" Width="300" Height="30" HorizontalAlignment="Left">
+        </DatePicker>
 
         <TextBlock  Grid.Row="6" Grid.Column="0" Text="Additional Comment" />
         <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding AdditionalComment, Mode=TwoWay}"/>
