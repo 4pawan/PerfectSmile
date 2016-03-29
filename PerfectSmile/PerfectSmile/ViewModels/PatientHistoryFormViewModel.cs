@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
@@ -28,39 +29,66 @@ namespace PerfectSmile.ViewModels
         }
 
 
-        private string _patient;
-        public string Patient
+        private string _patientId;
+        [Required(ErrorMessage = "Patient Id cant be empty.")]
+        public string PatientId
         {
-            get { return _patient; }
-            set { SetProperty(ref _patient, value); }
+            get { return _patientId; }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _patientId, value);
+                Message = "";
+            }
         }
 
         private string _treatmentDone;
+        //[Required(ErrorMessage = "Please enter Treatment done")]
         public string TreatmentDone
         {
             get { return _treatmentDone; }
-            set { SetProperty(ref _treatmentDone, value); }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _treatmentDone, value);
+                Message = "";
+            }
         }
 
         private decimal _paymentDone;
         public decimal PaymentDone
         {
             get { return _paymentDone; }
-            set { SetProperty(ref _paymentDone, value); }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _paymentDone, value);
+                Message = "";
+            }
         }
 
         private decimal _balance;
         public decimal Balance
         {
             get { return _balance; }
-            set { SetProperty(ref _balance, value); }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _balance, value);
+                Message = "";
+            }
         }
 
         private string _nextAppointment;
         public string NextAppointment
         {
             get { return _nextAppointment; }
-            set { SetProperty(ref _nextAppointment, value); }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _nextAppointment, value);
+                Message = "";
+            }
         }
 
 
@@ -68,7 +96,12 @@ namespace PerfectSmile.ViewModels
         public string AdditionalComment
         {
             get { return _additionalComment; }
-            set { SetProperty(ref _additionalComment, value); }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _additionalComment, value);
+                Message = "";
+            }
         }
 
 
@@ -94,9 +127,10 @@ namespace PerfectSmile.ViewModels
             AdditionalComment = "";
             Balance = 0;
             PaymentDone = 0;
-            Patient = "";
+            PatientId = "";
             TreatmentDone = "";
             NextAppointment = "";
+            Message = "";
         }
 
         private bool SaveCanExec()
@@ -106,8 +140,18 @@ namespace PerfectSmile.ViewModels
 
         private void SaveExec()
         {
-            long id = _patientRepository.AddPatientHistoryDetails(this);
-            Message = id > 0 ? "Patient History record saved successfully" : "There could be issue while saving...Please check logs";
+            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "TreatmentDone", TreatmentDone } });
+
+            if (IsValid)
+            {
+                long id = _patientRepository.AddPatientHistoryDetails(this);
+                _log4NetLogger.Info("Patient history with id" + id + "saved in db successfully.");
+                Message = id > 0 ? "Patient's history saved successfully with new Id : " + id + " !" : "There could be issue while saving.Please check logs !";
+            }
+            else
+            {
+                Message = "Please enter valid information and try again !";
+            }
         }
     }
 }

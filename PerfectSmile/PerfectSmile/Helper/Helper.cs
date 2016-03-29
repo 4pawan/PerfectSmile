@@ -16,6 +16,20 @@ namespace PerfectSmile.Helper
             get { return Environment.UserName; }
         }
 
+        public static DateTime? TryParse(string text)
+        {
+            DateTime date;
+            if (DateTime.TryParse(text, out date))
+            {
+                return date;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
         public static Patient ConvertToPatientModel(PatientBasicFormViewModel vm)
         {
             return new Patient
@@ -32,6 +46,8 @@ namespace PerfectSmile.Helper
 
         public static PatientHistory ConvertToPatientHistoryModel(PatientHistoryFormViewModel vm)
         {
+            long resultPatientId = 0;
+            long.TryParse(vm.PatientId, out resultPatientId);
             return new PatientHistory
             {
                 PaymentDone = vm.PaymentDone,
@@ -39,9 +55,9 @@ namespace PerfectSmile.Helper
                 Balance = vm.Balance,
                 CreatedBy = LoggedInUser,
                 CreatedAt = DateTime.Now,
-                NextAppointment = Convert.ToDateTime(vm.NextAppointment),
+                NextAppointment = TryParse(vm.NextAppointment),
                 AdditionalComment = vm.AdditionalComment,
-                PatientId = long.Parse(vm.Patient)
+                PatientId = resultPatientId
             };
         }
     }
