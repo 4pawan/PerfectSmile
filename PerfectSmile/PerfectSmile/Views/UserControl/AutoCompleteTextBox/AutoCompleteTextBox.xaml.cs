@@ -103,12 +103,13 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
                 {
                     foreach (AutoCompleteEntry entry in autoCompletionList)
                     {
-                        if (entry.KeywordStrings.Any(word => word.ToLower().Contains(textBox.Text.ToLower())))
+                        if (entry.KeywordStrings.Any(word => word != null && word.ToLower().Contains(textBox.Text.ToLower())))
                         {
-                            ComboBoxItem cbItem = new ComboBoxItem();
-                            cbItem.Content = entry.ToString();
-                            cbItem.ToolTip = entry.DisplayVal;
-                            comboBox.Items.Add(cbItem);
+                            comboBox.Items.Add(new ComboBoxItem
+                            {
+                                Content = entry.ToString(),
+                                ToolTip = entry.DisplayVal
+                            });
                         }
                     }
                     comboBox.IsDropDownOpen = comboBox.HasItems;
