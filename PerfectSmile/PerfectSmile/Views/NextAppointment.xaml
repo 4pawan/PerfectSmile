@@ -4,7 +4,19 @@
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
     <Grid>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" TextWrapping="Wrap" Text="12" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Last Entered Balance" Width="*" Binding="{Binding Name}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>

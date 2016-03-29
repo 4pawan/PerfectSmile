@@ -70,7 +70,7 @@ namespace PerfectSmile.Helper
             using (EventLog eventLog = new EventLog("Application"))
             {
                 eventLog.Source = "Application";
-                eventLog.WriteEntry(message, EventLogEntryType.Warning, 101, 1);
+                eventLog.WriteEntry(message, EventLogEntryType.Error, 101, 1);
             }
         }
     }
