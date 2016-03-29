@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
+using PerfectSmile.Attributes;
 using PerfectSmile.Common;
 using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
@@ -80,6 +81,7 @@ namespace PerfectSmile.ViewModels
         }
 
         private string _nextAppointment;
+        [DisablePastDate(ErrorMessage ="Next Appointment cant be past dates")]
         public string NextAppointment
         {
             get { return _nextAppointment; }
@@ -151,7 +153,7 @@ namespace PerfectSmile.ViewModels
 
         private void SaveExec()
         {
-            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "TreatmentDone", TreatmentDone } });
+            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "TreatmentDone", TreatmentDone }, { "NextAppointment", NextAppointment } });
 
             if (IsValid)
             {

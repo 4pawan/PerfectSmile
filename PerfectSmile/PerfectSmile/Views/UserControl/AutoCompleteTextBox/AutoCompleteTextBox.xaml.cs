@@ -179,7 +179,14 @@ namespace PerfectSmile.Views.UserControl.AutoCompleteTextBox
 
         private static void TextValChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-
+            AutoCompleteTextBox uc = d as AutoCompleteTextBox;
+            if (e.NewValue != null)
+            {
+                if (uc != null)
+                {
+                    uc.textBox.Text = e.NewValue.ToString();
+                }
+            }
         }
 
 

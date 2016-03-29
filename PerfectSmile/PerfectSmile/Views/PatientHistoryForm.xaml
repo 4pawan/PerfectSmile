@@ -65,13 +65,25 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style TargetType="DatePicker">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="300" />
+                <Setter Property="Height" Value="30" />
+                <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
+                <Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="true">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
         </Grid.Resources>
 
         <TextBlock  Grid.Row="0" Grid.Column="1" Text="Patient's history form" FontFamily="Segoe Script" FontSize="16" HorizontalAlignment="Left" FontWeight="SemiBold" VerticalAlignment="Bottom"/>
 
         <TextBlock  Grid.Row="1" Grid.Column="0" Text="Select Patient Id*"/>
         <AutoCompleteTextBox:AutoCompleteTextBox Grid.Row="1" Grid.Column="1" Source="{Binding AutoCompleteSource, Mode=TwoWay}" TextVal="{Binding PatientId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="300" />
-
+       
         <TextBlock  Grid.Row="2" Grid.Column="0" Text="Treatment Done" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
 
@@ -82,8 +94,7 @@
         <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Balance, Mode=TwoWay}"/>
 
         <TextBlock  Grid.Row="5" Grid.Column="0" Text="Next Appointment" />
-        <DatePicker DisplayDateStart="{Binding DisplayDateStart}" Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay}" Width="300" Height="30" HorizontalAlignment="Left">
-        </DatePicker>
+        <DatePicker DisplayDateStart="{Binding DisplayDateStart}" Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay}" Width="300" Height="30" HorizontalAlignment="Left"/>
 
         <TextBlock  Grid.Row="6" Grid.Column="0" Text="Additional Comment" />
         <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding AdditionalComment, Mode=TwoWay}"/>

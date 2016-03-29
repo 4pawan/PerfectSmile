@@ -154,6 +154,7 @@
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
     <Compile Include="Common\DebugConverter.cs" />
+    <Compile Include="Attributes\DisablePastDateAttribute.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
     <Compile Include="EF\Patient.cs" />
     <Compile Include="EF\PatientDbContext.cs" />
