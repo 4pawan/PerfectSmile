@@ -20,7 +20,6 @@ namespace PerfectSmile.ViewModels
         public ICommand SaveCommand { get; set; }
         public ICommand ClearCommand { get; set; }
 
-
         private ObservableCollection<AutoCompleteEntry> _autoCompleteSource;
         public ObservableCollection<AutoCompleteEntry> AutoCompleteSource
         {
@@ -73,6 +72,13 @@ namespace PerfectSmile.ViewModels
         }
 
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
 
         public PatientHistoryFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
         {
@@ -100,7 +106,8 @@ namespace PerfectSmile.ViewModels
 
         private void SaveExec()
         {
-            var aa = _patientRepository.AddPatientHistoryDetails(this);
+            long id = _patientRepository.AddPatientHistoryDetails(this);
+            Message = id > 0 ? "Patient History record saved successfully" : "There could be issue while saving...Please check logs";
         }
     }
 }

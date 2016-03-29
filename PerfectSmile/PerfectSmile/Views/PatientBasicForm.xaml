@@ -27,11 +27,6 @@
     </UserControl.Resources>
 
     <Grid Background="Azure">
-        <!--<i:Interaction.Triggers>
-            <prism:InteractionRequestTrigger SourceObject="{Binding NotificationRequest, Mode=OneWay}">
-                <prism:PopupWindowAction IsModal="True" CenterOverAssociatedObject="True"/>
-            </prism:InteractionRequestTrigger>
-        </i:Interaction.Triggers>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition Width="*"/>
@@ -41,6 +36,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="72"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.Resources>
@@ -92,7 +88,9 @@
             </Button>
             <Button Content="Clear" Command="{Binding ClearCommand}" Width="147" Margin="5,0,0,0"/>
         </StackPanel>
-
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Padding="0,7,0,0"  HorizontalAlignment="Left" Foreground="Red" Text="{Binding Message}" />
+        </StackPanel>
 
     </Grid>
 </UserControl>

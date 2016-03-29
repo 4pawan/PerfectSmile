@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -17,7 +18,6 @@ namespace PerfectSmile.ViewModels
 
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
-        public InteractionRequest<INotification> NotificationRequest { get; private set; }
 
         private string _name;
 
@@ -35,7 +35,7 @@ namespace PerfectSmile.ViewModels
 
         private string _phone;
 
-        //[RegularExpression("((\\(\\d{3}\\)?)|(\\d{3}))([\\s-./]?)(\\d{3})([\\s-./]?)(\\d{4})",ErrorMessage ="Phone no is not valid")]
+        [RegularExpression("((\\(\\d{3}\\)?)|(\\d{3}))([\\s-./]?)(\\d{3})([\\s-./]?)(\\d{4})", ErrorMessage = "Phone no is not valid")]
         public string Phone
         {
             get { return _phone; }
@@ -59,6 +59,14 @@ namespace PerfectSmile.ViewModels
             }
         }
 
+        private string _message;
+        public string Message
+        {
+            get { return _message; }
+            set { SetProperty(ref _message, value); }
+        }
+
+
         public ICommand SaveCommand { get; set; }
         public ICommand ClearCommand { get; set; }
 
@@ -67,14 +75,21 @@ namespace PerfectSmile.ViewModels
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
-            NotificationRequest = new InteractionRequest<INotification>();
             SaveCommand = new DelegateCommand(() =>
             {
-
-                var id = _patientRepository.AddPatientBasicInfo(this);
-                _log4NetLogger.Info("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
-                //Debug.WriteLine("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
-                RaiseNotification();
+                ValidateAllProperty(new MessageArgs { { "Name", Name }, { "Phone", Phone }, { "Remark", Remark } });
+                if (IsValid)
+                {
+                    long id = _patientRepository.AddPatientBasicInfo(this);
+                    _log4NetLogger.Info("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
+                    Message = id > 0
+                        ? "Patient record saved successfully"
+                        : "There could be issue while saving...Please check logs";
+                }
+                else
+                {
+                    Message = "Please enter valid information and try again !";
+                }
             });
 
             ClearCommand = new DelegateCommand(ClearExec);
@@ -83,18 +98,8 @@ namespace PerfectSmile.ViewModels
 
         private void ClearExec()
         {
-            Remark = Phone = Name = "";
-
+            Remark = Phone = Name = Message = "";
         }
-
-        private void RaiseNotification()
-        {
-            this.NotificationRequest.Raise(
-               new Notification { Content = "Patient with name " + Name + " saved successfully.", Title = "Notification" },
-               n => { });
-        }
-
-
 
     }
 }

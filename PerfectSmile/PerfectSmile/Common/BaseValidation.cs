@@ -65,6 +65,29 @@ namespace PerfectSmile.Common
             }
         }
 
+        public class MessageArgs : Dictionary<string, object>
+        { }
+
+        public void ValidateAllProperty(MessageArgs propertyNames)
+        {
+            foreach (var property in propertyNames)
+            {
+                lock (threadLock)
+                {
+                    var validationContext = new ValidationContext(this, null, null);
+                    validationContext.MemberName = property.Key;
+                    var validationResults = new List<ValidationResult>();
+                    Validator.TryValidateProperty(property.Value, validationContext, validationResults);
+                    if (errors.ContainsKey(property.Key))
+                        errors.Remove(property.Key);
+                    OnErrorsChanged(property.Key);
+                    HandleValidationResults(validationResults);
+                }
+            }
+        }
+
+
+
         public void Validate()
         {
             lock (threadLock)
