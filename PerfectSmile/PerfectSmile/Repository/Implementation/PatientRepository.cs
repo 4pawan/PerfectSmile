@@ -15,14 +15,24 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class PatientRepository : Repository, IPatientRepository
     {
-        private ILog4NetLogger asdd;
-
+        
         public long AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
-            var model = Helper.Helper.ConvertToPatientModel(vm);
-            Context.Patients.Add(model);
-            Context.SaveChanges();
-            return model.Id;
+            try
+            {
+                using (var contxt = new PatientDbContext())
+                {
+                    var model = Helper.Helper.ConvertToPatientModel(vm);
+                    contxt.Patients.Add(model);
+                    contxt.SaveChanges();
+                    return model.Id;
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
+                return 0;
+            }
         }
 
         public Patient GetPatientInfoAutoCompleteTextBox(string searchText)
@@ -48,9 +58,14 @@ namespace PerfectSmile.Repository.Implementation
             try
             {
                 var model = Helper.Helper.ConvertToPatientHistoryModel(vm);
-                Context.PatientHistories.Add(model);
-                Context.SaveChanges();
-                return model.Id;
+
+                using (var contxt = new PatientDbContext())
+                {
+                    contxt.PatientHistories.Add(model);
+                    contxt.SaveChanges();
+                    return model.Id;
+                }
+
             }
             catch (Exception ex)
             {
