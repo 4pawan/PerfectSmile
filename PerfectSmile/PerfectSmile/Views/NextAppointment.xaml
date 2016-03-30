@@ -13,7 +13,7 @@
                 <DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding PatientId}"/>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Phone}" />
-                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding NextAppointment}" />
+                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding NextAppointment,StringFormat=dd/MM/yyyy}" />
                 <DataGridTextColumn Header="Last Entered Balance" Width="*" Binding="{Binding Balance}" />
             </DataGrid.Columns>
         </DataGrid>
