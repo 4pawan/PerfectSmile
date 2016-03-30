@@ -27,7 +27,7 @@
             </prism:PopupWindowAction>
         </prism:InteractionRequestTrigger>
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding RaiseCustomPopupViewOnWindowLoadCommand}" CommandParameter="{Binding DataContext, ElementName=shell}"/>
+            <i:InvokeCommandAction Command="{Binding RaiseCustomPopupViewOnWindowLoadCommand}" CommandParameter="{Binding ElementName=shell}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 

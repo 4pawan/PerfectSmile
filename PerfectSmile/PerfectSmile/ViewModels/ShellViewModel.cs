@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
+using PerfectSmile.Views;
 using Prism.Commands;
 using Prism.Interactivity.InteractionRequest;
 using Prism.Regions;
@@ -70,7 +71,7 @@ namespace PerfectSmile.ViewModels
             _loginRepository = loginRepository;
 
             CustomPopupViewRequest = new InteractionRequest<INotification>();
-            RaiseCustomPopupViewOnWindowLoadCommand = new DelegateCommand<dynamic>(RaiseCustomPopupView);
+            RaiseCustomPopupViewOnWindowLoadCommand = new DelegateCommand<Shell>(RaiseCustomPopupView);
             NavigateToPatientListCommand = new DelegateCommand(NavigateToPatientList);
             NavigateToNextAppointmentCommand = new DelegateCommand(NavigateToNextAppointment);
             NavigateToPatientBasicFormCommand = new DelegateCommand(NavigateToPatientBasicForm);
@@ -79,9 +80,11 @@ namespace PerfectSmile.ViewModels
             IsPatientListSelected = true;
         }
 
-        private void RaiseCustomPopupView(dynamic model)
+        private void RaiseCustomPopupView(Shell model)
         {
-            //model.Close();
+            model.Visibility = Visibility.Hidden;
+            model.IsEnabled = false;
+             
             InteractionResultMessage = "";
             CustomPopupViewRequest.Raise(
                 new Notification { Content = "Message for the CustomPopupView", Title = "Custom Popup" });
