@@ -8,15 +8,14 @@
             <RowDefinition Height="2"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1">
+        <DataGrid Grid.Row="1"  AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding NextAppointmentSource,Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding PatientId}"/>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="Last Entered Balance" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Phone}" />
+                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding NextAppointment}" />
+                <DataGridTextColumn Header="Last Entered Balance" Width="*" Binding="{Binding Balance}" />
             </DataGrid.Columns>
         </DataGrid>
-
     </Grid>
 </UserControl>

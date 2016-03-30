@@ -10,4 +10,8 @@ namespace PerfectSmile.Events
     public class RaiseAutoCompleteEvent : PubSubEvent<bool>
     {
     }
+
+    public class RaiseNextAppointmentEvent : PubSubEvent<bool>
+    {
+    }
 }

@@ -21,7 +21,7 @@ namespace PerfectSmile.ViewModels
     {
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
-        //private IEventAggregator _eventAggregator;
+        private IEventAggregator _eventAggregator;
 
         public ICommand SaveCommand { get; set; }
         public ICommand ClearCommand { get; set; }
@@ -134,9 +134,12 @@ namespace PerfectSmile.ViewModels
             DisplayDateStart = DateTime.Now;
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
-            eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Subscribe(RaiseAutoCompleteEvent);
+            _eventAggregator = eventAggregator;
             SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);
             ClearCommand = new DelegateCommand(ClearExec);
+
+            _eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Subscribe(RaiseAutoCompleteEvent);
+
             RaiseAutoCompleteEvent(true);
         }
 
@@ -172,7 +175,15 @@ namespace PerfectSmile.ViewModels
             {
                 long id = _patientRepository.AddPatientHistoryDetails(this);
                 _log4NetLogger.Info("Patient history with id" + id + "saved in db successfully.");
-                Message = id > 0 ? "Patient's history saved successfully with new Id : " + id + " !" : "There could be issue while saving.Please check logs !";
+                if (id > 0)
+                {
+                    Message = string.Format("Patient's history saved successfully with new Id : {0} !", id);
+                    _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);
+                }
+                else
+                {
+                    Message = "There could be issue while saving.Please check logs !";
+                }
             }
             else
             {
@@ -180,4 +191,6 @@ namespace PerfectSmile.ViewModels
             }
         }
     }
+
+
 }

@@ -15,7 +15,7 @@ namespace PerfectSmile.Repository.Implementation
 {
     public class PatientRepository : Repository, IPatientRepository
     {
-        
+
         public long AddPatientBasicInfo(PatientBasicFormViewModel vm)
         {
             try
@@ -53,6 +53,21 @@ namespace PerfectSmile.Repository.Implementation
             return lst;
         }
 
+
+        public ObservableCollection<NextAppointmentItemViewModel> GetNextAppointmentSource()
+        {
+
+            DateTime? dt = DateTime.Now.Date;
+            return new ObservableCollection<NextAppointmentItemViewModel>(Context.PatientHistories.Where(h => h.NextAppointment.HasValue && h.NextAppointment.Value >= dt).Select(h => new NextAppointmentItemViewModel
+            {
+                PatientId = h.Patient.Id,
+                Name = h.Patient.Name,
+                Phone = h.Patient.Phone,
+                Balance = h.Balance,
+                NextAppointment = h.NextAppointment
+            }));
+        }
+
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
         {
             try
@@ -73,5 +88,7 @@ namespace PerfectSmile.Repository.Implementation
                 return 0;
             }
         }
+
+
     }
 }

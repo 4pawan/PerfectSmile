@@ -31,5 +31,10 @@ namespace PerfectSmile.Repository.Fakes
         {
             throw new System.NotImplementedException();
         }
+
+        public ObservableCollection<NextAppointmentItemViewModel> GetNextAppointmentSource()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
