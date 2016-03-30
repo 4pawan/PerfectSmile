@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using PerfectSmile.EF;
 
 
@@ -13,12 +14,16 @@ namespace PerfectSmile.Attributes
             if (value == null || (string)value == "")
                 return true;
 
+            long id = 0;
+            long.TryParse(value.ToString(), out id);
+
+            bool flag = false;
             using (var contxt = new PatientDbContext())
             {
-                var a = contxt.Patients;
+                flag = contxt.Patients.Any(p => p.Id == id);
             }
 
-            return true;
+            return flag;
         }
     }
 }
