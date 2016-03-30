@@ -36,7 +36,8 @@ namespace PerfectSmile.ViewModels
 
         private string _patientId;
         [Required(ErrorMessage = "Patient Id cant be empty.")]
-        public string PatientId
+        [RemotePatientId(ErrorMessage ="Patient Id does not exist.")]
+        public string PatientId 
         {
             get { return _patientId; }
             set
