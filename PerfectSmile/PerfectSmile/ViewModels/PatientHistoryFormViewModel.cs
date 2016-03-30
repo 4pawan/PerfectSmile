@@ -178,7 +178,9 @@ namespace PerfectSmile.ViewModels
                 if (id > 0)
                 {
                     Message = string.Format("Patient's history saved successfully with new Id : {0} !", id);
-                    _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);
+
+                    if (!string.IsNullOrEmpty(NextAppointment))
+                        _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);
                 }
                 else
                 {
