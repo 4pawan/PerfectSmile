@@ -11,6 +11,7 @@
             WindowState="Maximized"  WindowStartupLocation="CenterScreen"
             prism:ViewModelLocator.AutoWireViewModel="True"
                  Icon="/PerfectSmile;component/Resources/mickey-mouse-icon.png"
+           Name="shell"   
          Title="{x:Static constant:Constant+Shell.Title}"
         >
     <my:RibbonWindow.Resources>
@@ -21,10 +22,13 @@
         <prism:InteractionRequestTrigger SourceObject="{Binding CustomPopupViewRequest, Mode=OneWay}">
             <prism:PopupWindowAction>
                 <prism:PopupWindowAction.WindowContent>
-                    <views:Login/>
+                    <views:Login />
                 </prism:PopupWindowAction.WindowContent>
             </prism:PopupWindowAction>
         </prism:InteractionRequestTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding RaiseCustomPopupViewOnWindowLoadCommand}" CommandParameter="{Binding DataContext, ElementName=shell}"/>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Grid>
