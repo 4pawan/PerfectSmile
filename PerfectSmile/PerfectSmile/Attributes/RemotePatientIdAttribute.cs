@@ -14,7 +14,7 @@ namespace PerfectSmile.Attributes
             if (value == null || (string)value == "")
                 return true;
 
-            long id = 0;
+            long id = -1;
             long.TryParse(value.ToString(), out id);
 
             bool flag = false;
