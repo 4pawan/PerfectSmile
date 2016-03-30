@@ -4,7 +4,10 @@
             xmlns:prism="http://prismlibrary.com/"
             xmlns:constant="clr-namespace:PerfectSmile.Constant"
             xmlns:imageFromFont="clr-namespace:ImageFromFont;assembly=ImageFromFont"
-            xmlns:Common="clr-namespace:PerfectSmile.Common"  x:Class="PerfectSmile.Views.Shell"
+            xmlns:Common="clr-namespace:PerfectSmile.Common"
+            xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+            xmlns:views="clr-namespace:PerfectSmile.Views"
+            x:Class="PerfectSmile.Views.Shell"
             WindowState="Maximized"  WindowStartupLocation="CenterScreen"
             prism:ViewModelLocator.AutoWireViewModel="True"
                  Icon="/PerfectSmile;component/Resources/mickey-mouse-icon.png"
@@ -13,6 +16,17 @@
     <my:RibbonWindow.Resources>
         <Common:BooleanToColorConverter x:Key="BooleanToColorConverter"/>
     </my:RibbonWindow.Resources>
+
+    <i:Interaction.Triggers>
+        <prism:InteractionRequestTrigger SourceObject="{Binding CustomPopupViewRequest, Mode=OneWay}">
+            <prism:PopupWindowAction>
+                <prism:PopupWindowAction.WindowContent>
+                    <views:Login/>
+                </prism:PopupWindowAction.WindowContent>
+            </prism:PopupWindowAction>
+        </prism:InteractionRequestTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -33,8 +47,6 @@
             </my:RibbonTab>
 
         </my:Ribbon>
-
         <ContentControl prism:RegionManager.RegionName="{x:Static constant:Constant+Region.MainRegion}" Grid.Row="1"/>
-
     </Grid>
 </my:RibbonWindow>

@@ -1,6 +1,8 @@
-﻿using PerfectSmile.EF;
+﻿using System.Windows.Input;
+using PerfectSmile.EF;
 using PerfectSmile.Repository.Abstract;
 using Prism.Commands;
+using Prism.Interactivity.InteractionRequest;
 using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
@@ -9,7 +11,6 @@ namespace PerfectSmile.ViewModels
     {
         private readonly IRegionManager _regionManager;
         private readonly ILoginRepository _loginRepository;
-
 
         private bool _isPatientListSelected;
         public bool IsPatientListSelected
@@ -39,30 +40,61 @@ namespace PerfectSmile.ViewModels
             set { SetProperty(ref _isPatientHistoryFormSelected, value); }
         }
 
+        private string resultMessage;
+        public InteractionRequest<INotification> CustomPopupViewRequest { get; private set; }
+
+        public string InteractionResultMessage
+        {
+            get
+            {
+                return this.resultMessage;
+            }
+            set
+            {
+                this.resultMessage = value;
+                this.OnPropertyChanged("InteractionResultMessage");
+            }
+        }
+
         public DelegateCommand NavigateToPatientListCommand { get; set; }
         public DelegateCommand NavigateToNextAppointmentCommand { get; set; }
         public DelegateCommand NavigateToPatientBasicFormCommand { get; set; }
         public DelegateCommand NavigateToPatientHistoryCommand { get; set; }
+        public ICommand RaiseCustomPopupViewCommand { get; private set; }
+
 
         public ShellViewModel(IRegionManager regionManager, ILoginRepository loginRepository)
         {
             _regionManager = regionManager;
             _loginRepository = loginRepository;
 
+            CustomPopupViewRequest = new InteractionRequest<INotification>();
+            //RaiseCustomPopupViewCommand = new DelegateCommand(this.RaiseCustomPopupView);
+         
             var aa = loginRepository.IsUserValid("pk", "pk");
 
             NavigateToPatientListCommand = new DelegateCommand(NavigateToPatientList);
             NavigateToNextAppointmentCommand = new DelegateCommand(NavigateToNextAppointment);
             NavigateToPatientBasicFormCommand = new DelegateCommand(NavigateToPatientBasicForm);
             NavigateToPatientHistoryCommand = new DelegateCommand(NavigateToPatientHistory);
-
+           
             IsPatientListSelected = true;
+
+            RaiseCustomPopupView();
         }
+
+        private void RaiseCustomPopupView()
+        {
+            InteractionResultMessage = "";
+            CustomPopupViewRequest.Raise(
+                new Notification { Content = "Message for the CustomPopupView", Title = "Custom Popup" });
+        }
+
 
         private void NavigateToPatientList()
         {
             _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientList);
-
+            RaiseCustomPopupView();
             IsPatientListSelected = true;
             IsNextAppintmentSelected = false;
             IsPatientBasicFormSelected = false;
