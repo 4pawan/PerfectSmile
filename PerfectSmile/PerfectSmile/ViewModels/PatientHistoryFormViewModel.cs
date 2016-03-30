@@ -6,12 +6,14 @@ using System.Windows.Input;
 using PerfectSmile.Attributes;
 using PerfectSmile.Common;
 using PerfectSmile.EF;
+using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using PerfectSmile.Views.UserControl.AutoCompleteTextBox;
 using Prism.Commands;
+using Prism.Events;
 
 namespace PerfectSmile.ViewModels
 {
@@ -19,6 +21,8 @@ namespace PerfectSmile.ViewModels
     {
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
+        //private IEventAggregator _eventAggregator;
+
         public ICommand SaveCommand { get; set; }
         public ICommand ClearCommand { get; set; }
 
@@ -81,7 +85,7 @@ namespace PerfectSmile.ViewModels
         }
 
         private string _nextAppointment;
-        [DisablePastDate(ErrorMessage ="Next Appointment cant be past dates")]
+        [DisablePastDate(ErrorMessage = "Next Appointment cant be past dates")]
         public string NextAppointment
         {
             get { return _nextAppointment; }
@@ -125,14 +129,23 @@ namespace PerfectSmile.ViewModels
 
 
 
-        public PatientHistoryFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
+        public PatientHistoryFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator)
         {
             DisplayDateStart = DateTime.Now;
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
+            eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Subscribe(RaiseAutoCompleteEvent);
             SaveCommand = new DelegateCommand(SaveExec, SaveCanExec);
             ClearCommand = new DelegateCommand(ClearExec);
-            AutoCompleteSource = _patientRepository.GetAllPatient();
+            RaiseAutoCompleteEvent(true);
+        }
+
+        private void RaiseAutoCompleteEvent(bool obj = false)
+        {
+            if (obj)
+            {
+                AutoCompleteSource = _patientRepository.GetAllPatient();
+            }
         }
 
         private void ClearExec()

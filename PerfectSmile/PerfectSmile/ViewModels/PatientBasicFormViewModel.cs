@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
+using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
@@ -18,6 +20,7 @@ namespace PerfectSmile.ViewModels
 
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
+        private IEventAggregator _eventAggregator;
 
         private string _name;
 
@@ -74,20 +77,27 @@ namespace PerfectSmile.ViewModels
         public ICommand ClearCommand { get; set; }
 
 
-        public PatientBasicFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
+        public PatientBasicFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator)
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
+            _eventAggregator = eventAggregator;
             SaveCommand = new DelegateCommand(() =>
             {
                 ValidateAllProperty(new MessageArgs { { "Name", Name }, { "Phone", Phone }, { "Remark", Remark } });
                 if (IsValid)
                 {
                     long id = _patientRepository.AddPatientBasicInfo(this);
-                    _log4NetLogger.Info("Patient with name" + Name + " and Id " + id + "saved in db successfully.");
-                    Message = id > 0
-                        ? "Patient record with name : " + Name + " saved successfully with new Id : " + id + " !"
-                        : "There could be issue while saving...Please check logs";
+                    _log4NetLogger.Info(string.Format("Patient with name {0} and Id {1}saved in db successfully.", Name, id));
+                    if (id > 0)
+                    {
+                        Message = string.Format("Patient record with name : {0} saved successfully with new Id : {1} !", Name, id);
+                        _eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Publish(true);
+                    }
+                    else
+                    {
+                        Message = "There could be issue while saving...Please check logs";
+                    }
                 }
                 else
                 {

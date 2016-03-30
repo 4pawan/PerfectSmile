@@ -161,6 +161,7 @@
     <Compile Include="EF\PatientDbInitializer.cs" />
     <Compile Include="EF\PatientHistory.cs" />
     <Compile Include="EF\User.cs" />
+    <Compile Include="Events\RaiseAutoCompleteEvent.cs" />
     <Compile Include="Helper\Extension.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
@@ -280,7 +281,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assest\" />
-    <Folder Include="Events\" />
     <Folder Include="Logs\" />
     <Folder Include="Model\" />
   </ItemGroup>
