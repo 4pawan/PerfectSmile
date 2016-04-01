@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
 using PerfectSmile.Repository.Abstract;
@@ -6,10 +7,11 @@ using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
 {
-    public class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel, IInteractionRequestAware
     {
         private readonly ILoginRepository _loginRepository;
         private string _name;
@@ -44,16 +46,20 @@ namespace PerfectSmile.ViewModels
 
         private void Execute(Window item)
         {
-            var isUserValid = _loginRepository.IsUserValid(Name, Password);
+            var isUserValid = true; //_loginRepository.IsUserValid(Name, Password);
             if (!isUserValid)
             {
                 Message = Constant.Constant.Login.LoginErrorMesage;
             }
             else
             {
-                var shell = new Shell();
-                item.Close();
-                shell.Show();
+                if (this._notification != null)
+                {
+                    _notification.IsAuthenticatedUser = true;
+                    _notification.Confirmed = true;
+                    FinishInteraction();
+                }
+
             }
         }
 
@@ -62,5 +68,31 @@ namespace PerfectSmile.ViewModels
             _loginRepository = loginRepository;
             LoginCommand = new DelegateCommand<Window>(Execute, CanExecute).ObservesProperty(() => Name).ObservesProperty(() => Password);
         }
+
+        private LoginNotification _notification;
+
+        public INotification Notification
+        {
+            get
+            {
+                return this._notification;
+            }
+            set
+            {
+                if (value is LoginNotification)
+                {
+                    this._notification = value as LoginNotification;
+                    this.OnPropertyChanged(() => this.Notification);
+                }
+            }
+        }
+        public Action FinishInteraction { get; set; }
     }
+
+    public class LoginNotification : Confirmation
+    {
+        public bool IsAuthenticatedUser { get; set; }
+    }
+
+
 }

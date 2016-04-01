@@ -43,7 +43,7 @@ namespace PerfectSmile.ViewModels
         }
 
         private string resultMessage;
-        public InteractionRequest<INotification> CustomPopupViewRequest { get; private set; }
+        public InteractionRequest<LoginNotification> CustomPopupViewRequest { get; private set; }
 
         public string InteractionResultMessage
         {
@@ -70,8 +70,9 @@ namespace PerfectSmile.ViewModels
             _regionManager = regionManager;
             _loginRepository = loginRepository;
 
-            CustomPopupViewRequest = new InteractionRequest<INotification>();
+            CustomPopupViewRequest = new InteractionRequest<LoginNotification>();
             RaiseCustomPopupViewOnWindowLoadCommand = new DelegateCommand<Shell>(RaiseCustomPopupView);
+
             NavigateToPatientListCommand = new DelegateCommand(NavigateToPatientList);
             NavigateToNextAppointmentCommand = new DelegateCommand(NavigateToNextAppointment);
             NavigateToPatientBasicFormCommand = new DelegateCommand(NavigateToPatientBasicForm);
@@ -84,12 +85,24 @@ namespace PerfectSmile.ViewModels
         {
             model.Visibility = Visibility.Hidden;
             model.IsEnabled = false;
-             
+
+            LoginNotification notification = new LoginNotification { Title = Constant.Constant.Login.Title };
+
             InteractionResultMessage = "";
-            CustomPopupViewRequest.Raise(
-                new Notification { Content = "Message for the CustomPopupView", Title = "Custom Popup" });
-
-
+            CustomPopupViewRequest.Raise(notification, returned =>
+            {
+                if (returned != null && returned.Confirmed && returned.IsAuthenticatedUser)
+                {
+                    this.InteractionResultMessage = "The user is authenticated.";
+                    model.Visibility = Visibility.Visible;
+                    model.IsEnabled = true;
+                }
+                else
+                {
+                    this.InteractionResultMessage = "The user cancelled login window";
+                    model.Close();
+                }
+            });
         }
 
 
