@@ -36,5 +36,10 @@ namespace PerfectSmile.Repository.Fakes
         {
             throw new System.NotImplementedException();
         }
+
+        public ObservableCollection<SearchFormViewModel> GetPatientItemSource()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -17,5 +17,6 @@ namespace PerfectSmile.Repository.Abstract
         ObservableCollection<AutoCompleteEntry> GetAllPatient();
         long AddPatientHistoryDetails(PatientHistoryFormViewModel patientHistoryFormViewModel);
         ObservableCollection<NextAppointmentItemViewModel> GetNextAppointmentSource();
+        ObservableCollection<SearchFormViewModel> GetPatientItemSource();
     }
 }
