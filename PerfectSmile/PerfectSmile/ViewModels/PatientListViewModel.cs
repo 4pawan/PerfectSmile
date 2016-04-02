@@ -9,6 +9,7 @@ using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
 {
@@ -23,24 +24,27 @@ namespace PerfectSmile.ViewModels
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
 
-            NavigateToPatientEditForm = new DelegateCommand<dynamic>(NavigateToPatientEditFormEvent);
-            DeletePatientBasicInfo = new DelegateCommand<dynamic>(DeletePatientBasicInfoEvent);
-            NavigateToPatientDetailsView = new DelegateCommand<dynamic>(NavigateToPatientDetailsEvent);
+            NavigateToPatientEditForm = new DelegateCommand<SearchFormViewModel>(NavigateToPatientEditFormEvent);
+            DeletePatientBasicInfo = new DelegateCommand<SearchFormViewModel>(DeletePatientBasicInfoEvent);
+            NavigateToPatientDetailsView = new DelegateCommand<SearchFormViewModel>(NavigateToPatientDetailsEvent);
+
+            CustomPopupDetailsViewRequest = new InteractionRequest<PatientDetailsNotification>();
 
             RaisePatientListEvent(true);
         }
 
-        private void NavigateToPatientEditFormEvent(dynamic obj)
+        private void NavigateToPatientEditFormEvent(SearchFormViewModel obj)
         {
             Debug.WriteLine("-------->:NavigateToPatientEditFormEvent");
         }
-        private void DeletePatientBasicInfoEvent(dynamic obj)
+        private void DeletePatientBasicInfoEvent(SearchFormViewModel obj)
         {
             Debug.WriteLine("-------->:DeletePatientBasicInfoEvent");
         }
-        private void NavigateToPatientDetailsEvent(dynamic obj)
+        private void NavigateToPatientDetailsEvent(SearchFormViewModel obj)
         {
             Debug.WriteLine("-------->:NavigateToPatientDetailsEvent");
+            RaiseCustomPopupDetailsView(obj);
         }
 
         public ICommand NavigateToPatientEditForm { get; set; }
@@ -68,6 +72,25 @@ namespace PerfectSmile.ViewModels
                 SetProperty(ref _patientItemSource, value);
             }
         }
+
+        public InteractionRequest<PatientDetailsNotification> CustomPopupDetailsViewRequest { get; private set; }
+
+        private void RaiseCustomPopupDetailsView(SearchFormViewModel model)
+        {
+            CustomPopupDetailsViewRequest.Raise(new PatientDetailsNotification
+            {
+                Title = "Patient Id : " + model.PatientId + " Name : " + model.Name + " : Details View",
+                PatientId = model.PatientId,
+                PatientDetailsSource = _patientRepository.GetPatientDetailsSource(model.PatientId)
+
+            }, returned =>
+            {
+
+            });
+        }
+
+
+
 
     }
 }

@@ -102,6 +102,22 @@ namespace PerfectSmile.Repository.Implementation
             return result;
         }
 
+        public ObservableCollection<PatientHistoryViewModel> GetPatientDetailsSource(long patientId)
+        {
+            return new ObservableCollection<PatientHistoryViewModel>(Context.PatientHistories.Where(h => h.PatientId == patientId).Select(h => new PatientHistoryViewModel
+            {
+                PatientId = h.Patient.Id,
+                Name = h.Patient.Name,
+                Phone = h.Patient.Phone,
+                Balance = h.Balance,
+                NextAppointment = h.NextAppointment,
+                TreatmentDone = h.TreatmentDone,
+                AdditionalComment = h.AdditionalComment,
+                PaymentDone = h.PaymentDone,
+                VisitedOn = h.CreatedAt
+            }));
+        }
+
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
         {
             try

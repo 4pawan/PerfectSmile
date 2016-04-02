@@ -41,5 +41,10 @@ namespace PerfectSmile.Repository.Fakes
         {
             throw new System.NotImplementedException();
         }
+
+        public ObservableCollection<PatientHistoryViewModel> GetPatientDetailsSource(long patientId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

@@ -1,9 +1,22 @@
 ﻿<UserControl x:Class="PerfectSmile.Views.PatientDetailsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"             
+             xmlns:prism="http://prismlibrary.com/" 
              prism:ViewModelLocator.AutoWireViewModel="True">
+
     <Grid>
-            
+        <DataGrid Grid.Row="0" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Notification.PatientDetailsSource,Mode=TwoWay}">
+            <DataGrid.Columns>
+                <!--<DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding PatientId}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />-->
+                <DataGridTextColumn Header="Visited On" Width="*" Binding="{Binding VisitedOn,StringFormat=dd/MM/yyyy}" />
+                <DataGridTextColumn Header="Treatment Done" Width="*" Binding="{Binding TreatmentDone}" />
+                <!--<DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Phone}" />-->
+                <DataGridTextColumn Header="Next Appointment" Width="*" Binding="{Binding NextAppointment,StringFormat=dd/MM/yyyy}" />
+                <DataGridTextColumn Header="Payment Done" Width="*" Binding="{Binding PaymentDone}" />
+                <DataGridTextColumn Header="Balance" Width="*" Binding="{Binding Balance}" />
+                <DataGridTextColumn Header="Additional Comment" Width="*" Binding="{Binding AdditionalComment}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>
