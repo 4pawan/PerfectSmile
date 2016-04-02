@@ -181,6 +181,8 @@
     <Compile Include="Repository\Implementation\Repository.cs" />
     <Compile Include="Service\LoginService.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\PaginationViewModel.cs" />
+    <Compile Include="ViewModels\SearchFormViewModel.cs" />
     <Compile Include="ViewModels\PatientListViewModel.cs" />
     <Compile Include="ViewModels\NextAppointmentViewModel.cs" />
     <Compile Include="ViewModels\PatientHistoryFormViewModel.cs" />
@@ -192,6 +194,12 @@
     </Compile>
     <Compile Include="Views\Module\PatientFormModule.cs" />
     <Compile Include="Views\Module\PatientListModule.cs" />
+    <Compile Include="Views\Pagination.xaml.cs">
+      <DependentUpon>Pagination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchForm.xaml.cs">
+      <DependentUpon>SearchForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -220,6 +228,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pagination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SearchForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -282,6 +298,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assest\" />
+    <Folder Include="Authentication\" />
     <Folder Include="Logs\" />
     <Folder Include="Model\" />
   </ItemGroup>
