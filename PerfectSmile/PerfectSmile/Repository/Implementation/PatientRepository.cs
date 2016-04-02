@@ -71,15 +71,35 @@ namespace PerfectSmile.Repository.Implementation
         public ObservableCollection<SearchFormViewModel> GetPatientItemSource()
         {
             DateTime? dt = DateTime.Now.Date;
-            return new ObservableCollection<SearchFormViewModel>(Context.PatientHistories.Where(h => h.NextAppointment.HasValue && h.NextAppointment.Value <= dt).OrderByDescending(h => h.CreatedAt).Take(100).Select(h => new SearchFormViewModel
+            var list =
+                Context.PatientHistories.Where(h => (bool)h.NextAppointment.HasValue == false || h.NextAppointment.Value <= dt)
+                    .OrderByDescending(h => h.Id);
+            ObservableCollection<SearchFormViewModel> result = new ObservableCollection<SearchFormViewModel>();
+
+            foreach (var item in list)
             {
-                PatientId = h.Patient.Id,
-                Name = h.Patient.Name,
-                Phone = h.Patient.Phone,
-                Balance = h.Balance,
-                LastVisitedOn = h.NextAppointment,
-                LastAmountPaid = h.PaymentDone
-            }));
+                var flag = result.Any(p => p.PatientId == item.PatientId);
+
+                if (!flag)
+                {
+                    result.Add(new SearchFormViewModel
+                    {
+                        PatientId = item.Patient.Id,
+                        Name = item.Patient.Name,
+                        Phone = item.Patient.Phone,
+                        Balance = item.Balance,
+                        LastVisitedOn = item.CreatedAt,
+                        LastAmountPaid = item.PaymentDone
+                    });
+                }
+
+                if (result.Count == 100)
+                {
+                    break;
+                }
+            }
+
+            return result;
         }
 
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)

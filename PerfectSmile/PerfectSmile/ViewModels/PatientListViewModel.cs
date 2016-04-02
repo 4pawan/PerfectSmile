@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
@@ -21,9 +23,40 @@ namespace PerfectSmile.ViewModels
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
 
-            PatientItemSource = _patientRepository.GetPatientItemSource();
+            NavigateToPatientEditForm = new DelegateCommand<dynamic>(NavigateToPatientEditFormEvent);
+            DeletePatientBasicInfo = new DelegateCommand<dynamic>(DeletePatientBasicInfoEvent);
+            NavigateToPatientDetailsView = new DelegateCommand<dynamic>(NavigateToPatientDetailsEvent);
 
+            RaisePatientListEvent(true);
         }
+
+        private void NavigateToPatientEditFormEvent(dynamic obj)
+        {
+            Debug.WriteLine("-------->:NavigateToPatientEditFormEvent");
+        }
+        private void DeletePatientBasicInfoEvent(dynamic obj)
+        {
+            Debug.WriteLine("-------->:DeletePatientBasicInfoEvent");
+        }
+        private void NavigateToPatientDetailsEvent(dynamic obj)
+        {
+            Debug.WriteLine("-------->:NavigateToPatientDetailsEvent");
+        }
+
+        public ICommand NavigateToPatientEditForm { get; set; }
+        public ICommand DeletePatientBasicInfo { get; set; }
+        public ICommand NavigateToPatientDetailsView { get; set; }
+
+
+
+        private void RaisePatientListEvent(bool obj = false)
+        {
+            if (obj)
+            {
+                PatientItemSource = _patientRepository.GetPatientItemSource();
+            }
+        }
+
 
 
         private ObservableCollection<SearchFormViewModel> _patientItemSource;
