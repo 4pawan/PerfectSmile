@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
+using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
@@ -19,7 +21,7 @@ namespace PerfectSmile.ViewModels
         private ILog4NetLogger _log4NetLogger;
 
 
-        public PatientListViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
+        public PatientListViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator)
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
@@ -27,6 +29,8 @@ namespace PerfectSmile.ViewModels
             NavigateToPatientEditForm = new DelegateCommand<SearchFormViewModel>(NavigateToPatientEditFormEvent);
             DeletePatientBasicInfo = new DelegateCommand<SearchFormViewModel>(DeletePatientBasicInfoEvent);
             NavigateToPatientDetailsView = new DelegateCommand<SearchFormViewModel>(NavigateToPatientDetailsEvent);
+
+            eventAggregator.GetEvent<RaisePatientListEvent>().Subscribe(RaisePatientListEvent);
 
             CustomPopupDetailsViewRequest = new InteractionRequest<PatientDetailsNotification>();
 

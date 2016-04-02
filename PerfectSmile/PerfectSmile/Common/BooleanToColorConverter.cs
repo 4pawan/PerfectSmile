@@ -9,7 +9,7 @@ namespace PerfectSmile.Common
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Brushes.Aqua : null;
+            return (bool)value ? Brushes.Honeydew : null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -70,10 +70,8 @@ namespace PerfectSmile.Repository.Implementation
 
         public ObservableCollection<SearchFormViewModel> GetPatientItemSource()
         {
-            DateTime? dt = DateTime.Now.Date;
-            var list =
-                Context.PatientHistories.Where(h => (bool)h.NextAppointment.HasValue == false || h.NextAppointment.Value <= dt)
-                    .OrderByDescending(h => h.Id);
+            //DateTime? dt = DateTime.Now.Date;
+            var list = Context.PatientHistories.OrderByDescending(h => h.Id);
             ObservableCollection<SearchFormViewModel> result = new ObservableCollection<SearchFormViewModel>();
 
             foreach (var item in list)
@@ -89,7 +87,8 @@ namespace PerfectSmile.Repository.Implementation
                         Phone = item.Patient.Phone,
                         Balance = item.Balance,
                         LastVisitedOn = item.CreatedAt,
-                        LastAmountPaid = item.PaymentDone
+                        LastAmountPaid = item.PaymentDone ,
+                        Remark = item.Patient.Remark
                     });
                 }
 

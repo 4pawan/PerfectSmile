@@ -23,20 +23,31 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Name="Header" Text="Patient list" />
-        <views:SearchForm Grid.Row="1"  />
-        <DataGrid Grid.Row="2" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PatientItemSource,Mode=TwoWay}">
+        <views:SearchForm Grid.Row="0"  />
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PatientItemSource,Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient Id" Width="*"   Binding="{Binding PatientId}"/>
-                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Phone" Width="*" Binding="{Binding Phone}" />
                 <DataGridTextColumn Header="Last visited on" Width="*" Binding="{Binding LastVisitedOn,StringFormat=dd/MM/yyyy}" />
                 <DataGridTextColumn Header="Last amount paid" Width="*" Binding="{Binding LastAmountPaid}" />
                 <DataGridTextColumn Header="Balance" Width="*" Binding="{Binding Balance}" />
+                <DataGridTextColumn Header="Remark" Width="*" Binding="{Binding Remark}" >
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn Header="Edit" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -63,6 +74,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <views:Pagination Grid.Row="3" />
+        <views:Pagination Grid.Row="2" />
     </Grid>
 </UserControl>

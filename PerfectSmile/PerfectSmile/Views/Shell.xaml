@@ -22,7 +22,7 @@
         <prism:InteractionRequestTrigger SourceObject="{Binding CustomPopupViewRequest, Mode=OneWay}">
             <prism:PopupWindowAction>
                 <prism:PopupWindowAction.WindowContent>
-                    <views:Login Width="500" Height="300" />
+                    <views:Login Width="500" Height="300"  />
                 </prism:PopupWindowAction.WindowContent>
             </prism:PopupWindowAction>
         </prism:InteractionRequestTrigger>

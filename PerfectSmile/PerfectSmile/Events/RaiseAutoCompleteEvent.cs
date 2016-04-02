@@ -14,4 +14,8 @@ namespace PerfectSmile.Events
     public class RaiseNextAppointmentEvent : PubSubEvent<bool>
     {
     }
+    public class RaisePatientListEvent : PubSubEvent<bool>
+    {
+    }
+
 }
