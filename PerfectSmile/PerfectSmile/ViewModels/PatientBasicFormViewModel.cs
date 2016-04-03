@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Common;
 using PerfectSmile.Events;
+using PerfectSmile.Helper;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
@@ -110,7 +111,7 @@ namespace PerfectSmile.ViewModels
             });
 
             ClearCommand = new DelegateCommand(ClearExec);
-            _eventAggregator.GetEvent<RaiseShellContextEvent>().Subscribe(RaiseShellContextEvent);
+            StorageManager.Get<ShellViewModel>(Constant.Constant.DictionaryKey.ShellContext).IsNextAppintmentSelected = true;
         }
 
         private void RaiseShellContextEvent(ShellViewModel obj)

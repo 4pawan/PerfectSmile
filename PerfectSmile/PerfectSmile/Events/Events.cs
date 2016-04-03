@@ -18,7 +18,4 @@ namespace PerfectSmile.Events
     public class RaisePatientListEvent : PubSubEvent<bool>
     {
     }
-    public class RaiseShellContextEvent : PubSubEvent<ShellViewModel>
-    {
-    }
 }

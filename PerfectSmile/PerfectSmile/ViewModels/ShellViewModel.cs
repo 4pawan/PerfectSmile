@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using PerfectSmile.EF;
 using PerfectSmile.Events;
+using PerfectSmile.Helper;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Views;
 using Prism.Commands;
@@ -15,8 +16,7 @@ namespace PerfectSmile.ViewModels
     {
         private readonly IRegionManager _regionManager;
         private readonly ILoginRepository _loginRepository;
-        private IEventAggregator _eventAggregator;
-
+      
         private bool _isPatientListSelected;
         public bool IsPatientListSelected
         {
@@ -68,12 +68,11 @@ namespace PerfectSmile.ViewModels
         public ICommand RaiseCustomPopupViewOnWindowLoadCommand { get; private set; }
         public ICommand WindowLoaded { get; set; }
 
-        public ShellViewModel(IRegionManager regionManager, ILoginRepository loginRepository, IEventAggregator eventAggregator)
+        public ShellViewModel(IRegionManager regionManager, ILoginRepository loginRepository)
         {
             _regionManager = regionManager;
             _loginRepository = loginRepository;
-            _eventAggregator = eventAggregator;
-
+           
             CustomPopupViewRequest = new InteractionRequest<LoginNotification>();
             RaiseCustomPopupViewOnWindowLoadCommand = new DelegateCommand<Shell>(RaiseCustomPopupView);
 
@@ -83,14 +82,10 @@ namespace PerfectSmile.ViewModels
             NavigateToPatientHistoryCommand = new DelegateCommand(NavigateToPatientHistory);
 
             IsPatientListSelected = true;
-
-            _eventAggregator.GetEvent<RaiseShellContextEvent>().Publish(this);
         }
 
         private void RaiseCustomPopupView(Shell model)
         {
-            _eventAggregator.GetEvent<RaiseShellContextEvent>().Publish(this);
-
             model.Visibility = Visibility.Hidden;
             model.IsEnabled = false;
 
@@ -104,6 +99,7 @@ namespace PerfectSmile.ViewModels
                     this.InteractionResultMessage = "The user is authenticated.";
                     model.Visibility = Visibility.Visible;
                     model.IsEnabled = true;
+                    StorageManager.Add(Constant.Constant.DictionaryKey.ShellContext, this);
                 }
                 else
                 {
@@ -122,9 +118,6 @@ namespace PerfectSmile.ViewModels
             IsPatientHistoryFormSelected = false;
 
             _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientList);
-            _eventAggregator.GetEvent<RaiseShellContextEvent>().Publish(this);
-
-
         }
 
         private void NavigateToNextAppointment()

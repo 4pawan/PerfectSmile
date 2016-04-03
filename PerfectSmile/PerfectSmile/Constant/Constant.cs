@@ -18,6 +18,11 @@ namespace PerfectSmile.Constant
             public const string PatientHistoryForm = "PatientHistoryForm";
         }
 
+        public static class DictionaryKey
+        {
+            public const string ShellContext = "ShellContext";
+        }
+
 
         public static class Login
         {
