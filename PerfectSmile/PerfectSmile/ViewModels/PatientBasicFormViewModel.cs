@@ -25,8 +25,6 @@ namespace PerfectSmile.ViewModels
         private ILog4NetLogger _log4NetLogger;
         private IEventAggregator _eventAggregator;
 
-        private ShellViewModel _shellViewModel;
-
         private string _name;
 
         [StringLength(250, ErrorMessage = "Name cant be more than 250 char")]
@@ -111,13 +109,8 @@ namespace PerfectSmile.ViewModels
             });
 
             ClearCommand = new DelegateCommand(ClearExec);
-            StorageManager.Get<ShellViewModel>(Constant.Constant.DictionaryKey.ShellContext).IsNextAppintmentSelected = true;
         }
 
-        private void RaiseShellContextEvent(ShellViewModel obj)
-        {
-            _shellViewModel = obj;
-        }
 
         private void ClearExec()
         {
@@ -130,10 +123,12 @@ namespace PerfectSmile.ViewModels
             {
                 var patientId = (long)navigationContext.Parameters["PatientId"];
                 Name = "--->" + patientId;
+                var shellContext = StorageManager.Get<ShellViewModel>(Constant.Constant.DictionaryKey.ShellContext);
+                shellContext.IsNextAppintmentSelected = false;
+                shellContext.IsPatientListSelected = false;
+                shellContext.IsPatientBasicFormSelected = true;
+                shellContext.IsPatientHistoryFormSelected = false;
             }
-
-            //_shellViewModel.IsPatientBasicFormSelected = true;
-
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
