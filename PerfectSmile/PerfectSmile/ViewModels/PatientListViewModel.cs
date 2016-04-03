@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Core.Objects;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -17,23 +18,25 @@ using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
 {
-    public class PatientListViewModel : BaseViewModel
+    public class PatientListViewModel : BaseViewModel, INavigationAware
     {
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
         private IRegionManager _regionManager;
+        private IEventAggregator _eventAggregator;
 
         public PatientListViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
             _regionManager = regionManager;
+            _eventAggregator = eventAggregator;
 
             NavigateToPatientEditForm = new DelegateCommand<SearchFormViewModel>(NavigateToPatientEditFormEvent);
             DeletePatientBasicInfo = new DelegateCommand<SearchFormViewModel>(DeletePatientBasicInfoEvent);
             NavigateToPatientDetailsView = new DelegateCommand<SearchFormViewModel>(NavigateToPatientDetailsEvent);
 
-            eventAggregator.GetEvent<RaisePatientListEvent>().Subscribe(RaisePatientListEvent);
+            _eventAggregator.GetEvent<RaisePatientListEvent>().Subscribe(RaisePatientListEvent);
 
             ConfirmDeleteRequest = new InteractionRequest<IConfirmation>();
             CustomPopupDetailsViewRequest = new InteractionRequest<PatientDetailsNotification>();
@@ -41,10 +44,11 @@ namespace PerfectSmile.ViewModels
             RaisePatientListEvent(true);
         }
 
-        private void NavigateToPatientEditFormEvent(SearchFormViewModel obj)
+        private void NavigateToPatientEditFormEvent(SearchFormViewModel model)
         {
             Debug.WriteLine("-------->:NavigateToPatientEditFormEvent");
-            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientBasicForm, new NavigationParameters(obj.PatientId.ToString()));
+            NavigationParameters obj = new NavigationParameters { { "PatientId", model.PatientId } };
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientBasicForm, obj);
         }
         private void DeletePatientBasicInfoEvent(SearchFormViewModel obj)
         {
@@ -57,6 +61,7 @@ namespace PerfectSmile.ViewModels
                     {
                         bool isPatientDeleted = _patientRepository.DeletePatientForId(obj.PatientId);
                         RaisePatientListEvent(isPatientDeleted);
+                        _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(isPatientDeleted);
                     }
                 });
 
@@ -111,8 +116,33 @@ namespace PerfectSmile.ViewModels
             });
         }
 
+        /// <summary>
+        /// When coming from other vm to this vm, this would be called in last once all initialization done...
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            //_shellViewModel = (ShellViewModel)navigationContext.Parameters["model"];
+        }
+        /// <summary>
+        /// When coming from othr vm to this vm, this would be called asking if we can use same instance to initialse or need different one...
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        /// <returns></returns>
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
 
 
+        /// <summary>
+        /// When loaded fist time, none of method will be called. ie Only constructure will be called. Once, this vm loaded, and if moving to othr vm from this vm thn
+        /// OnNavigatedFrom would tell us where it is navigation...  
+        /// </summary>
+        /// <param name="navigationContext"></param>
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
 
+        }
     }
 }

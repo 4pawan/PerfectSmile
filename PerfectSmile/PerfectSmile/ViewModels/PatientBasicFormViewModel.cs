@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Windows;
@@ -12,15 +13,18 @@ using PerfectSmile.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
+using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
 {
-    public class PatientBasicFormViewModel : BaseViewModel
+    public class PatientBasicFormViewModel : BaseViewModel, INavigationAware
     {
 
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
         private IEventAggregator _eventAggregator;
+
+        private ShellViewModel _shellViewModel;
 
         private string _name;
 
@@ -106,7 +110,12 @@ namespace PerfectSmile.ViewModels
             });
 
             ClearCommand = new DelegateCommand(ClearExec);
+            _eventAggregator.GetEvent<RaiseShellContextEvent>().Subscribe(RaiseShellContextEvent);
+        }
 
+        private void RaiseShellContextEvent(ShellViewModel obj)
+        {
+            _shellViewModel = obj;
         }
 
         private void ClearExec()
@@ -114,5 +123,26 @@ namespace PerfectSmile.ViewModels
             Remark = Phone = Name = Message = "";
         }
 
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            if (navigationContext.Parameters["PatientId"] != null)
+            {
+                var patientId = (long)navigationContext.Parameters["PatientId"];
+                Name = "--->" + patientId;
+            }
+
+            //_shellViewModel.IsPatientBasicFormSelected = true;
+
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext)
+        {
+            return true;
+        }
+
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+
+        }
     }
 }

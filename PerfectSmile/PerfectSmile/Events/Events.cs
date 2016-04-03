@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PerfectSmile.ViewModels;
 using Prism.Events;
 
 namespace PerfectSmile.Events
@@ -17,5 +18,7 @@ namespace PerfectSmile.Events
     public class RaisePatientListEvent : PubSubEvent<bool>
     {
     }
-
+    public class RaiseShellContextEvent : PubSubEvent<ShellViewModel>
+    {
+    }
 }
