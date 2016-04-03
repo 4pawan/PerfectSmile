@@ -87,7 +87,7 @@ namespace PerfectSmile.Repository.Implementation
                         Phone = item.Patient.Phone,
                         Balance = item.Balance,
                         LastVisitedOn = item.CreatedAt,
-                        LastAmountPaid = item.PaymentDone ,
+                        LastAmountPaid = item.PaymentDone,
                         Remark = item.Patient.Remark
                     });
                 }
@@ -115,6 +115,29 @@ namespace PerfectSmile.Repository.Implementation
                 PaymentDone = h.PaymentDone,
                 VisitedOn = h.CreatedAt
             }));
+        }
+
+        public bool DeletePatientForId(long patientId)
+        {
+            try
+            {
+                using (var contxt = new PatientDbContext())
+                {
+                    var patientToBeDeleted = contxt.Patients.SingleOrDefault(p => p.Id == patientId);
+                    if (patientToBeDeleted != null)
+                    {
+                        contxt.Patients.Remove(patientToBeDeleted);
+                        var id = contxt.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.Helper.WriteLogToEventViewer("Patient deletion error for patient Id :" + patientId + " StackTrace" +
+                                                    ex.StackTrace);
+                return false;
+            }
+            return true;
         }
 
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)

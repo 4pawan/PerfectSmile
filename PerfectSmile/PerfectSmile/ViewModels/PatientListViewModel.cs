@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Win32;
 using PerfectSmile.Common;
 using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
@@ -12,6 +13,7 @@ using PerfectSmile.Views;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
+using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
 {
@@ -19,12 +21,13 @@ namespace PerfectSmile.ViewModels
     {
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
+        private IRegionManager _regionManager;
 
-
-        public PatientListViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator)
+        public PatientListViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator, IRegionManager regionManager)
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
+            _regionManager = regionManager;
 
             NavigateToPatientEditForm = new DelegateCommand<SearchFormViewModel>(NavigateToPatientEditFormEvent);
             DeletePatientBasicInfo = new DelegateCommand<SearchFormViewModel>(DeletePatientBasicInfoEvent);
@@ -32,6 +35,7 @@ namespace PerfectSmile.ViewModels
 
             eventAggregator.GetEvent<RaisePatientListEvent>().Subscribe(RaisePatientListEvent);
 
+            ConfirmDeleteRequest = new InteractionRequest<IConfirmation>();
             CustomPopupDetailsViewRequest = new InteractionRequest<PatientDetailsNotification>();
 
             RaisePatientListEvent(true);
@@ -40,10 +44,22 @@ namespace PerfectSmile.ViewModels
         private void NavigateToPatientEditFormEvent(SearchFormViewModel obj)
         {
             Debug.WriteLine("-------->:NavigateToPatientEditFormEvent");
+            _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientBasicForm, new NavigationParameters(obj.PatientId.ToString()));
         }
         private void DeletePatientBasicInfoEvent(SearchFormViewModel obj)
         {
             Debug.WriteLine("-------->:DeletePatientBasicInfoEvent");
+            this.ConfirmDeleteRequest.Raise(
+               new Confirmation { Content = "Are you sure you want to delete patient " + obj.Name + " ?", Title = "Confirmation" },
+                c =>
+                {
+                    if (c.Confirmed)
+                    {
+                        bool isPatientDeleted = _patientRepository.DeletePatientForId(obj.PatientId);
+                        RaisePatientListEvent(isPatientDeleted);
+                    }
+                });
+
         }
         private void NavigateToPatientDetailsEvent(SearchFormViewModel obj)
         {
@@ -76,6 +92,8 @@ namespace PerfectSmile.ViewModels
                 SetProperty(ref _patientItemSource, value);
             }
         }
+
+        public InteractionRequest<IConfirmation> ConfirmDeleteRequest { get; private set; }
 
         public InteractionRequest<PatientDetailsNotification> CustomPopupDetailsViewRequest { get; private set; }
 

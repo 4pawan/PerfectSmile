@@ -46,5 +46,10 @@ namespace PerfectSmile.Repository.Fakes
         {
             throw new System.NotImplementedException();
         }
+
+        public bool DeletePatientForId(long patientId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
