@@ -57,6 +57,7 @@ namespace PerfectSmile.ViewModels
                 {
                     _notification.IsAuthenticatedUser = true;
                     _notification.Confirmed = true;
+                    _notification.UserName = Name;
                     FinishInteraction();
                 }
 
@@ -92,6 +93,7 @@ namespace PerfectSmile.ViewModels
     public class LoginNotification : Confirmation
     {
         public bool IsAuthenticatedUser { get; set; }
+        public string UserName { get; set; }
     }
 
 

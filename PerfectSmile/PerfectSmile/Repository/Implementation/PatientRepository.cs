@@ -23,12 +23,15 @@ namespace PerfectSmile.Repository.Implementation
                 using (var contxt = new PatientDbContext())
                 {
                     var model = Helper.Helper.ConvertToPatientModel(vm);
+                    model.CreatedAt = DateTime.Now;
+                    model.CreatedBy = Helper.Helper.LoggedInUser;
+
                     contxt.Patients.Add(model);
                     contxt.SaveChanges();
                     return model.Id;
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
                 return 0;
@@ -131,13 +134,40 @@ namespace PerfectSmile.Repository.Implementation
                     }
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer("Patient deletion error for patient Id :" + patientId + " StackTrace" +
                                                     ex.StackTrace);
                 return false;
             }
             return true;
+        }
+
+        public long UpdatePatientBasicInfo(PatientBasicFormViewModel vm)
+        {
+            try
+            {
+                var model = Helper.Helper.ConvertToPatientModel(vm);
+
+                using (var contxt = new PatientDbContext())
+                {
+                    var obj = contxt.Patients.SingleOrDefault(p => p.Id == model.Id);
+                    if (obj == null) throw new ArgumentNullException(nameof(obj), "Id :" + model.Id + " could not found in Patient table while updating");
+                    model.CreatedBy = obj.CreatedBy;
+                    model.CreatedAt = obj.CreatedAt;
+
+                    //contxt.Patients.Attach(model);
+                    //contxt.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    contxt.SaveChanges();
+                    return model.Id;
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                Helper.Helper.WriteLogToEventViewer("Message :" + ex.Message + " StackTrace :" + ex.StackTrace);
+                return 0;
+            }
         }
 
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
@@ -154,7 +184,7 @@ namespace PerfectSmile.Repository.Implementation
                 }
 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
                 return 0;

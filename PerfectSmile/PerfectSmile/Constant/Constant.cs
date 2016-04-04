@@ -21,6 +21,7 @@ namespace PerfectSmile.Constant
         public static class DictionaryKey
         {
             public const string ShellContext = "ShellContext";
+            public const string LoggedInUser = "LoggedInUser";
         }
 
 

@@ -47,7 +47,7 @@ namespace PerfectSmile.ViewModels
         private void NavigateToPatientEditFormEvent(SearchFormViewModel model)
         {
             Debug.WriteLine("-------->:NavigateToPatientEditFormEvent");
-            NavigationParameters obj = new NavigationParameters { { "PatientId", model.PatientId } };
+            NavigationParameters obj = new NavigationParameters { { "SrchFormVM", model } };
             _regionManager.RequestNavigate(Constant.Constant.Region.MainRegion, Constant.Constant.View.PatientBasicForm, obj);
         }
         private void DeletePatientBasicInfoEvent(SearchFormViewModel obj)

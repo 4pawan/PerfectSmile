@@ -20,5 +20,6 @@ namespace PerfectSmile.Repository.Abstract
         ObservableCollection<SearchFormViewModel> GetPatientItemSource();
         ObservableCollection<PatientHistoryViewModel> GetPatientDetailsSource(long patientId);
         bool DeletePatientForId(long patientId);
+        long UpdatePatientBasicInfo(PatientBasicFormViewModel patientBasicFormViewModel);
     }
 }

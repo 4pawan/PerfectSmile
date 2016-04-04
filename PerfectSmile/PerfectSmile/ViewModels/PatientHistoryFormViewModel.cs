@@ -178,7 +178,7 @@ namespace PerfectSmile.ViewModels
                 _log4NetLogger.Info("Patient history with id" + id + "saved in db successfully.");
                 if (id > 0)
                 {
-                    Message = string.Format("Patient's history saved successfully with new Id : {0} !", id);
+                    Message = string.Format("Patient's history saved successfully with Id : {0} !", id);
                     _eventAggregator.GetEvent<RaisePatientListEvent>().Publish(true);
                     if (!string.IsNullOrEmpty(NextAppointment))
                         _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);

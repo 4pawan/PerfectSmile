@@ -16,7 +16,7 @@ namespace PerfectSmile.ViewModels
     {
         private readonly IRegionManager _regionManager;
         private readonly ILoginRepository _loginRepository;
-      
+
         private bool _isPatientListSelected;
         public bool IsPatientListSelected
         {
@@ -43,6 +43,13 @@ namespace PerfectSmile.ViewModels
         {
             get { return _isPatientHistoryFormSelected; }
             set { SetProperty(ref _isPatientHistoryFormSelected, value); }
+        }
+
+        private bool _isPatientFormGroupTabSelected;
+        public bool IsPatientFormGroupTabSelected
+        {
+            get { return _isPatientFormGroupTabSelected; }
+            set { SetProperty(ref _isPatientFormGroupTabSelected, value); }
         }
 
         private string resultMessage;
@@ -72,7 +79,7 @@ namespace PerfectSmile.ViewModels
         {
             _regionManager = regionManager;
             _loginRepository = loginRepository;
-           
+
             CustomPopupViewRequest = new InteractionRequest<LoginNotification>();
             RaiseCustomPopupViewOnWindowLoadCommand = new DelegateCommand<Shell>(RaiseCustomPopupView);
 
@@ -100,6 +107,7 @@ namespace PerfectSmile.ViewModels
                     model.Visibility = Visibility.Visible;
                     model.IsEnabled = true;
                     StorageManager.Add(Constant.Constant.DictionaryKey.ShellContext, this);
+                    StorageManager.Add(Constant.Constant.DictionaryKey.LoggedInUser, returned.UserName);
                 }
                 else
                 {
