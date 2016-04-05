@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -73,34 +74,36 @@ namespace PerfectSmile.Repository.Implementation
 
         public ObservableCollection<SearchFormViewModel> GetPatientItemSource()
         {
-            //DateTime? dt = DateTime.Now.Date;
-            var list = Context.PatientHistories.OrderByDescending(h => h.Id);
             ObservableCollection<SearchFormViewModel> result = new ObservableCollection<SearchFormViewModel>();
 
-            foreach (var item in list)
+            using (var contxt = new PatientDbContext())
             {
-                var flag = result.Any(p => p.PatientId == item.PatientId);
+                var list = contxt.PatientHistories.OrderByDescending(h => h.Id);
 
-                if (!flag)
+                foreach (var item in list)
                 {
-                    result.Add(new SearchFormViewModel
+                    var flag = result.Any(p => p.PatientId == item.PatientId);
+
+                    if (!flag)
                     {
-                        PatientId = item.Patient.Id,
-                        Name = item.Patient.Name,
-                        Phone = item.Patient.Phone,
-                        Balance = item.Balance,
-                        LastVisitedOn = item.CreatedAt,
-                        LastAmountPaid = item.PaymentDone,
-                        Remark = item.Patient.Remark
-                    });
-                }
+                        result.Add(new SearchFormViewModel
+                        {
+                            PatientId = item.Patient.Id,
+                            Name = item.Patient.Name,
+                            Phone = item.Patient.Phone,
+                            Balance = item.Balance,
+                            LastVisitedOn = item.CreatedAt,
+                            LastAmountPaid = item.PaymentDone,
+                            Remark = item.Patient.Remark
+                        });
+                    }
 
-                if (result.Count == 100)
-                {
-                    break;
+                    if (result.Count == 100)
+                    {
+                        break;
+                    }
                 }
             }
-
             return result;
         }
 
@@ -156,8 +159,7 @@ namespace PerfectSmile.Repository.Implementation
                     model.CreatedBy = obj.CreatedBy;
                     model.CreatedAt = obj.CreatedAt;
 
-                    //contxt.Patients.Attach(model);
-                    //contxt.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                    contxt.Entry(obj).CurrentValues.SetValues(model);
                     contxt.SaveChanges();
                     return model.Id;
                 }

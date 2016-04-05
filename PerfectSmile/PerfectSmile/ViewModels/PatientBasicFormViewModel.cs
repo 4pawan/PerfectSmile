@@ -105,6 +105,8 @@ namespace PerfectSmile.ViewModels
                     {
                         Message = string.Format("Patient record with name : {0} saved successfully with Id : {1} !", Name, id);
                         _eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Publish(true);
+                        _eventAggregator.GetEvent<RaisePatientListEvent>().Publish(true);
+                        _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);
                     }
                     else
                     {
