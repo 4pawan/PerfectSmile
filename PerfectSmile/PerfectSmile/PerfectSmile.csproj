@@ -170,6 +170,7 @@
     <Compile Include="Helper\StorageManager.cs" />
     <Compile Include="Repository\Abstract\ILog4NetLogger.cs" />
     <Compile Include="Repository\Abstract\IPatientRepository.cs" />
+    <Compile Include="Repository\Abstract\ISearch.cs" />
     <Compile Include="Repository\Fakes\PatientRepositoryFake.cs" />
     <Compile Include="Repository\Fakes\TestPatientList.cs" />
     <Compile Include="Repository\Implementation\Log4NetLogger.cs" />
@@ -179,6 +180,10 @@
     <Compile Include="Repository\Abstract\IRepository.cs" />
     <Compile Include="Repository\Factory\ContextFactory.cs" />
     <Compile Include="Repository\Fakes\LoginRepositoryFake.cs" />
+    <Compile Include="Repository\Implementation\SearchByVisitedOnRepository.cs" />
+    <Compile Include="Repository\Implementation\SearchByPhoneRepository.cs" />
+    <Compile Include="Repository\Implementation\SearchByPatientIdRepository.cs" />
+    <Compile Include="Repository\Implementation\SearchByNameRepository.cs" />
     <Compile Include="Repository\Implementation\PatientRepository.cs" />
     <Compile Include="Repository\Implementation\LoginRepository.cs" />
     <Compile Include="Repository\Implementation\Repository.cs" />

@@ -30,6 +30,19 @@ namespace PerfectSmile.Helper
             }
         }
 
+        public static long TryParseToLong(long? text)
+        {
+            long result = 0;
+            if (long.TryParse(text?.ToString(), out result))
+            {
+                return result;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
 
         public static Patient ConvertToPatientModel(PatientBasicFormViewModel vm)
         {
@@ -40,7 +53,7 @@ namespace PerfectSmile.Helper
                 Remark = vm.Remark,
                 ModifiedBy = LoggedInUser,
                 ModifiedAt = DateTime.Now,
-                Id = vm.PatientId
+                Id = TryParseToLong(vm.PatientId)
             };
         }
 

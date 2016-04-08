@@ -172,8 +172,20 @@ namespace PerfectSmile.Repository.Implementation
             }
         }
 
-        public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel)
+        public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel vm)
         {
+            var searchByNameContext = new SearchByNameRepository();
+
+            using (var contxt = new PatientDbContext())
+            {
+                var aa = contxt.Patients.Where(p => (vm.PatientId == null || vm.PatientId == p.Id) && (string.IsNullOrEmpty(vm.Name) || p.Name.ToLower().Contains(vm.Name.ToLower())) &&
+                         (string.IsNullOrEmpty(vm.Phone) || p.Phone.ToLower().Contains(vm.Phone.ToLower())) &&
+                         (vm.LastVisitedOn == null ||
+                            p.PatientHistories.Any(h => h.CreatedAt == vm.LastVisitedOn)
+                         )).ToList();
+
+            }
+
             var sd = new ObservableCollection<PatientHistoryViewModel>(Context.PatientHistories.Select(h => new PatientHistoryViewModel
             {
                 PatientId = h.Patient.Id,
@@ -186,7 +198,6 @@ namespace PerfectSmile.Repository.Implementation
                 PaymentDone = h.PaymentDone,
                 VisitedOn = h.CreatedAt
             }));
-
 
             return null;
         }

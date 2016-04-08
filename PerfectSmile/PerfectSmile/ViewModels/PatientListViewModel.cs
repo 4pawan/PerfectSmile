@@ -59,7 +59,7 @@ namespace PerfectSmile.ViewModels
                 {
                     if (c.Confirmed)
                     {
-                        bool isPatientDeleted = _patientRepository.DeletePatientForId(obj.PatientId);
+                        bool isPatientDeleted = _patientRepository.DeletePatientForId((long)obj.PatientId);
                         RaisePatientListEvent(isPatientDeleted);
                         _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(isPatientDeleted);
                     }
@@ -107,8 +107,8 @@ namespace PerfectSmile.ViewModels
             CustomPopupDetailsViewRequest.Raise(new PatientDetailsNotification
             {
                 Title = "Patient Id : " + model.PatientId + " Name : " + model.Name + " : Details View",
-                PatientId = model.PatientId,
-                PatientDetailsSource = _patientRepository.GetPatientDetailsSource(model.PatientId)
+                PatientId =  Helper.Helper.TryParseToLong(model.PatientId),
+                PatientDetailsSource = _patientRepository.GetPatientDetailsSource(Helper.Helper.TryParseToLong(model.PatientId))
 
             }, returned =>
             {

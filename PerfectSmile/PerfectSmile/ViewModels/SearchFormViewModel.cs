@@ -46,8 +46,8 @@ namespace PerfectSmile.ViewModels
             }
         }
 
-        private long _patientId;
-        public long PatientId
+        private long? _patientId;
+        public long? PatientId
         {
             get { return _patientId; }
             set
@@ -91,14 +91,25 @@ namespace PerfectSmile.ViewModels
 
 
         private DateTime? _lastVisitedOn;
-        [DisableFutureDate(ErrorMessage ="Not valid")]
         public DateTime? LastVisitedOn
         {
             get { return _lastVisitedOn; }
             set
             {
-                ValidateProperty(value);
                 SetProperty(ref _lastVisitedOn, value);
+            }
+        }
+
+
+        private string _visitedOn;
+        [DisableFutureDate(ErrorMessage = "Not valid")]
+        public string VisitedOn
+        {
+            get { return _visitedOn; }
+            set
+            {
+                ValidateProperty(value);
+                SetProperty(ref _visitedOn, value);
             }
         }
 

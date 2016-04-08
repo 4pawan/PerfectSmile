@@ -34,12 +34,12 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="DatePicker">
-            <Setter Property="Text" Value="{Binding LastVisitedOn, Mode=TwoWay}" />
+            <Setter Property="Text" Value="{Binding LastVisitedOn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
                 </Trigger>
-                <DataTrigger Binding="{Binding LastVisitedOn}" Value="{x:Null}">
+                <DataTrigger Binding="{Binding LastVisitedOn, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Value="{x:Null}">
                     <Setter Property="Text" Value="" />
                 </DataTrigger>
             </Style.Triggers>
