@@ -140,6 +140,18 @@ namespace PerfectSmile.Repository.Implementation
             return true;
         }
 
+        public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel)
+        {
+            ObservableCollection<SearchFormViewModel> list;
+
+            using (var contxt = new PatientDbContext())
+            {
+
+            }
+
+            return null;
+        }
+
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
         {
             try

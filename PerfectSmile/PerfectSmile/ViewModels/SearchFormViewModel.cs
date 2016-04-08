@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using PerfectSmile.Attributes;
 using PerfectSmile.Common;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
@@ -18,11 +20,31 @@ namespace PerfectSmile.ViewModels
         private ILog4NetLogger _log4NetLogger;
 
 
-        //public SearchFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
-        //{
-        //    _patientRepository = patientRepository;
-        //    _log4NetLogger = log4NetLogger;
-        //}
+        public SearchFormViewModel()
+        {
+
+        }
+
+
+        public SearchFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
+        {
+            _patientRepository = patientRepository;
+            _log4NetLogger = log4NetLogger;
+
+
+            SearchByColumnCommand = new DelegateCommand(SearchByColumnCommandEvent);
+            DisplayDateEnd = DateTime.Now;
+        }
+
+        private void SearchByColumnCommandEvent()
+        {
+            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "Phone", Phone }, { "LastVisitedOn", LastVisitedOn } });
+
+            if (IsValid)
+            {
+                ObservableCollection<SearchFormViewModel> items = _patientRepository.SearchByColumeName(this);
+            }
+        }
 
         private long _patientId;
         public long PatientId
@@ -30,6 +52,7 @@ namespace PerfectSmile.ViewModels
             get { return _patientId; }
             set
             {
+                ValidateProperty(value);
                 SetProperty(ref _patientId, value);
             }
         }
@@ -40,6 +63,7 @@ namespace PerfectSmile.ViewModels
             get { return _name; }
             set
             {
+                ValidateProperty(value);
                 SetProperty(ref _name, value);
             }
         }
@@ -50,6 +74,7 @@ namespace PerfectSmile.ViewModels
             get { return _phone; }
             set
             {
+                ValidateProperty(value);
                 SetProperty(ref _phone, value);
             }
         }
@@ -66,11 +91,13 @@ namespace PerfectSmile.ViewModels
 
 
         private DateTime? _lastVisitedOn;
+        [DisableFutureDate(ErrorMessage ="Not valid")]
         public DateTime? LastVisitedOn
         {
             get { return _lastVisitedOn; }
             set
             {
+                ValidateProperty(value);
                 SetProperty(ref _lastVisitedOn, value);
             }
         }
@@ -88,6 +115,9 @@ namespace PerfectSmile.ViewModels
 
 
         private decimal _balance;
+
+
+
         public decimal Balance
         {
             get { return _balance; }
@@ -96,6 +126,17 @@ namespace PerfectSmile.ViewModels
                 SetProperty(ref _balance, value);
             }
         }
+
+        public ICommand SearchByColumnCommand { get; set; }
+
+        private DateTime _displayDateEnd;
+        public DateTime DisplayDateEnd
+        {
+            get { return _displayDateEnd; }
+            set { SetProperty(ref _displayDateEnd, value); }
+        }
+
+
 
     }
 }
