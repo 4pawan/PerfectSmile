@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -23,12 +24,15 @@ namespace PerfectSmile.Repository.Implementation
                 using (var contxt = new PatientDbContext())
                 {
                     var model = Helper.Helper.ConvertToPatientModel(vm);
+                    model.CreatedAt = DateTime.Now;
+                    model.CreatedBy = Helper.Helper.LoggedInUser;
+
                     contxt.Patients.Add(model);
                     contxt.SaveChanges();
                     return model.Id;
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
                 return 0;
@@ -70,34 +74,36 @@ namespace PerfectSmile.Repository.Implementation
 
         public ObservableCollection<SearchFormViewModel> GetPatientItemSource()
         {
-            //DateTime? dt = DateTime.Now.Date;
-            var list = Context.PatientHistories.OrderByDescending(h => h.Id);
             ObservableCollection<SearchFormViewModel> result = new ObservableCollection<SearchFormViewModel>();
 
-            foreach (var item in list)
+            using (var contxt = new PatientDbContext())
             {
-                var flag = result.Any(p => p.PatientId == item.PatientId);
+                var list = contxt.PatientHistories.OrderByDescending(h => h.Id);
 
-                if (!flag)
+                foreach (var item in list)
                 {
-                    result.Add(new SearchFormViewModel
+                    var flag = result.Any(p => p.PatientId == item.PatientId);
+
+                    if (!flag)
                     {
-                        PatientId = item.Patient.Id,
-                        Name = item.Patient.Name,
-                        Phone = item.Patient.Phone,
-                        Balance = item.Balance,
-                        LastVisitedOn = item.CreatedAt,
-                        LastAmountPaid = item.PaymentDone,
-                        Remark = item.Patient.Remark
-                    });
-                }
+                        result.Add(new SearchFormViewModel
+                        {
+                            PatientId = item.Patient.Id,
+                            Name = item.Patient.Name,
+                            Phone = item.Patient.Phone,
+                            Balance = item.Balance,
+                            LastVisitedOn = item.CreatedAt,
+                            LastAmountPaid = item.PaymentDone,
+                            Remark = item.Patient.Remark
+                        });
+                    }
 
-                if (result.Count == 100)
-                {
-                    break;
+                    if (result.Count == 100)
+                    {
+                        break;
+                    }
                 }
             }
-
             return result;
         }
 
@@ -131,7 +137,7 @@ namespace PerfectSmile.Repository.Implementation
                     }
                 }
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer("Patient deletion error for patient Id :" + patientId + " StackTrace" +
                                                     ex.StackTrace);
@@ -140,14 +146,47 @@ namespace PerfectSmile.Repository.Implementation
             return true;
         }
 
-        public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel)
+        public long UpdatePatientBasicInfo(PatientBasicFormViewModel vm)
         {
-            ObservableCollection<SearchFormViewModel> list;
-
-            using (var contxt = new PatientDbContext())
+            try
             {
+                var model = Helper.Helper.ConvertToPatientModel(vm);
+
+                using (var contxt = new PatientDbContext())
+                {
+                    var obj = contxt.Patients.SingleOrDefault(p => p.Id == model.Id);
+                    if (obj == null) throw new ArgumentNullException(nameof(obj), "Id :" + model.Id + " could not found in Patient table while updating");
+                    model.CreatedBy = obj.CreatedBy;
+                    model.CreatedAt = obj.CreatedAt;
+
+                    contxt.Entry(obj).CurrentValues.SetValues(model);
+                    contxt.SaveChanges();
+                    return model.Id;
+                }
 
             }
+            catch (System.Exception ex)
+            {
+                Helper.Helper.WriteLogToEventViewer("Message :" + ex.Message + " StackTrace :" + ex.StackTrace);
+                return 0;
+            }
+        }
+
+        public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel)
+        {
+            var sd = new ObservableCollection<PatientHistoryViewModel>(Context.PatientHistories.Select(h => new PatientHistoryViewModel
+            {
+                PatientId = h.Patient.Id,
+                Name = h.Patient.Name,
+                Phone = h.Patient.Phone,
+                Balance = h.Balance,
+                NextAppointment = h.NextAppointment,
+                TreatmentDone = h.TreatmentDone,
+                AdditionalComment = h.AdditionalComment,
+                PaymentDone = h.PaymentDone,
+                VisitedOn = h.CreatedAt
+            }));
+
 
             return null;
         }
@@ -166,7 +205,7 @@ namespace PerfectSmile.Repository.Implementation
                 }
 
             }
-            catch (Exception ex)
+            catch (System.Exception ex)
             {
                 Helper.Helper.WriteLogToEventViewer(ex.StackTrace);
                 return 0;

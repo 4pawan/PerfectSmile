@@ -14,7 +14,7 @@ namespace PerfectSmile.Helper
 
         public static string LoggedInUser
         {
-            get { return Environment.UserName; }
+            get { return StorageManager.Get<string>(Constant.Constant.DictionaryKey.LoggedInUser); }
         }
 
         public static DateTime? TryParse(string text)
@@ -38,10 +38,9 @@ namespace PerfectSmile.Helper
                 Name = vm.Name,
                 Phone = vm.Phone,
                 Remark = vm.Remark,
-                CreatedBy = LoggedInUser,
-                CreatedAt = DateTime.Now,
                 ModifiedBy = LoggedInUser,
-                ModifiedAt = DateTime.Now
+                ModifiedAt = DateTime.Now,
+                Id = vm.PatientId
             };
         }
 

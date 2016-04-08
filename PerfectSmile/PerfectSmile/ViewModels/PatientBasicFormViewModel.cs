@@ -25,6 +25,15 @@ namespace PerfectSmile.ViewModels
         private ILog4NetLogger _log4NetLogger;
         private IEventAggregator _eventAggregator;
 
+
+        private long _patientId;
+        public long PatientId
+        {
+            get { return _patientId; }
+            set { SetProperty(ref _patientId, value); }
+        }
+
+
         private string _name;
 
         [StringLength(250, ErrorMessage = "Name cant be more than 250 char")]
@@ -90,12 +99,14 @@ namespace PerfectSmile.ViewModels
                 ValidateAllProperty(new MessageArgs { { "Name", Name }, { "Phone", Phone }, { "Remark", Remark } });
                 if (IsValid)
                 {
-                    long id = _patientRepository.AddPatientBasicInfo(this);
+                    long id = PatientId > 0 ? _patientRepository.UpdatePatientBasicInfo(this) : _patientRepository.AddPatientBasicInfo(this);
                     _log4NetLogger.Info(string.Format("Patient with name {0} and Id {1}saved in db successfully.", Name, id));
                     if (id > 0)
                     {
-                        Message = string.Format("Patient record with name : {0} saved successfully with new Id : {1} !", Name, id);
+                        Message = string.Format("Patient record with name : {0} saved successfully with Id : {1} !", Name, id);
                         _eventAggregator.GetEvent<RaiseAutoCompleteEvent>().Publish(true);
+                        _eventAggregator.GetEvent<RaisePatientListEvent>().Publish(true);
+                        _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(true);
                     }
                     else
                     {
@@ -119,15 +130,21 @@ namespace PerfectSmile.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            if (navigationContext.Parameters["PatientId"] != null)
+            if (navigationContext.Parameters["SrchFormVM"] != null)
             {
-                var patientId = (long)navigationContext.Parameters["PatientId"];
-                Name = "--->" + patientId;
+                var model = (SearchFormViewModel)navigationContext.Parameters["SrchFormVM"];
+
+                Name = model.Name;
+                Phone = model.Phone;
+                Remark = model.Remark;
+                PatientId = model.PatientId;
+
                 var shellContext = StorageManager.Get<ShellViewModel>(Constant.Constant.DictionaryKey.ShellContext);
                 shellContext.IsNextAppintmentSelected = false;
                 shellContext.IsPatientListSelected = false;
                 shellContext.IsPatientBasicFormSelected = true;
                 shellContext.IsPatientHistoryFormSelected = false;
+                shellContext.IsPatientFormGroupTabSelected = true;
             }
         }
 

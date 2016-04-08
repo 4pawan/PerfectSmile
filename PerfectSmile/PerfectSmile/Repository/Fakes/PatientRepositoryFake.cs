@@ -52,6 +52,11 @@ namespace PerfectSmile.Repository.Fakes
             throw new System.NotImplementedException();
         }
 
+        public long UpdatePatientBasicInfo(PatientBasicFormViewModel patientBasicFormViewModel)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel)
         {
             throw new System.NotImplementedException();

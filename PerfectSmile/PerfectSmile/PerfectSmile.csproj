@@ -164,6 +164,7 @@
     <Compile Include="EF\PatientHistory.cs" />
     <Compile Include="EF\User.cs" />
     <Compile Include="Events\Events.cs" />
+    <Compile Include="Exception\CustomException.cs" />
     <Compile Include="Helper\Extension.cs" />
     <Compile Include="Helper\Helper.cs" />
     <Compile Include="Helper\StorageManager.cs" />
