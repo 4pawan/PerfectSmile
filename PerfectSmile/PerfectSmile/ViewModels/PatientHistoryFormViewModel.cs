@@ -61,8 +61,9 @@ namespace PerfectSmile.ViewModels
             }
         }
 
-        private decimal _paymentDone;
-        public decimal PaymentDone
+        private string _paymentDone;
+        [RegularExpression("\\d*\\.?\\d*",ErrorMessage =@"Please enter valid value")]
+        public string PaymentDone
         {
             get { return _paymentDone; }
             set
@@ -73,8 +74,9 @@ namespace PerfectSmile.ViewModels
             }
         }
 
-        private decimal _balance;
-        public decimal Balance
+        private string _balance;
+        [RegularExpression("\\d*\\.?\\d*", ErrorMessage = @"Please enter valid value")]
+        public string Balance
         {
             get { return _balance; }
             set
@@ -86,7 +88,7 @@ namespace PerfectSmile.ViewModels
         }
 
         private string _nextAppointment;
-        [DisablePastDate(ErrorMessage = "Next Appointment cant be past dates")]
+        [DisablePastDate(ErrorMessage = @"Next Appointment cant be past dates")]
         public string NextAppointment
         {
             get { return _nextAppointment; }
@@ -155,8 +157,8 @@ namespace PerfectSmile.ViewModels
         private void ClearExec()
         {
             AdditionalComment = "";
-            Balance = 0;
-            PaymentDone = 0;
+            Balance = "";
+            PaymentDone = "";
             PatientId = "";
             TreatmentDone = "";
             NextAppointment = "";

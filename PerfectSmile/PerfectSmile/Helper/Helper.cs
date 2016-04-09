@@ -20,27 +20,18 @@ namespace PerfectSmile.Helper
         public static DateTime? TryParse(string text)
         {
             DateTime date;
-            if (DateTime.TryParse(text, out date))
-            {
-                return date;
-            }
-            else
-            {
-                return null;
-            }
+            return DateTime.TryParse(text, out date) ? (DateTime?) date : null;
         }
-
-        public static long TryParseToLong(long? text)
+        public static long TryParseToLong(string text)
         {
             long result = 0;
-            if (long.TryParse(text?.ToString(), out result))
-            {
-                return result;
-            }
-            else
-            {
-                return 0;
-            }
+            return long.TryParse(text, out result) ? result : 0;
+        }
+
+        public static decimal TryParseToDecimal(string text)
+        {
+            decimal result = 0;
+            return decimal.TryParse(text, out result) ? result : 0;
         }
 
 
@@ -53,24 +44,23 @@ namespace PerfectSmile.Helper
                 Remark = vm.Remark,
                 ModifiedBy = LoggedInUser,
                 ModifiedAt = DateTime.Now,
-                Id = TryParseToLong(vm.PatientId)
+                Id = vm.PatientId
             };
         }
 
         public static PatientHistory ConvertToPatientHistoryModel(PatientHistoryFormViewModel vm)
         {
-            long resultPatientId = 0;
-            long.TryParse(vm.PatientId, out resultPatientId);
+           
             return new PatientHistory
             {
-                PaymentDone = vm.PaymentDone,
+                PaymentDone = TryParseToDecimal(vm.PaymentDone) ,
                 TreatmentDone = vm.TreatmentDone,
-                Balance = vm.Balance,
+                Balance = TryParseToDecimal(vm.Balance),
                 CreatedBy = LoggedInUser,
                 CreatedAt = DateTime.Now,
                 NextAppointment = TryParse(vm.NextAppointment),
                 AdditionalComment = vm.AdditionalComment,
-                PatientId = resultPatientId
+                PatientId = TryParseToLong(vm.PatientId)
             };
         }
 

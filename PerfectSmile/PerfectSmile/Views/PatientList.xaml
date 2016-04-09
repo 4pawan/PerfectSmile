@@ -23,7 +23,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
         </Grid.RowDefinitions>
         <views:SearchForm Grid.Row="0"  />
         <DataGrid Grid.Row="1" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding PatientItemSource,Mode=TwoWay}">
@@ -73,6 +73,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <views:Pagination Grid.Row="2" />
     </Grid>
 </UserControl>

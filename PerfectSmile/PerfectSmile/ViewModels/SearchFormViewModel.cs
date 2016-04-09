@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Attributes;
@@ -46,8 +47,9 @@ namespace PerfectSmile.ViewModels
             }
         }
 
-        private long? _patientId;
-        public long? PatientId
+        private string _patientId;
+        [RegularExpression("\\d*",ErrorMessage =@"Please enter valid value")]
+        public string PatientId
         {
             get { return _patientId; }
             set

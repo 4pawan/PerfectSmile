@@ -149,6 +149,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Attributes\DisableFutureDateAttribute.cs" />
+    <Compile Include="Attributes\DecimalOnlyAttribute.cs" />
     <Compile Include="Attributes\RemotePatientIdAttribute.cs" />
     <Compile Include="Common\BaseValidation.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />

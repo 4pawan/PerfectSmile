@@ -85,19 +85,19 @@
         <AutoCompleteTextBox:AutoCompleteTextBox Grid.Row="1" Grid.Column="1" Source="{Binding AutoCompleteSource, Mode=TwoWay}" TextVal="{Binding PatientId, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="300" />
        
         <TextBlock  Grid.Row="2" Grid.Column="0" Text="Treatment Done" />
-        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TreatmentDone, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock  Grid.Row="3" Grid.Column="0" Text="Payment Done*" />
-        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PaymentDone, Mode=TwoWay}"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding PaymentDone, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock  Grid.Row="4" Grid.Column="0" Text="Balance*" />
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Balance, Mode=TwoWay}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Balance, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock  Grid.Row="5" Grid.Column="0" Text="Next Appointment" />
-        <DatePicker DisplayDateStart="{Binding DisplayDateStart}" Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay}" Width="300" Height="30" HorizontalAlignment="Left"/>
+        <DatePicker DisplayDateStart="{Binding DisplayDateStart}" Grid.Row="5" Grid.Column="1" Text="{Binding NextAppointment, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300" Height="30" HorizontalAlignment="Left"/>
 
         <TextBlock  Grid.Row="6" Grid.Column="0" Text="Additional Comment" />
-        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding AdditionalComment, Mode=TwoWay}"/>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding AdditionalComment, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
 
         <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
             <Button Content="Save" Command="{Binding SaveCommand}" Width="147"/>

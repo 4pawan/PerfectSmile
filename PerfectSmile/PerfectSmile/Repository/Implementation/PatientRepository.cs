@@ -82,13 +82,13 @@ namespace PerfectSmile.Repository.Implementation
 
                 foreach (var item in list)
                 {
-                    var flag = result.Any(p => p.PatientId == item.PatientId);
+                    var flag = result.Any(p => Helper.Helper.TryParseToLong(p.PatientId)  == item.PatientId);
 
                     if (!flag)
                     {
                         result.Add(new SearchFormViewModel
                         {
-                            PatientId = item.Patient.Id,
+                            PatientId = item.Patient.Id.ToString(),
                             Name = item.Patient.Name,
                             Phone = item.Patient.Phone,
                             Balance = item.Balance,
@@ -178,10 +178,10 @@ namespace PerfectSmile.Repository.Implementation
 
             using (var contxt = new PatientDbContext())
             {
-                var aa = contxt.Patients.Where(p => (vm.PatientId == null || vm.PatientId == p.Id) && (string.IsNullOrEmpty(vm.Name) || p.Name.ToLower().Contains(vm.Name.ToLower())) &&
+                var aa = contxt.Patients.Where(p => (vm.PatientId == null || vm.PatientId == p.Id.ToString()) && (string.IsNullOrEmpty(vm.Name) || p.Name.ToLower().Contains(vm.Name.ToLower())) &&
                          (string.IsNullOrEmpty(vm.Phone) || p.Phone.ToLower().Contains(vm.Phone.ToLower())) &&
                          (vm.LastVisitedOn == null ||
-                            p.PatientHistories.Any(h => h.CreatedAt == vm.LastVisitedOn)
+                            p.PatientHistories.Any(h => h.CreatedAt.ToString() == vm.VisitedOn)
                          )).ToList();
 
             }

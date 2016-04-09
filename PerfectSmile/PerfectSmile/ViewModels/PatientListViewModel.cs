@@ -59,7 +59,7 @@ namespace PerfectSmile.ViewModels
                 {
                     if (c.Confirmed)
                     {
-                        bool isPatientDeleted = _patientRepository.DeletePatientForId((long)obj.PatientId);
+                        bool isPatientDeleted = _patientRepository.DeletePatientForId(Helper.Helper.TryParseToLong(obj.PatientId));
                         RaisePatientListEvent(isPatientDeleted);
                         _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(isPatientDeleted);
                     }

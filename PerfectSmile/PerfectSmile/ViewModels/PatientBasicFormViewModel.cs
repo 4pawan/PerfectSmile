@@ -26,8 +26,8 @@ namespace PerfectSmile.ViewModels
         private IEventAggregator _eventAggregator;
 
 
-        private long? _patientId;
-        public long? PatientId
+        private long  _patientId;
+        public long PatientId
         {
             get { return _patientId; }
             set { SetProperty(ref _patientId, value); }
@@ -137,7 +137,7 @@ namespace PerfectSmile.ViewModels
                 Name = model.Name;
                 Phone = model.Phone;
                 Remark = model.Remark;
-                PatientId = model.PatientId;
+                PatientId = Helper.Helper.TryParseToLong(model.PatientId) ;
 
                 var shellContext = StorageManager.Get<ShellViewModel>(Constant.Constant.DictionaryKey.ShellContext);
                 shellContext.IsNextAppintmentSelected = false;
