@@ -5,11 +5,13 @@ using System.Windows;
 using System.Windows.Input;
 using PerfectSmile.Attributes;
 using PerfectSmile.Common;
+using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
 using PerfectSmile.Repository.Implementation;
 using PerfectSmile.Service;
 using PerfectSmile.Views;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
 
 namespace PerfectSmile.ViewModels
@@ -19,7 +21,7 @@ namespace PerfectSmile.ViewModels
 
         private IPatientRepository _patientRepository;
         private ILog4NetLogger _log4NetLogger;
-
+        private IEventAggregator _eventAggregator;
 
         public SearchFormViewModel()
         {
@@ -27,11 +29,11 @@ namespace PerfectSmile.ViewModels
         }
 
 
-        public SearchFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger)
+        public SearchFormViewModel(IPatientRepository patientRepository, ILog4NetLogger log4NetLogger, IEventAggregator eventAggregator)
         {
             _patientRepository = patientRepository;
             _log4NetLogger = log4NetLogger;
-
+            _eventAggregator = eventAggregator;
 
             SearchByColumnCommand = new DelegateCommand(SearchByColumnCommandEvent);
             DisplayDateEnd = DateTime.Now;
@@ -39,16 +41,24 @@ namespace PerfectSmile.ViewModels
 
         private void SearchByColumnCommandEvent()
         {
-            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "Phone", Phone }, { "LastVisitedOn", LastVisitedOn } });
+            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "Phone", Phone }, { "Name", Name }, { "VisitedOn", VisitedOn } });
 
-            if (IsValid)
+            if (!IsValid) return;
+            ObservableCollection<SearchFormViewModel> items = null;
+            if (string.IsNullOrEmpty(PatientId) && string.IsNullOrEmpty(Name) && string.IsNullOrEmpty(Phone) && string.IsNullOrEmpty(VisitedOn))
             {
-                ObservableCollection<SearchFormViewModel> items = _patientRepository.SearchByColumeName(this);
+                items = _patientRepository.GetPatientItemSource();
             }
+            else
+            {
+                items = _patientRepository.SearchByColumeName(this);
+            }
+            _eventAggregator.GetEvent<RaiseSearchFormEvent>().Publish(items);
+
         }
 
         private string _patientId;
-        [RegularExpression("\\d*",ErrorMessage =@"Please enter valid value")]
+        [RegularExpression("\\d*", ErrorMessage = @"Please enter valid value")]
         public string PatientId
         {
             get { return _patientId; }

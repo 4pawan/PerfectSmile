@@ -37,11 +37,17 @@ namespace PerfectSmile.ViewModels
             NavigateToPatientDetailsView = new DelegateCommand<SearchFormViewModel>(NavigateToPatientDetailsEvent);
 
             _eventAggregator.GetEvent<RaisePatientListEvent>().Subscribe(RaisePatientListEvent);
+            _eventAggregator.GetEvent<RaiseSearchFormEvent>().Subscribe(RaiseSearchFormEvent);
 
             ConfirmDeleteRequest = new InteractionRequest<IConfirmation>();
             CustomPopupDetailsViewRequest = new InteractionRequest<PatientDetailsNotification>();
 
             RaisePatientListEvent(true);
+        }
+
+        private void RaiseSearchFormEvent(ObservableCollection<SearchFormViewModel> obj)
+        {
+            PatientItemSource = obj;
         }
 
         private void NavigateToPatientEditFormEvent(SearchFormViewModel model)
@@ -107,7 +113,7 @@ namespace PerfectSmile.ViewModels
             CustomPopupDetailsViewRequest.Raise(new PatientDetailsNotification
             {
                 Title = "Patient Id : " + model.PatientId + " Name : " + model.Name + " : Details View",
-                PatientId =  Helper.Helper.TryParseToLong(model.PatientId),
+                PatientId = Helper.Helper.TryParseToLong(model.PatientId),
                 PatientDetailsSource = _patientRepository.GetPatientDetailsSource(Helper.Helper.TryParseToLong(model.PatientId))
 
             }, returned =>

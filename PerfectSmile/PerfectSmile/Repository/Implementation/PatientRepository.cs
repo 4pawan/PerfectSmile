@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,7 +83,7 @@ namespace PerfectSmile.Repository.Implementation
 
                 foreach (var item in list)
                 {
-                    var flag = result.Any(p => Helper.Helper.TryParseToLong(p.PatientId)  == item.PatientId);
+                    var flag = result.Any(p => Helper.Helper.TryParseToLong(p.PatientId) == item.PatientId);
 
                     if (!flag)
                     {
@@ -174,32 +175,27 @@ namespace PerfectSmile.Repository.Implementation
 
         public ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel vm)
         {
-            var searchByNameContext = new SearchByNameRepository();
-
             using (var contxt = new PatientDbContext())
             {
-                var aa = contxt.Patients.Where(p => (vm.PatientId == null || vm.PatientId == p.Id.ToString()) && (string.IsNullOrEmpty(vm.Name) || p.Name.ToLower().Contains(vm.Name.ToLower())) &&
-                         (string.IsNullOrEmpty(vm.Phone) || p.Phone.ToLower().Contains(vm.Phone.ToLower())) &&
-                         (vm.LastVisitedOn == null ||
-                            p.PatientHistories.Any(h => h.CreatedAt.ToString() == vm.VisitedOn)
-                         )).ToList();
+                var list = contxt.Patients.Where(p =>
+                        (vm.PatientId == null || vm.PatientId == p.Id.ToString()) &&
+                        (string.IsNullOrEmpty(vm.Name) || p.Name.ToLower().Contains(vm.Name.ToLower())) &&
+                        (string.IsNullOrEmpty(vm.Phone) || p.Phone.ToLower().Contains(vm.Phone.ToLower()))).SelectMany(p => p.PatientHistories).ToList();
 
+                var result = new ObservableCollection<SearchFormViewModel>(list.Where(h =>
+                           string.IsNullOrEmpty(vm.VisitedOn) ||
+                            (h.CreatedAt.HasValue && h.CreatedAt.Value.ToShortDateString() == vm.VisitedOn)).Select(h => new SearchFormViewModel
+                            {
+                                PatientId = h.Id.ToString(),
+                                Name = h.Patient.Name,
+                                Phone = h.Patient.Phone,
+                                Balance = h.Balance,
+                                LastVisitedOn = h.CreatedAt,
+                                LastAmountPaid = h.PaymentDone,
+                                Remark = h.Patient.Remark
+                            }));
+                return result;
             }
-
-            var sd = new ObservableCollection<PatientHistoryViewModel>(Context.PatientHistories.Select(h => new PatientHistoryViewModel
-            {
-                PatientId = h.Patient.Id,
-                Name = h.Patient.Name,
-                Phone = h.Patient.Phone,
-                Balance = h.Balance,
-                NextAppointment = h.NextAppointment,
-                TreatmentDone = h.TreatmentDone,
-                AdditionalComment = h.AdditionalComment,
-                PaymentDone = h.PaymentDone,
-                VisitedOn = h.CreatedAt
-            }));
-
-            return null;
         }
 
         public long AddPatientHistoryDetails(PatientHistoryFormViewModel vm)
