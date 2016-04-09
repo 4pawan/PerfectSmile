@@ -186,7 +186,7 @@ namespace PerfectSmile.Repository.Implementation
                            string.IsNullOrEmpty(vm.VisitedOn) ||
                             (h.CreatedAt.HasValue && h.CreatedAt.Value.ToShortDateString() == vm.VisitedOn)).Select(h => new SearchFormViewModel
                             {
-                                PatientId = h.Id.ToString(),
+                                PatientId = h.Patient.Id.ToString(),
                                 Name = h.Patient.Name,
                                 Phone = h.Patient.Phone,
                                 Balance = h.Balance,
