@@ -325,6 +325,7 @@
   <ItemGroup>
     <Content Include="Library\ImageFromFont.dll" />
     <Content Include="Library\ImageFromFont.pdb" />
+    <Resource Include="Resources\toothLogin.png" />
     <Resource Include="Resources\mickey-mouse-icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

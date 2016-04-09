@@ -28,7 +28,7 @@ namespace PerfectSmile.Common
 
         protected override void InitializeShell()
         {
-            Application.Current.MainWindow.Show();
+           Application.Current.MainWindow.Show();
         }
 
         protected override void ConfigureContainer()

@@ -112,7 +112,7 @@ namespace PerfectSmile.ViewModels
                 else
                 {
                     this.InteractionResultMessage = "The user cancelled login window";
-                    model.Close();
+                    Application.Current.Shutdown();
                 }
             });
         }

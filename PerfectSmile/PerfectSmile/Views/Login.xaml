@@ -4,42 +4,72 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:constant="clr-namespace:PerfectSmile.Constant"
              prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-        <Grid.Resources>
-            <Style TargetType="TextBlock">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="TextWrapping" Value="Wrap" />
-                <Setter Property="VerticalAlignment" Value="Top" />
-                <Setter Property="Width" Value="137" />
-                <Setter Property="Height" Value="32" />
-                <Setter Property="FontStretch" Value="Expanded" />
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="TextWrapping" Value="Wrap" />
-                <Setter Property="VerticalAlignment" Value="Top" />
-                <Setter Property="Width" Value="258" />
-                <Setter Property="Height" Value="32" />
-            </Style>
-        </Grid.Resources>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="147*"/>
-            <ColumnDefinition Width="370*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42*"/>
-            <RowDefinition Height="51*"/>
-            <RowDefinition Height="51*"/>
-            <RowDefinition Height="53*"/>
-            <RowDefinition Height="109*"/>
-        </Grid.RowDefinitions>
-        <TextBlock  Text="name" Margin="10,10,0,0" Grid.Row="1" Grid.Column="0"/>
-        <TextBox Grid.Column="1" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="20,10,0,0" Grid.Row="1"/>
-        <TextBlock Grid.Column="0" Text="password"  Grid.Row="2" Margin="10,10,0,0"/>
-        <TextBox  Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" Margin="20,10,0,0"/>
-        <Button  Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="258"  Grid.Column="1" Margin="20,10,0,0" Grid.Row="3" Height="33"
-                 CommandParameter="{Binding ElementName=window, Mode=OneWay}" Command="{Binding LoginCommand}"/>
-        <TextBlock Grid.Column="1"  Margin="20,22,0,0" Grid.Row="4" Text="{Binding Message, Mode=TwoWay}" Width="258" Foreground="Red"/>
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment"  Value="Top" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="MinWidth" Value="100" />
+            <Setter Property="Margin" Value="0,0,0,0" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Width" Value="200" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Source="/PerfectSmile;component/Resources/toothLogin.png"></Image>
+        <!--<Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock  Text="name"  Grid.Row="0"/>
+            <TextBox  Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+            <TextBlock  Text="password"  Grid.Row="2" />
+            <TextBox  Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3"/>
+            <Button  Content="Login" Grid.Row="4" 
+                 CommandParameter="{Binding ElementName=window, Mode=OneWay}" Command="{Binding LoginCommand}"/>
+            <TextBlock  Grid.Row="5" Text="{Binding Message, Mode=TwoWay}" Foreground="Red"/>
+        </Grid>-->
+        <StackPanel Grid.Column="2" Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Left" Text="Please enter name" Margin="0,40,76,0"/>
+            <TextBox  HorizontalAlignment="Left" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,5,0"/>
+            <TextBlock HorizontalAlignment="Left"  Text="Please enter password" Margin="0,13,0,0" />
+            <TextBox HorizontalAlignment="Left"  Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,5,0"/>
+            <Button HorizontalAlignment="Left"  Content="Login"  
+                 CommandParameter="{Binding ElementName=window, Mode=OneWay}" Command="{Binding LoginCommand}" Margin="0,11,5,0"/>
+            <TextBlock  HorizontalAlignment="Center" Text="{Binding Message, Mode=TwoWay}" Foreground="Red" Margin="0,15,5,0"/>
+        </StackPanel>
+        
+        
     </Grid>
 </UserControl>
