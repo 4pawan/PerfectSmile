@@ -27,13 +27,13 @@ namespace PerfectSmile.Constant
 
         public static class Login
         {
-            public const string LoginErrorMesage = "Invalid User name or Password !";
-            public const string Title = "Login screen -Perfect smile dental clinic";
+            public const string LoginErrorMesage = "Invalid user name or password !";
+            public const string Title = "Login Screen-Perfect Smile Dental Clinic";
         }
 
         public static class Shell
         {
-            public const string Title = "Main screen -Perfect smile dental clinic";
+            public const string Title = "Main Screen-Perfect Smile Dental Clinic";
         }
 
 

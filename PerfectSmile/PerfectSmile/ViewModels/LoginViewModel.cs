@@ -18,21 +18,32 @@ namespace PerfectSmile.ViewModels
         public string Name
         {
             get { return _name; }
-            set { SetProperty(ref _name, value); }
+            set
+            {
+                SetProperty(ref _name, value);
+                Message = "";
+            }
         }
 
         private string _password;
         public string Password
         {
             get { return _password; }
-            set { SetProperty(ref _password, value); }
+            set
+            {
+                SetProperty(ref _password, value);
+                Message = "";
+            }
         }
 
         private string _message;
         public string Message
         {
             get { return _message; }
-            set { SetProperty(ref _message, value); }
+            set
+            {
+                SetProperty(ref _message, value);
+            }
         }
 
         public ICommand LoginCommand { get; set; }
@@ -46,7 +57,7 @@ namespace PerfectSmile.ViewModels
 
         private void Execute(Window item)
         {
-            var isUserValid = true; //_loginRepository.IsUserValid(Name, Password);
+            var isUserValid = _loginRepository.IsUserValid(Name, Password);
             if (!isUserValid)
             {
                 Message = Constant.Constant.Login.LoginErrorMesage;

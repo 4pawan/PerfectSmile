@@ -16,14 +16,14 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Height" Value="30" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="180" />
             <Setter Property="MinWidth" Value="100" />
             <Setter Property="Margin" Value="0,0,0,0" />
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="180" />
             <Setter Property="Height" Value="30" />
             <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
             <Style.Triggers>
@@ -66,7 +66,7 @@
             <TextBlock HorizontalAlignment="Left"  Text="Please enter password" Margin="0,13,0,0" />
             <TextBox HorizontalAlignment="Left"  Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,5,5,0"/>
             <Button HorizontalAlignment="Left"  Content="Login"  
-                 CommandParameter="{Binding ElementName=window, Mode=OneWay}" Command="{Binding LoginCommand}" Margin="0,11,5,0"/>
+                 CommandParameter="{Binding ElementName=window, Mode=OneWay}" Command="{Binding LoginCommand}" Margin="0,27,5,0"/>
             <TextBlock  HorizontalAlignment="Center" Text="{Binding Message, Mode=TwoWay}" Foreground="Red" Margin="0,15,5,0"/>
         </StackPanel>
         
