@@ -1,16 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using PerfectSmile.Events;
 using PerfectSmile.Repository.Abstract;
+using Prism.Commands;
+using Prism.Events;
 using Prism.Interactivity.InteractionRequest;
+using Prism.Regions;
 
 namespace PerfectSmile.ViewModels
 {
     public class PatientDetailsViewModel : BaseViewModel, IInteractionRequestAware
     {
+        private IPatientRepository _patientRepository;
+        private ILog4NetLogger _log4NetLogger;
+        private IRegionManager _regionManager;
+        private IEventAggregator _eventAggregator;
+
+
+        public PatientDetailsViewModel(IPatientRepository patientRepository, IEventAggregator eventAggregator)
+        {
+            _patientRepository = patientRepository;
+            _eventAggregator = eventAggregator;
+
+            ConfirmDeleteRequestPatientHistoryInfo = new InteractionRequest<IConfirmation>();
+            DeletePatientHistoryInfo = new DelegateCommand<PatientHistoryViewModel>(DeleteRequestPatientHistoryInfoEvent);
+
+        }
+
+
         private PatientDetailsNotification _notification;
         public INotification Notification
         {
@@ -28,12 +52,44 @@ namespace PerfectSmile.ViewModels
             }
         }
         public Action FinishInteraction { get; set; }
+        public ICommand DeletePatientHistoryInfo { get; set; }
+
+        public InteractionRequest<IConfirmation> ConfirmDeleteRequestPatientHistoryInfo { get; private set; }
+
+        private void DeleteRequestPatientHistoryInfoEvent(PatientHistoryViewModel obj)
+        {
+            Debug.WriteLine("-------->:DeletePatientHistoryInfo");
+            this.ConfirmDeleteRequestPatientHistoryInfo.Raise(
+               new Confirmation { Content = "Are you sure you want to delete this record for patient " + obj.Name + " ?", Title = "Confirmation" },
+                c =>
+                {
+                    if (c.Confirmed)
+                    {
+                        bool isPatientHistroyDeleted = _patientRepository.DeletePatientHistoryForId(obj.PatientDetailsId);
+                        _eventAggregator.GetEvent<RaiseNextAppointmentEvent>().Publish(isPatientHistroyDeleted && obj.NextAppointment != null);
+                        //_eventAggregator.GetEvent<RaisePatientDetailsFinishedEvent>().Publish(isPatientHistroyDeleted);
+                        FinishInteraction();
+                    }
+                });
+
+        }
+
 
     }
 
 
     public class PatientHistoryViewModel : BaseViewModel
     {
+        private long _patientDetailsId;
+        public long PatientDetailsId
+        {
+            get { return _patientDetailsId; }
+            set
+            {
+                SetProperty(ref _patientDetailsId, value);
+            }
+        }
+
         private long _patientId;
         public long PatientId
         {
@@ -125,16 +181,9 @@ namespace PerfectSmile.ViewModels
         }
     }
 
-
     public class PatientDetailsNotification : Confirmation
     {
         public long PatientId { get; set; }
         public ObservableCollection<PatientHistoryViewModel> PatientDetailsSource { get; set; }
-
     }
-
-
-
-
-
 }

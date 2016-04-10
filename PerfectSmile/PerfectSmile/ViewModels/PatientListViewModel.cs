@@ -60,7 +60,7 @@ namespace PerfectSmile.ViewModels
         {
             Debug.WriteLine("-------->:DeletePatientBasicInfoEvent");
             this.ConfirmDeleteRequest.Raise(
-               new Confirmation { Content = "Are you sure you want to delete patient " + obj.Name + " ?", Title = "Confirmation" },
+               new Confirmation { Content = "Are you sure you want to completely delete patient " + obj.Name + " from system ?", Title = "Confirmation" },
                 c =>
                 {
                     if (c.Confirmed)
@@ -91,9 +91,7 @@ namespace PerfectSmile.ViewModels
                 PatientItemSource = _patientRepository.GetPatientItemSource();
             }
         }
-
-
-
+      
         private ObservableCollection<SearchFormViewModel> _patientItemSource;
         public ObservableCollection<SearchFormViewModel> PatientItemSource
         {

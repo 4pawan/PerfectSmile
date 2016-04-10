@@ -23,8 +23,4 @@ namespace PerfectSmile.Events
     public class RaiseSearchFormEvent : PubSubEvent<ObservableCollection<SearchFormViewModel>>
     {
     }
-
-
-
-
 }

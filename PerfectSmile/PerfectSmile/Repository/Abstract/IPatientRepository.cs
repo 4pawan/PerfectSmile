@@ -22,5 +22,6 @@ namespace PerfectSmile.Repository.Abstract
         bool DeletePatientForId(long patientId);
         long UpdatePatientBasicInfo(PatientBasicFormViewModel patientBasicFormViewModel);
         ObservableCollection<SearchFormViewModel> SearchByColumeName(SearchFormViewModel searchFormViewModel);
+        bool DeletePatientHistoryForId(long patientId);
     }
 }
