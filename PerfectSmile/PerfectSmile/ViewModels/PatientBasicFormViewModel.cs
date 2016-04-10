@@ -126,6 +126,7 @@ namespace PerfectSmile.ViewModels
         private void ClearExec()
         {
             Remark = Phone = Name = Message = "";
+            PatientId = 0;
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
@@ -145,6 +146,10 @@ namespace PerfectSmile.ViewModels
                 shellContext.IsPatientBasicFormSelected = true;
                 shellContext.IsPatientHistoryFormSelected = false;
                 shellContext.IsPatientFormGroupTabSelected = true;
+            }
+            else
+            {
+                ClearExec();
             }
         }
 

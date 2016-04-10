@@ -57,7 +57,7 @@ namespace PerfectSmile.ViewModels
 
         private void Execute(Window item)
         {
-            var isUserValid = _loginRepository.IsUserValid(Name, Password);
+            var isUserValid = true;//_loginRepository.IsUserValid(Name, Password);
             if (!isUserValid)
             {
                 Message = Constant.Constant.Login.LoginErrorMesage;

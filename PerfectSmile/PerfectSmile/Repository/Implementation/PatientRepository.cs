@@ -156,7 +156,8 @@ namespace PerfectSmile.Repository.Implementation
                 using (var contxt = new PatientDbContext())
                 {
                     var obj = contxt.Patients.SingleOrDefault(p => p.Id == model.Id);
-                    if (obj == null) throw new ArgumentNullException(nameof(obj), "Id :" + model.Id + " could not found in Patient table while updating");
+                    if (obj == null)
+                        return 0; //throw new ArgumentNullException(nameof(obj), "Id :" + model.Id + " could not found in Patient table while updating");
                     model.CreatedBy = obj.CreatedBy;
                     model.CreatedAt = obj.CreatedAt;
 

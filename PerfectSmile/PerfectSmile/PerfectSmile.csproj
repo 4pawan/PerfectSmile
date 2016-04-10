@@ -153,6 +153,7 @@
     <Compile Include="Attributes\RemotePatientIdAttribute.cs" />
     <Compile Include="Common\BaseValidation.cs" />
     <Compile Include="Common\BooleanToColorConverter.cs" />
+    <Compile Include="Common\AddEditDisplayConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
