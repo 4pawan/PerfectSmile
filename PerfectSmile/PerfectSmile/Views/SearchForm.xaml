@@ -17,14 +17,14 @@
             <Setter Property="HorizontalAlignment" Value="Right" />
             <Setter Property="VerticalAlignment" Value="Top" />
             <Setter Property="Height" Value="30" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="120" />
             <Setter Property="MinWidth" Value="100" />
             <Setter Property="Margin" Value="5,0,0,0" />
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Width" Value="200" />
+            <Setter Property="Width" Value="180" />
             <Setter Property="Height" Value="30" />
             <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ErrorToolTipTemplate}" />
             <Style.Triggers>
@@ -63,7 +63,7 @@
             <TextBox Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="Search by Visited On"/>
-            <DatePicker DisplayDateEnd="{Binding DisplayDateEnd}" Text="{Binding VisitedOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="200" Height="30" HorizontalAlignment="Right"/>
+            <DatePicker DisplayDateEnd="{Binding DisplayDateEnd}" Text="{Binding VisitedOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="182" Height="30" HorizontalAlignment="Right"/>
             <Button Content="Search" Command="{Binding SearchByColumnCommand}" />
         </StackPanel>
     </Grid>
