@@ -186,7 +186,7 @@ namespace PerfectSmile.Repository.Implementation
 
                 var result = new ObservableCollection<SearchFormViewModel>(list.Where(h =>
                            string.IsNullOrEmpty(vm.VisitedOn) ||
-                            (h.CreatedAt.HasValue && h.CreatedAt.Value.ToShortDateString() == vm.VisitedOn)).Select(h => new SearchFormViewModel
+                            (h.CreatedAt.HasValue && h.CreatedAt.Value.Month == Convert.ToDateTime(vm.VisitedOn).Month )).Select(h => new SearchFormViewModel
                             {
                                 PatientId = h.Patient.Id.ToString(),
                                 Name = h.Patient.Name,

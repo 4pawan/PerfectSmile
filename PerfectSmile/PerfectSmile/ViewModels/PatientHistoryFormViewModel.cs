@@ -36,8 +36,8 @@ namespace PerfectSmile.ViewModels
 
         private string _patientId;
         [Required(ErrorMessage = "Patient Id cant be empty.")]
-        [RemotePatientId(ErrorMessage ="Patient Id does not exist.")]
-        public string PatientId 
+        [RemotePatientId(ErrorMessage = "Patient Id does not exist.")]
+        public string PatientId
         {
             get { return _patientId; }
             set
@@ -62,7 +62,8 @@ namespace PerfectSmile.ViewModels
         }
 
         private string _paymentDone;
-        [RegularExpression("\\d*\\.?\\d*",ErrorMessage =@"Please enter valid value")]
+        [RegularExpression("\\d*\\.?\\d*", ErrorMessage = @"Please enter valid value")]
+        [Required(ErrorMessage = @"Please enter Payment")]
         public string PaymentDone
         {
             get { return _paymentDone; }
@@ -76,6 +77,7 @@ namespace PerfectSmile.ViewModels
 
         private string _balance;
         [RegularExpression("\\d*\\.?\\d*", ErrorMessage = @"Please enter valid value")]
+        [Required(ErrorMessage = @"Please enter Balance")]
         public string Balance
         {
             get { return _balance; }
@@ -172,7 +174,9 @@ namespace PerfectSmile.ViewModels
 
         private void SaveExec()
         {
-            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId }, { "TreatmentDone", TreatmentDone }, { "NextAppointment", NextAppointment } });
+            ValidateAllProperty(new MessageArgs { { "PatientId", PatientId },
+                { "PaymentDone", PaymentDone } ,{ "Balance",  Balance },
+                { "TreatmentDone", TreatmentDone }, { "NextAppointment", NextAppointment } });
 
             if (IsValid)
             {

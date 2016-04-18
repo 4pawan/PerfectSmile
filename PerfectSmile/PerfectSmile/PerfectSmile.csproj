@@ -195,6 +195,7 @@
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\BootStrapper.cs" />
     <Compile Include="Common\Converters.cs" />
+    <Compile Include="Common\DateToMonthConverter.cs" />
     <Compile Include="Common\DebugConverter.cs" />
     <Compile Include="Attributes\DisablePastDateAttribute.cs" />
     <Compile Include="Common\StringToIntValidationRule.cs" />
