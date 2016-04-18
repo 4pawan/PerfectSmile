@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerfectSmile.Test", "PerfectSmile.Test\PerfectSmile.Test.csproj", "{0A3935EF-A05C-4EEE-84F7-FE39C27B75C4}"
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "PerfectSmile.Setup", "PerfectSmile.Setup\PerfectSmile.Setup.isproj", "{04880A92-6C2D-4DE8-AA9C-F9EB386853B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E5175ADB-65B4-41CF-9985-64E76CDAA535} = {E5175ADB-65B4-41CF-9985-64E76CDAA535}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

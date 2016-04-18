@@ -363,7 +363,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Library\ImageFromFont.dll" />
+    <Content Include="Library\ImageFromFont.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Library\ImageFromFont.pdb" />
     <Resource Include="Resources\toothLogin.png" />
     <Resource Include="Resources\mickey-mouse-icon.png" />

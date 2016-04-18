@@ -341,6 +341,9 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{A810934F-8F11-4068-A123-173554858530}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ImageFromFont.dll</td><td>{F136C4FE-DA0A-4C48-AE33-A70E7E14D8D0}</td><td>INSTALLDIR</td><td>2</td><td/><td>imagefromfont.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>PerfectSmile.Content_Files</td><td>{D510CAE2-03C9-4DAF-8BE4-4D00B8D45820}</td><td>INSTALLDIR</td><td>2</td><td/><td>perfectsmile.content_files</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>PerfectSmile.Primary_output</td><td>{8687D676-AC3A-4C8E-AED5-CACABAE4BED1}</td><td>INSTALLDIR</td><td>2</td><td/><td>perfectsmile.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1050,6 +1053,9 @@
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
+		<row><td>INSTALLDIR</td><td>ImageFromFont.dll</td></row>
+		<row><td>INSTALLDIR</td><td>PerfectSmile.Content_Files</td></row>
+		<row><td>INSTALLDIR</td><td>PerfectSmile.Primary_output</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1864,6 +1870,9 @@
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
+		<row><td>AlwaysInstall</td><td>ImageFromFont.dll</td></row>
+		<row><td>AlwaysInstall</td><td>PerfectSmile.Content_Files</td></row>
+		<row><td>AlwaysInstall</td><td>PerfectSmile.Primary_output</td></row>
 	</table>
 
 	<table name="File">
@@ -1878,6 +1887,9 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>imagefromfont.dll</td><td>ImageFromFont.dll</td><td>IMAGEF~1.DLL|ImageFromFont.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile\Library\ImageFromFont.dll</td><td>1</td><td/></row>
+		<row><td>perfectsmile.content_files</td><td>PerfectSmile.Content_Files</td><td>PerfectSmile.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PerfectSmile&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>perfectsmile.primary_output</td><td>PerfectSmile.Primary_output</td><td>PerfectSmile.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;PerfectSmile&gt;|Built</td><td>3</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2021,6 +2033,9 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_1497DB53_A7C6_41D6_808A_F085D035954C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ImageFromFont.dll</td><td/><td/><td>_A0657865_1E75_4E4D_8154_BEB51D8D00C7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>PerfectSmile.Content_Files</td><td/><td/><td>_DA340CFA_6254_42CA_AF23_2B2AE6D0B51D_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>PerfectSmile.Primary_output</td><td/><td/><td>_BE85B710_9D3B_4AC8_932E_C415A9B2B3BC_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2303,6 +2318,7 @@
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectDataFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISProjectFolder</td><td/><td/><td>1</td></row>
+		<row><td>PerfectSmile</td><td>PerfectSmile\PerfectSmile.csproj</td><td/><td>2</td></row>
 		<row><td>ProgramFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>SystemFolder</td><td/><td/><td>1</td></row>
 		<row><td>WindowsFolder</td><td/><td/><td>1</td></row>
@@ -3421,6 +3437,8 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>1512316530</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>1512316530</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>1512316530</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>PerfectSmileApp</td><td>0</td><td/><td>-1843121296</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>PerfectSmileApp</td><td>0</td><td/><td>-1843100720</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>1512316530</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>1512316530</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>1512316530</td></row>
@@ -3711,6 +3729,7 @@
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>1512316530</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td>http://logicwala.blogspot.com</td><td>0</td><td/><td>1512321107</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>Pk Pvt Ltd</td><td>0</td><td/><td>1512312658</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td/><td>0</td><td/><td>-1843095344</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>1512316530</td></row>
 	</table>
 
@@ -3825,7 +3844,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;VSSolutionFolder&gt;\PerfectSmile\Resources\mickey-mouse-icon.ico</td><td>0</td></row>
-		<row><td>UNINST_Uninstall_P_9825C09CC4AB43B283079DA486BFFDA7.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2015LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>UNINST_Uninstall_P_266D91B444844D15AEC41DD4B994EDE9.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2015LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3958,7 +3977,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{2CAA6331-AC58-4BA5-BEDA-14C1048FE877}</td></row>
 		<row><td>ISUSSignature</td><td>{6B98CFAA-3FFF-42E4-A707-DA058189D91B}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts,viewISToday</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4332,7 +4351,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{975971D2-32B8-4138-81C1-AB23D27F2994}</td><td/></row>
 		<row><td>ProductName</td><td>PerfectSmile</td><td/></row>
-		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>1.0.0.0</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4495,7 +4514,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>UNINST_Uninstall_PerfectSmile</td><td>perfectsmile</td><td>UNINST|Uninstall PerfectSmile</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {975971D2-32B8-4138-81C1-AB23D27F2994}</td><td/><td/><td>UNINST_Uninstall_P_9825C09CC4AB43B283079DA486BFFDA7.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>UNINST_Uninstall_PerfectSmile</td><td>perfectsmile</td><td>UNINST|Uninstall PerfectSmile</td><td>IS_ININSTALL_SHORTCUT</td><td>[SystemFolder]msiexec.exe</td><td>/x {975971D2-32B8-4138-81C1-AB23D27F2994}</td><td/><td/><td>UNINST_Uninstall_P_266D91B444844D15AEC41DD4B994EDE9.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

@@ -28,4 +28,10 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\PerfectSmile\PerfectSmile.csproj">
+			<Name>PerfectSmile</Name>
+			<Project>{E5175ADB-65B4-41CF-9985-64E76CDAA535}</Project>
+		</ProjectReference>
+	</ItemGroup>
 </Project>
