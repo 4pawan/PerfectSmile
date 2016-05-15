@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ewpftk="http://schemas.xceed.com/wpf/xaml/toolkit"
              prism:ViewModelLocator.AutoWireViewModel="True">
 
 
@@ -63,7 +64,8 @@
             <TextBox Text="{Binding Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBlock Text="Search by Visited On"/>
-            <DatePicker DisplayDateEnd="{Binding DisplayDateEnd}" Text="{Binding VisitedOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="182" Height="30" HorizontalAlignment="Right"/>
+            <!--<DatePicker DisplayDateEnd="{Binding DisplayDateEnd}" Text="{Binding VisitedOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="182" Height="30" HorizontalAlignment="Right"/>-->
+            <ewpftk:DateTimePicker Format="YearMonth" TimePickerVisibility="Collapsed" Watermark="Please select month" Text="{Binding VisitedOn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Width="182" Height="30" HorizontalAlignment="Right"/>
             <Button Content="Search" Command="{Binding SearchByColumnCommand}" />
         </StackPanel>
     </Grid>
