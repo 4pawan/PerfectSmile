@@ -372,10 +372,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Library\ImageFromFont.pdb" />
-    <Content Include="Library\RibbonControlsLibrary.dll" />
-    <Content Include="Library\Xceed.Wpf.AvalonDock.dll" />
-    <Content Include="Library\Xceed.Wpf.AvalonDock.Themes.Aero.dll" />
-    <Content Include="Library\Xceed.Wpf.DataGrid.dll" />
     <Content Include="Library\Xceed.Wpf.Toolkit.dll" />
     <Resource Include="Resources\toothLogin.png" />
     <Resource Include="Resources\mickey-mouse-icon.png" />
