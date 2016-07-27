@@ -1,0 +1,102 @@
+2016-04-18 17:09:49,550 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:09:49,587 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:09:49,606 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:09:49,616 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:09:50,026 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:09:50,170 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:09:50,783 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:09:50,784 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:09:50,785 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:09:50,796 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:09:50,798 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:09:50,799 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:10:00,915 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:10:00,919 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:10:00,952 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:10:15,587 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:11:19,331 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.
+2016-04-18 17:22:49,779 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:22:49,823 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:22:49,830 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:22:49,838 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:22:50,070 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:22:50,143 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:22:50,584 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:22:50,588 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:22:50,592 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:22:50,610 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:22:50,614 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:22:50,616 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:22:51,033 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:22:51,038 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:22:51,103 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:23:09,970 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:23:10,629 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.
+2016-04-18 17:24:22,017 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:24:22,050 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:24:22,055 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:24:22,061 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:24:22,170 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:24:22,295 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:24:22,977 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:24:22,984 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:24:22,990 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:24:23,011 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:24:23,036 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:24:23,038 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:24:23,681 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:24:23,685 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:24:23,742 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:24:29,566 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:24:30,270 [9] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.
+2016-04-18 17:29:17,244 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:29:17,272 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:29:17,279 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:29:17,288 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:29:17,382 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:29:17,425 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:29:17,875 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:29:17,876 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:29:17,880 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:29:17,898 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:29:17,901 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:29:17,903 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:29:18,389 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:29:18,393 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:29:18,421 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:29:25,526 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:29:26,091 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.
+2016-04-18 17:34:09,502 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:34:09,536 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:34:09,542 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:34:09,549 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:34:09,642 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:34:09,675 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:34:10,270 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:34:10,271 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:34:10,273 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:34:10,283 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:34:10,285 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:34:10,287 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:34:10,637 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:34:10,642 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:34:10,681 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:34:15,964 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:34:20,449 [10] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.
+2016-04-18 17:38:40,102 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Logger was created successfully.
+2016-04-18 17:38:40,146 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating module catalog.
+2016-04-18 17:38:40,153 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring module catalog.
+2016-04-18 17:38:40,164 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating Unity container.
+2016-04-18 17:38:40,260 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the Unity container.
+2016-04-18 17:38:40,327 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Adding UnityBootstrapperExtension to container.
+2016-04-18 17:38:40,697 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring ServiceLocator singleton.
+2016-04-18 17:38:40,698 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring the ViewModelLocator to use Unity.
+2016-04-18 17:38:40,700 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring region adapters.
+2016-04-18 17:38:40,710 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Configuring default region behaviors.
+2016-04-18 17:38:40,713 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Registering Framework Exception Types.
+2016-04-18 17:38:40,714 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Creating the shell.
+2016-04-18 17:38:41,183 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Setting the RegionManager.
+2016-04-18 17:38:41,187 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Updating Regions.
+2016-04-18 17:38:41,236 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing the shell.
+2016-04-18 17:38:55,414 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Initializing modules.
+2016-04-18 17:38:56,166 [8] DEBUG PerfectSmile.Repository.Implementation.Log4NetLogger [(null)] - Bootstrapper sequence completed.

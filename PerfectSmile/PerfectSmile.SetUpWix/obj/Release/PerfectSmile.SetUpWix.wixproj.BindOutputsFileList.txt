@@ -1,0 +1,2 @@
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.msi
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.wixpdb

@@ -180,7 +180,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.Toolkit, Version=2.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
@@ -372,6 +372,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Library\ImageFromFont.pdb" />
+    <Content Include="Library\System.Data.SQLite.Core.1.0.99.0\x64\SQLite.Interop.dll" />
+    <Content Include="Library\System.Data.SQLite.Core.1.0.99.0\x86\SQLite.Interop.dll" />
     <Content Include="Library\Xceed.Wpf.Toolkit.dll" />
     <Resource Include="Resources\toothLogin.png" />
     <Resource Include="Resources\mickey-mouse-icon.png" />

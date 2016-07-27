@@ -1,0 +1,8 @@
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\bin\Release\PerfectSmile.SetUpWix.msi
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\bin\Release\PerfectSmile.SetUpWix.wixpdb
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\Product.wixobj
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.msi
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.wixpdb
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.wixproj.BindContentsFileList.txt
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.wixproj.BindOutputsFileList.txt
+C:\Project\Temp\WPF\PerfectSmile\PerfectSmile\PerfectSmile.SetUpWix\obj\Release\PerfectSmile.SetUpWix.wixproj.BindBuiltOutputsFileList.txt
